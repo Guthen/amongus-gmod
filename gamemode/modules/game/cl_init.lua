@@ -14,16 +14,21 @@ net.Receive( "AmongUs:Voting", function()
         --  > Vote
         local main = AmongUs.VotePanel
         main.Lines[ply:UserID()].i_voted:SetVisible( true )
-        main.Lines[target:UserID()].votes[#main.Lines[target:UserID()].votes + 1] = ply
+        if IsValid( target ) then
+            main.Lines[target:UserID()].votes[#main.Lines[target:UserID()].votes + 1] = ply
+        else
+            main.Skip.votes[#main.Skip.votes + 1] = ply
+        end
         surface.PlaySound( "amongus/vote.wav" )
     --  > Reveal votes
     elseif method == 2 then
+        local tie = net.ReadBool()
         local main = AmongUs.VotePanel
         if not IsValid( main ) then return end
         main:ShowVotes()
 
         timer.Simple( AmongUs.Settings.ProceedingTime, function()
-            AmongUs.OpenEjectScene( ply )
+            AmongUs.OpenEjectScene( tie and "Tie" or IsValid( ply ) and ply or "Skip" )
         end )
     end
 end )

@@ -10,6 +10,7 @@ function AmongUs.CheckRoleWinner()
     end )
 end
 
+local skip = "Skip"
 function AmongUs.LaunchGame()
     --  > Clean
     game.CleanUpMap()
@@ -62,7 +63,13 @@ local function send_voting( method, speaker, target )
     net.Start( "AmongUs:Voting" )
         net.WriteUInt( method, 3 ) --  > 0: start a vote session; 1: votes someone; 2: reveal votes
         if speaker then net.WriteEntity( speaker ) end --  > 0: guy who start the vote session; 1: guy who votes someone
-        if target then net.WriteEntity( target ) end --  > 1: guy voted by player
+        if target then --  > 1: guy voted by player; 2: is tie
+            if isbool( target ) then 
+                net.WriteBool( target ) 
+            else
+                net.WriteEntity( target ) 
+            end
+        end 
     net.Broadcast()
 end
 
@@ -79,7 +86,7 @@ function AmongUs.LaunchVoting( speaker )
         --  > Vote bots
         if v:IsBot() then
             timer.Simple( math.random() * 4, function()
-                AmongUs.PlayerVoteFor( v, table.Random( players ) )
+                AmongUs.PlayerVoteFor( v, skip--[[ table.Random( players ) ]] )
             end )
         end
     end
@@ -90,13 +97,13 @@ end
 concommand.Add( "au_launch_voting", AmongUs.LaunchVoting )
 
 function AmongUs.PlayerVoteFor( ply, target )
-    send_voting( 1, ply, target )
+    send_voting( 1, ply, isentity( target ) and target or NULL )
 
     --  > Count vote
     AmongUs.Votes[target] = AmongUs.Votes[target] or {}
     AmongUs.Votes[target][#AmongUs.Votes[target] + 1] = ply
 
-    print( ply:GetName() .. " voted for " .. target:GetName() )
+    print( ply:GetName() .. " voted for " .. ( isentity( target ) and target:GetName() or skip ) )
 
     --  > Count votes
     local players = AmongUs.GetAlivePlayers()
@@ -118,16 +125,19 @@ function AmongUs.PlayerVoteFor( ply, target )
         end
 
         --  > Reveal votes
-        send_voting( 2, voted )
+        send_voting( 2, isentity( voted ) and voted or NULL, not ( voted == skip ) )
         
         --  > Proceeding Game
         timer.Simple( AmongUs.Settings.ProceedingTime, function()
+            print( voted )
             --  > Eject
-            if IsValid( voted ) then
+            if isentity( voted ) then
                 MsgAll( AmongUs.GetRoleOf( voted ):get_eject_sentence( voted ) )
                 voted:KillSilent()
+            elseif voted == skip then
+                MsgAll( "No one was ejected (Skipped)" )
             else
-                print( "No One is ejected (Tie)" )
+                print( "No One was ejected (Tie)" )
             end
 
             --  > Spawn players
@@ -143,7 +153,6 @@ net.Receive( "AmongUs:Voting", function( len, ply )
     if not ply:Alive() then return end
 
     local target = net.ReadEntity()
-    if not IsValid( target ) then return end
 
     --  > Check if has already voted
     for target, votes in pairs( AmongUs.Votes ) do
@@ -153,5 +162,5 @@ net.Receive( "AmongUs:Voting", function( len, ply )
     end
 
     --  > Vote
-    AmongUs.PlayerVoteFor( ply, target )
+    AmongUs.PlayerVoteFor( ply, IsValid( target ) and target or "Skip" )
 end )

@@ -214,13 +214,24 @@ function AmongUs.OpenVoteTablet( speaker )
     main.Lines = lines
     function main:ShowVotes()
         local size = padding * 2
+        local function show_model( i, ply, line, x, y )
+            timer.Simple( i * .75, function()
+                local model = create_model( ply, line, x, y, size )
+                size_from( model, model:GetWide() * 1.25, model:GetTall() * 1.25, .75 )
+            end )
+        end
+
+        --  > Lines
+        local model_total_space = size * 1.1
         for k, line in pairs( lines ) do
             for i, ply in ipairs( line.votes ) do
-                timer.Simple( i * .75, function()
-                    local model = create_model( ply, line, line.model:GetWide() + padding + ( i - 1 ) * size * 1.1, line.model.y + line.model:GetTall() - size + 1, size )
-                    size_from( model, model:GetWide() * 1.25, model:GetTall() * 1.25, .75 )
-                end )
+                show_model( i, ply, line, line.model:GetWide() + padding + ( i - 1 ) * model_total_space, line.model.y + line.model:GetTall() - size + 1 )
             end
+        end
+
+        --  > Skip
+        for i, ply in ipairs( main.Skip.votes ) do
+            show_model( i, ply, main.Skip:GetParent(), main.Skip:GetWide() + padding + ( i - 1 ) * model_total_space, 0 )
         end
     end
 
@@ -250,5 +261,6 @@ function AmongUs.OpenVoteTablet( speaker )
         local button_size = bottom:GetTall()
         container:CreateVoteButtons( skip.x + skip:GetWide() + padding + button_size + padding / 2, bottom, button_size, padding / 2 )
     end
+    main.Skip = skip
 end
 concommand.Add( "au_vote_tablet", AmongUs.OpenVoteTablet )

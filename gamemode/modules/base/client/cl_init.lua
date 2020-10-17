@@ -40,6 +40,13 @@ function GM:HUDPaint()
     AmongUs.DrawIcon( AmongUs.Icons.Report, ScrW() - AmongUs.RealIconSize, ScrH() - AmongUs.RealIconSize * 2, can_report )
 end
 
+local hud_hide = {
+    ["CHudHealth"] = true,
+}
+hook.Add( "HUDShouldDraw", "AmongUs:HUD", function( element )
+    if hud_hide[element] then return false end
+end )
+
 function GM:CalcView( ply, pos, ang, fov, znear, zfar )
     return {
         origin = pos - Vector( 0, 0, 12 ),
