@@ -38,6 +38,7 @@ local scenes = {
             --  > Reveal role
             if self.model_x > self.w / 2 - self.model_w / 1.5 then
                 self.text_state = math.min( self.text_state + dt * #self.final_text / 2, #self.final_text )
+                
                 if not self.sound_played then
                     self.sound_played = true
                     surface.PlaySound( "amongus/typing.wav" )    
@@ -89,6 +90,7 @@ function AmongUs.OpenEjectScene( target )
         main:SetTitle( "" )
         main:SetDraggable( false )
         main:SetSizable( false )
+        main:SetCursor( "blank" )
         --main:ShowCloseButton( false )
         main:MakePopup()
         function main:Think()
@@ -102,10 +104,9 @@ function AmongUs.OpenEjectScene( target )
         --  > Player
         local size = w * .15
         local model = main:Add( "DModelPanel" )
-        --model:Dock( FILL )
+        model:SetCursor( "blank" )
         model:SetSize( size, size )
         model.y = h / 2 - size / 2
-        model:SetCursor( "none" )
         if IsValid( target ) then 
             model:SetModel( target:GetModel() ) 
             local color = target:GetPlayerColor()
@@ -113,7 +114,7 @@ function AmongUs.OpenEjectScene( target )
                 return color
             end
         end
-        --model:SetEntity( target )
+
         model:SetCamPos( Vector( 0, 75, 36 ) )
         model:MoveTo( w, model.y, 6, 0, .5 )
         --  > https://wiki.facepunch.com/gmod/DModelPanel:SetLookAng

@@ -86,7 +86,7 @@ function AmongUs.LaunchVoting( speaker )
         --  > Vote bots
         if v:IsBot() then
             timer.Simple( math.random() * 4, function()
-                AmongUs.PlayerVoteFor( v, skip--[[ table.Random( players ) ]] )
+                AmongUs.PlayerVoteFor( v, table.Random( players ) )
             end )
         end
     end

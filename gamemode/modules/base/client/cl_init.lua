@@ -30,6 +30,8 @@ function GM:HUDPaint()
 
     role:hud_paint( ply )
 
+    if not ply:Alive() then return end
+
     --  > Report
     local ent = AmongUs.GetEntityAtTrace( ply, AmongUs.IsDeadBody )
     local can_report = IsValid( ent )

@@ -1,7 +1,7 @@
 local PLAYER = {}
 
 PLAYER.Name = "au_crew"
-PLAYER.WalkSpeed = 275
+PLAYER.WalkSpeed = 175
 PLAYER.CanUseFlashlight = false
 
 function PLAYER:Loadout()
