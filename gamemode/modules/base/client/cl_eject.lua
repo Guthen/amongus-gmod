@@ -15,10 +15,10 @@ local scenes = {
             --  > Variables
             if isentity( self.target ) then
                 self.final_text = AmongUs.GetRoleOf( self.target ):get_eject_sentence( self.target )
-            elseif self.target == "Skip" then
-                self.final_text = "No One was ejected (Skipped)"
+            elseif self.target == AmongUs.SkipVoteID then
+                self.final_text = "No one was ejected (Skipped)"
             else
-                self.final_text = "No One was ejected (Tie)"
+                self.final_text = "No one was ejected (Tie)"
             end
             self.text_state = 0
             self.alpha = 0

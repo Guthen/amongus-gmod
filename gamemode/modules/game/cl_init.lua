@@ -28,7 +28,7 @@ net.Receive( "AmongUs:Voting", function()
         main:ShowVotes()
 
         timer.Simple( AmongUs.Settings.ProceedingTime, function()
-            AmongUs.OpenEjectScene( tie and "Tie" or IsValid( ply ) and ply or "Skip" )
+            AmongUs.OpenEjectScene( IsValid( ply ) and ply or tie and "Tie" or AmongUs.SkipVoteID )
         end )
     end
 end )

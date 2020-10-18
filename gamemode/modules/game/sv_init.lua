@@ -10,7 +10,6 @@ function AmongUs.CheckRoleWinner()
     end )
 end
 
-local skip = "Skip"
 function AmongUs.LaunchGame()
     --  > Clean
     game.CleanUpMap()
@@ -103,7 +102,7 @@ function AmongUs.PlayerVoteFor( ply, target )
     AmongUs.Votes[target] = AmongUs.Votes[target] or {}
     AmongUs.Votes[target][#AmongUs.Votes[target] + 1] = ply
 
-    print( ply:GetName() .. " voted for " .. ( isentity( target ) and target:GetName() or skip ) )
+    print( ply:GetName() .. " voted for " .. ( isentity( target ) and target:GetName() or AmongUs.SkipVoteID ) )
 
     --  > Count votes
     local players = AmongUs.GetAlivePlayers()
@@ -125,19 +124,18 @@ function AmongUs.PlayerVoteFor( ply, target )
         end
 
         --  > Reveal votes
-        send_voting( 2, isentity( voted ) and voted or NULL, not ( voted == skip ) )
-        
+        send_voting( 2, isentity( voted ) and voted or NULL, not ( voted == AmongUs.SkipVoteID ) )
+
         --  > Proceeding Game
         timer.Simple( AmongUs.Settings.ProceedingTime, function()
-            print( voted )
             --  > Eject
             if isentity( voted ) then
                 MsgAll( AmongUs.GetRoleOf( voted ):get_eject_sentence( voted ) )
                 voted:KillSilent()
-            elseif voted == skip then
+            elseif voted == AmongUs.SkipVoteID then
                 MsgAll( "No one was ejected (Skipped)" )
             else
-                print( "No One was ejected (Tie)" )
+                MsgAll( "No One was ejected (Tie)" )
             end
 
             --  > Spawn players
@@ -162,5 +160,5 @@ net.Receive( "AmongUs:Voting", function( len, ply )
     end
 
     --  > Vote
-    AmongUs.PlayerVoteFor( ply, IsValid( target ) and target or "Skip" )
+    AmongUs.PlayerVoteFor( ply, IsValid( target ) and target or "AmongUs.SkipVoteID" )
 end )

@@ -1,3 +1,5 @@
+AmongUs.SkipVoteID = "Skip" --  > just to be consistent on client and server
+
 function AmongUs.GetAlivePlayers()
     local plys = {}
 
