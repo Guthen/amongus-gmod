@@ -58,7 +58,7 @@ end )
 
 function GM:CalcView( ply, pos, ang, fov, znear, zfar )
     return {
-        origin = pos - Vector( 0, 0, 12 ),
+        origin = pos - AmongUs.ViewOffset,
         angles = ang,
         fov = fov,
         --drawviewer = true,
