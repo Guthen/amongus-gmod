@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "8538"
-	"mapversion" "23"
+	"mapversion" "24"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -11,16 +11,16 @@ visgroups
 }
 viewsettings
 {
-	"bSnapToGrid" "0"
+	"bSnapToGrid" "1"
 	"bShowGrid" "1"
 	"bShowLogicalGrid" "0"
-	"nGridSpacing" "32"
+	"nGridSpacing" "16"
 	"bShow3DGrid" "0"
 }
 world
 {
 	"id" "1"
-	"mapversion" "23"
+	"mapversion" "24"
 	"classname" "worldspawn"
 	"detailmaterial" "detail/detailsprites"
 	"detailvbsp" "detail.vbsp"
@@ -16750,7 +16750,7 @@ world
 		side
 		{
 			"id" "2778"
-			"plane" "(-1280 -1472 64) (-1280 -1408 64) (-1024 -1408 64)"
+			"plane" "(-1280 -1424 64) (-1280 -1408 64) (-1024 -1408 64)"
 			"material" "TOOLS/TOOLSNODRAW"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
@@ -16761,7 +16761,7 @@ world
 		side
 		{
 			"id" "2777"
-			"plane" "(-1280 -1408 -64) (-1280 -1472 -64) (-1024 -1472 -64)"
+			"plane" "(-1280 -1408 -64) (-1280 -1424 -64) (-1024 -1424 -64)"
 			"material" "TOOLS/TOOLSNODRAW"
 			"uaxis" "[-1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
@@ -16772,7 +16772,7 @@ world
 		side
 		{
 			"id" "2776"
-			"plane" "(-1280 -1472 -64) (-1280 -1408 -64) (-1280 -1408 64)"
+			"plane" "(-1280 -1424 -64) (-1280 -1408 -64) (-1280 -1408 64)"
 			"material" "TOOLS/TOOLSNODRAW"
 			"uaxis" "[0 -1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
@@ -16783,7 +16783,7 @@ world
 		side
 		{
 			"id" "2775"
-			"plane" "(-1024 -1408 -64) (-1024 -1472 -64) (-1024 -1472 64)"
+			"plane" "(-1024 -1408 -64) (-1024 -1424 -64) (-1024 -1424 64)"
 			"material" "DEV/DEV_MEASUREGENERIC01"
 			"uaxis" "[0 1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
@@ -16805,7 +16805,7 @@ world
 		side
 		{
 			"id" "2773"
-			"plane" "(-1024 -1472 -64) (-1280 -1472 -64) (-1280 -1472 64)"
+			"plane" "(-1024 -1424 -64) (-1280 -1424 -64) (-1280 -1424 64)"
 			"material" "DEV/DEV_MEASUREGENERIC01"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
@@ -18179,7 +18179,7 @@ entity
 	"id" "1373"
 	"classname" "au_vent"
 	"angles" "-90 0 0"
-	"vent_group" "URL"
+	"vent_group" "UR"
 	"origin" "-2207.71 161.746 -61.6146"
 	editor
 	{
@@ -18194,7 +18194,7 @@ entity
 	"id" "1375"
 	"classname" "au_vent"
 	"angles" "-90 0 0"
-	"vent_group" "URL"
+	"vent_group" "RL"
 	"origin" "-2209.13 -1697.55 -61.6146"
 	editor
 	{
@@ -18209,7 +18209,7 @@ entity
 	"id" "1377"
 	"classname" "au_vent"
 	"angles" "-90 0 0"
-	"vent_group" "URL"
+	"vent_group" "RL"
 	"origin" "-2782.22 -1056.62 -61.6146"
 	editor
 	{
@@ -18224,7 +18224,7 @@ entity
 	"id" "1379"
 	"classname" "au_vent"
 	"angles" "-90 0 0"
-	"vent_group" "URL"
+	"vent_group" "UR"
 	"origin" "-2896.02 -414.675 -61.6146"
 	editor
 	{

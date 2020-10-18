@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "8538"
-	"mapversion" "24"
+	"mapversion" "25"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -20,7 +20,7 @@ viewsettings
 world
 {
 	"id" "1"
-	"mapversion" "24"
+	"mapversion" "25"
 	"classname" "worldspawn"
 	"detailmaterial" "detail/detailsprites"
 	"detailvbsp" "detail.vbsp"
@@ -18074,7 +18074,7 @@ entity
 	"id" "1329"
 	"classname" "au_vent"
 	"angles" "-90 0 0"
-	"vent_group" "WNS"
+	"vent_group" "WN"
 	"origin" "1120.67 223.299 -61.6146"
 	editor
 	{
@@ -18089,7 +18089,7 @@ entity
 	"id" "1333"
 	"classname" "au_vent"
 	"angles" "-90 0 0"
-	"vent_group" "WNS"
+	"vent_group" "WN"
 	"origin" "1696.07 -482.319 -61.6146"
 	editor
 	{
@@ -18104,7 +18104,7 @@ entity
 	"id" "1335"
 	"classname" "au_vent"
 	"angles" "-90 0 0"
-	"vent_group" "WNS"
+	"vent_group" "NS"
 	"origin" "1698.84 -990.465 -61.6146"
 	editor
 	{
@@ -18119,7 +18119,7 @@ entity
 	"id" "1337"
 	"classname" "au_vent"
 	"angles" "-90 0 0"
-	"vent_group" "WNS"
+	"vent_group" "NS"
 	"origin" "1100.44 -1880.75 -61.6146"
 	editor
 	{
