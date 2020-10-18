@@ -14,5 +14,6 @@ function ENT:Initialize()
 end
 
 function ENT:PlayerPressed( ply )
-    ply:Kill()
+    ply:SetPos( self:GetPos() - ply:GetUp() * 40 )
+    ply:SetNWEntity( "AmongUs:Vent", self )
 end
