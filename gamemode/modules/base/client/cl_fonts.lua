@@ -22,3 +22,15 @@ surface.CreateFont( "AmongUs:Big", {
 	size = ScreenScale( 35 ),
 	weight = 250,
 } )
+
+surface.CreateFont( "AmongUs:Role", {
+	font = "VCR OSD Mono",
+	size = ScreenScale( 60 ),
+	weight = 250,
+} )
+
+surface.CreateFont( "AmongUs:RoleLittle", {
+	font = "VCR OSD Mono",
+	size = ScreenScale( 15 ),
+	weight = 250,
+} )

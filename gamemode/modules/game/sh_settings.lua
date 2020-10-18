@@ -1,7 +1,7 @@
 AmongUs.Settings = {
     --  > Distance
     KillDistance = 156,
-    UseDistance = 156,
+    UseDistance = 200,
 
     --  > Cooldown
     StartKillCooldown = 5,
@@ -10,6 +10,7 @@ AmongUs.Settings = {
     --  > Time
     VoteTime = 15,
     ProceedingTime = 5,
+    EjectTime = 6,
 
     --  > Colors
     Colors = {
@@ -24,5 +25,7 @@ AmongUs.Settings = {
         Color( 117, 74, 24 ), --  > Brown
         Color( 34, 233, 219 ), --  > Cyan
         Color( 65, 212, 48 ), --  > Lime
-    }
+    },
+    VictoryColor = Color( 61, 140, 243 ),
+    DefeatColor = Color( 226, 55, 35 ),
 }

@@ -1,14 +1,21 @@
+hook.Add( "PreDrawHalos", "AmongUs:UsableEntities", function()
+    local ent = AmongUs.GetEntityAtTrace( LocalPlayer(), AmongUs.IsUseable, nil, true )
+    if not IsValid( ent ) then return end
+
+    halo.Add( { ent }, color_white, 3, 3, 5, true )
+end )
+
 --  > Hooks
 local color_black = Color( 0, 0, 0 )
 function GM:PostPlayerDraw( ply )
-    local pos = ply:GetPos() + Vector( 0, 0, 65 )
+    local pos = ply:GetPos() + Vector( 0, 0, 68 )
     local ang = Angle( 0, ( ply:GetPos() - LocalPlayer():GetPos() ):Angle().y - 90, 90 )
-    local scale = .15
+    local scale = .08
 
     local role = AmongUs.GetRoleOf( ply )
     local color = role and role:get_name_color( LocalPlayer() ) or color_white
     cam.Start3D2D( pos, ang, scale )
-        AmongUs.DrawText( ply:GetName(), 0, 0, color )
+        AmongUs.DrawText( ply:GetName(), 0, 0, color, "AmongUs:Big" )
     cam.End3D2D()
 end
 
@@ -68,4 +75,10 @@ net.Receive( "AmongUs:ColorizeRagdoll", function()
         return color
     end
     print( ragdoll, color )
+end )
+
+--  > Play Sound
+net.Receive( "AmongUs:PlaySound", function()
+    local path = net.ReadString()
+    surface.PlaySound( path )
 end )

@@ -16,12 +16,17 @@ local scenes = {
             if isentity( self.target ) then
                 self.final_text = AmongUs.GetRoleOf( self.target ):get_eject_sentence( self.target )
             elseif self.target == AmongUs.SkipVoteID then
-                self.final_text = "No one was ejected (Skipped)"
+                self.final_text = "No one was ejected. (Skipped)"
             else
-                self.final_text = "No one was ejected (Tie)"
+                self.final_text = "No one was ejected. (Tie)"
             end
             self.text_state = 0
             self.alpha = 0
+
+            self.impostors_left = #AmongUs.GetRolePlayers( AmongUs.Roles[IMPOSTOR] )
+            self.impostors_scale = 0
+            self.impostors_text = ""
+            self.impostors_second = 1
 
             self.sound_played = false
         end,
@@ -43,6 +48,14 @@ local scenes = {
                     self.sound_played = true
                     surface.PlaySound( "amongus/typing.wav" )    
                 end
+
+                if math.ceil( self.text_state ) == #self.final_text then
+                    self.impostors_second = self.impostors_second - dt
+                    if self.impostors_second <= 0 then
+                        self.impostors_text = ( "%d Impostor%s remain%s." ):format( self.impostors_left, self.impostors_left > 1 and "s" or "", self.impostors_left > 1 and "" or "s" )
+                        self.impostors_scale = Lerp( dt * 6, self.impostors_scale, 1 )
+                    end
+                end
             end
 
             --  > Alpha
@@ -59,10 +72,22 @@ local scenes = {
 
             --  > Text
             AmongUs.DrawText( self.final_text:sub( 0, math.ceil( self.text_state ) ), w / 2, h / 2, color, "AmongUs:Little" )
+            
+            --  > Impostor text
+            local x, y = w / 2, h / 2 + draw.GetFontHeight( "AmongUs:Little" )
+            local mtx = Matrix()
+            mtx:Translate( Vector( x, y ) )
+            mtx:Scale( Vector( 1, 1, 1 ) * self.impostors_scale )
+            mtx:Translate( -Vector( x, y ) )
+
+            cam.PushModelMatrix( mtx )
+                AmongUs.DrawText( self.impostors_text, x, y, color, "AmongUs:Little", nil, TEXT_CENTER_TOP )
+            cam.PopModelMatrix()
         end,
     }
 }
 
+AmongUs.EjectScene = nil
 function AmongUs.OpenEjectScene( target )
     local time = .75
     LocalPlayer():ScreenFade( SCREENFADE.OUT, color_black, time - .25, 1 )
@@ -91,7 +116,7 @@ function AmongUs.OpenEjectScene( target )
         main:SetDraggable( false )
         main:SetSizable( false )
         main:SetCursor( "blank" )
-        --main:ShowCloseButton( false )
+        main:ShowCloseButton( false )
         main:MakePopup()
         function main:Think()
             scene:update( FrameTime() )
@@ -100,6 +125,7 @@ function AmongUs.OpenEjectScene( target )
             scene:paint( w, h )
         end
         scene.main = main
+        AmongUs.EjectScene = main
         
         --  > Player
         local size = w * .15
@@ -116,7 +142,7 @@ function AmongUs.OpenEjectScene( target )
         end
 
         model:SetCamPos( Vector( 0, 75, 36 ) )
-        model:MoveTo( w, model.y, 6, 0, .5 )
+        model:MoveTo( w, model.y, AmongUs.Settings.EjectTime, 0, .5 )
         --  > https://wiki.facepunch.com/gmod/DModelPanel:SetLookAng
         local yaw = 0
         function model:LayoutEntity(ent)

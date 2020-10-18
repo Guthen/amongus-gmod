@@ -14,10 +14,17 @@ function AmongUs.IsDeadBody( ent )
     return IsValid( ent ) and ent:GetClass() == "prop_ragdoll"
 end
 
-function AmongUs.GetEntityAtTrace( ply, filter, radius )
+function AmongUs.IsUseable( ent )
+    return IsValid( ent ) and ent.AmongUsUsable
+end
+
+function AmongUs.GetEntityAtTrace( ply, filter, radius, use_distance )
     local pos = ply:GetEyeTrace().HitPos
     for i, v in ipairs( ents.FindInSphere( pos, radius or 50 ) ) do
-        if filter( v ) then return v end
+        if filter( v ) then 
+            if use_distance and v:GetPos():Distance( ply:GetPos() ) > AmongUs.Settings.UseDistance then continue end
+            return v
+        end
     end
 end
 
@@ -37,3 +44,13 @@ function GM:ShouldCollide( ent_1, ent_2 )
 
     return true
 end
+
+--  > Disable spawn sound
+sound.Add( {
+    name = "Player.DrownStart",
+    channel = CHAN_STATIC,
+    volume = 0,
+    level = 0,
+    pitch = 0,
+    sound = "amongus/spawn.wav"
+} )

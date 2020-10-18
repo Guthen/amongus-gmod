@@ -1,16 +1,53 @@
+util.AddNetworkString( "AmongUs:GameState" )
 function AmongUs.CheckRoleWinner()
-    timer.Create( "AmongUs:RoleWinCheck", .5, 1, function() 
+    if timer.Exists( "AmongUs:NextGame" ) then return end
+    timer.Create( "AmongUs:RoleWinCheck", 0, 1, function() 
         for i, v in ipairs( AmongUs.Roles ) do
             if v.has_won and v:has_won() then
-                print( v.name .. " won!" )
-                timer.Simple( 1, AmongUs.LaunchGame )
+                timer.Simple( 1, function()
+                    net.Start( "AmongUs:GameState" )
+                        net.WriteBool( false ) --  > ending
+                        net.WriteUInt( i, 7 ) --  > role winner
+                    net.Broadcast()
+                end )
+
+                AmongUs.GameOver = true
+                timer.Create( "AmongUs:NextGame", 8, 1, function()
+                    for i, v in ipairs( player.GetAll() ) do
+                        v:SetTeam( TEAM_UNASSIGNED )
+                        v:Spawn()
+                    end
+                end )
                 break
             end
         end
     end )
 end
 
+function AmongUs.RespawnAlivePlayers()
+    local players = AmongUs.GetAlivePlayers()
+    local ang = 0
+    local radius = math.max( 200, #players * 16 )
+    local origin = Vector( 0, 0, 0 )
+
+    for i, v in ipairs( players ) do
+        ang = i * math.rad( 360 / #players )
+        v:SetPos( origin + Vector( math.cos( ang ) * radius, math.sin( ang ) * radius, 0 ) )
+        v:SetEyeAngles( ( origin - v:GetPos() ):Angle() )
+        v:DropToFloor()
+        v:Freeze( false )
+
+        --  > Reset weapons
+        for kw, w in ipairs( v:GetWeapons() ) do
+            w:Equip()
+        end
+    end
+end
+
+AmongUs.GameOver = true
 function AmongUs.LaunchGame()
+    AmongUs.GameOver = false
+
     --  > Clean
     game.CleanUpMap()
 
@@ -35,13 +72,15 @@ function AmongUs.LaunchGame()
         AmongUs.SetRole( v, math.random( #roles ) )
     end
 
-    --  > Give colors
+    --  > Give color
     local function set_color( ply, color )
         ply:SetPlayerColor( Vector( color.r / 255, color.g / 255, color.b / 255 ) )
     end
 
+    --  > Set Color
     local colors = table.Copy( AmongUs.Settings.Colors )
     for i, v in ipairs( player.GetAll() ) do
+        v:Spawn()
         if #colors > 0 then
             local color = table.remove( colors, math.random( #colors ) )
             set_color( v, color )
@@ -49,6 +88,16 @@ function AmongUs.LaunchGame()
             set_color( v, VectorRand( 0, 255 ) )
         end
     end
+
+    --  > Set position
+    AmongUs.RespawnAlivePlayers()
+
+    --  > Open Start menu
+    timer.Simple( .15, function()
+        net.Start( "AmongUs:GameState" )
+            net.WriteBool( true ) --  > starting
+        net.Broadcast()
+    end )
 
     print( "AmongUs: launched" )
 end
@@ -78,8 +127,13 @@ function AmongUs.LaunchVoting( speaker )
     --  > Reset votes
     AmongUs.Votes = {}
 
-    --  > Spawn every alived players
+    --  > Freeze players
     local players = AmongUs.GetAlivePlayers()
+    for i, v in ipairs( players ) do
+        v:Freeze( true )
+    end
+
+    players[ #players + 1 ] = AmongUs.SkipVoteID
     for i, v in ipairs( player.GetBots() ) do
         if not v:Alive() then continue end
         --  > Vote bots
@@ -102,7 +156,7 @@ function AmongUs.PlayerVoteFor( ply, target )
     AmongUs.Votes[target] = AmongUs.Votes[target] or {}
     AmongUs.Votes[target][#AmongUs.Votes[target] + 1] = ply
 
-    print( ply:GetName() .. " voted for " .. ( isentity( target ) and target:GetName() or AmongUs.SkipVoteID ) )
+    --print( ply:GetName() .. " voted for " .. ( isentity( target ) and target:GetName() or AmongUs.SkipVoteID ) )
 
     --  > Count votes
     local players = AmongUs.GetAlivePlayers()
@@ -133,16 +187,13 @@ function AmongUs.PlayerVoteFor( ply, target )
                 MsgAll( AmongUs.GetRoleOf( voted ):get_eject_sentence( voted ) )
                 voted:KillSilent()
             elseif voted == AmongUs.SkipVoteID then
-                MsgAll( "No one was ejected (Skipped)" )
+                MsgAll( "No one was ejected. (Skipped)" )
             else
-                MsgAll( "No One was ejected (Tie)" )
+                MsgAll( "No One was ejected. (Tie)" )
             end
 
             --  > Spawn players
-            for i, v in ipairs( players ) do
-                if v == voted then continue end
-                v:Spawn()
-            end
+            timer.Simple( AmongUs.Settings.EjectTime + 1, AmongUs.RespawnAlivePlayers )
         end )
     end
 end

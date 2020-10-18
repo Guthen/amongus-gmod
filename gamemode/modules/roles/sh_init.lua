@@ -7,6 +7,8 @@ function AmongUs.AddRole( name, tbl )
 
     team.SetUp( tbl.id, name, tbl.color, tbl.id == 0 )
     print( ( "AmongUs: new role %q" ):format( name ) )
+
+    return tbl.id
 end
 
 function AmongUs.SetRole( ply, role )
@@ -16,6 +18,18 @@ function AmongUs.SetRole( ply, role )
     ply:SetTeam( role.id )
     ply:Spawn()
     print( ply:GetName(), role.name )
+end
+
+function AmongUs.GetRolePlayers( role )
+    local players = {}
+
+    for i, v in ipairs( AmongUs.GetAlivePlayers() ) do
+        if v:Team() == role.id then 
+            players[#players + 1] = v 
+        end
+    end
+
+    return players
 end
 
 function AmongUs.GetRoleOf( ply )

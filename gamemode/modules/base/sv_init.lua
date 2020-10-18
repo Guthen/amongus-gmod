@@ -1,11 +1,30 @@
+util.AddNetworkString( "AmongUs:PlaySound" )
+function AmongUs.PlaySound( path )
+    net.Start( "AmongUs:PlaySound" )
+        net.WriteString( path )
+    net.Broadcast()
+end
+
 util.AddNetworkString( "AmongUs:ColorizeRagdoll" )
+
+function GM:PlayerInitialSpawn( ply )
+    --  > Get a fake name for bots
+    if ply:IsBot() then
+        ply:SetNWString( "AmongUs:FakeName", table.Random( AmongUs.BasePlayerClass.Names ) )
+    end
+end
+
+concommand.Add( "au_reload_fake_names", function()
+    for k, v in ipairs( player.GetBots() ) do
+        v:SetNWString( "AmongUs:FakeName", table.Random( AmongUs.BasePlayerClass.Names ) )
+    end
+end )
 
 function GM:PlayerSpawn( ply )
     player_manager.SetPlayerClass( ply, AmongUs.BasePlayerClass.Name )
     player_manager.RunClass( ply, "Loadout" )
 
     ply:SetCustomCollisionCheck( true )
-    ---ply:SendLua( "player_manager.RunClass( LocalPlayer(), 'Loadout' )" )
 end
 
 function GM:PlayerDeathSound()
@@ -45,11 +64,46 @@ function GM:PlayerDeathThink( ply )
     return true
 end
 
-function GM:KeyPress( ply, key )
-    if key == IN_USE then
-        local body = AmongUs.GetEntityAtTrace( ply, AmongUs.IsDeadBody )
-        if not body or body:GetPos():Distance( ply:GetPos() ) > AmongUs.Settings.UseDistance then return end
+--  > USE Commands
+local use_checks = {
+    --  > Body Report
+    function( ply )
+        local body = AmongUs.GetEntityAtTrace( ply, AmongUs.IsDeadBody, nil, true )
+        if not body then return end
 
         AmongUs.LaunchVoting( ply )
+        AmongUs.PlaySound( "amongus/report_body.wav" )
+        return true
+    end,
+    --  > Usable
+    function( ply )
+        local usable = AmongUs.GetEntityAtTrace( ply, AmongUs.IsUseable, nil, true )
+        if not usable then return end
+
+        usable:PlayerPressed( ply )
+        return true
+    end,
+}
+function GM:KeyPress( ply, key )
+    if AmongUs.GameOver then return end
+    
+    if key == IN_USE then
+        for i, v in ipairs( use_checks ) do
+            if v( ply ) then return end
+        end
     end 
+end
+
+--  > Footsteps
+local sounds = {
+    concrete = { name = "tile0", max = 7 },
+    metal = { name = "metal0", max = 8 },
+}
+function GM:PlayerFootstep( ply, pos, foot, path, volume, rf )
+    local id = path:match( "player/footsteps/(%D+)" )
+    local sound = sounds[id] or sounds["concrete"]
+    --print( path, id, sound )
+    
+    ply:EmitSound( "amongus/footsteps/" .. sound.name .. math.random( 1, sound.max ) .. ".wav" )
+    return true
 end

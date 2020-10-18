@@ -1,7 +1,7 @@
 AmongUs.Roles = {}
 
 --  > Crewmate
-AmongUs.AddRole( "Crewmate", {
+CREWMATE = AmongUs.AddRole( "Crewmate", {
     color = Color( 141, 255, 253 ),
     has_won = function( self )
         local plys = AmongUs.GetAlivePlayers()
@@ -15,13 +15,22 @@ AmongUs.AddRole( "Crewmate", {
         return true
     end,
     get_eject_sentence = function( self, ply )
-        return ( "%s was not An Impostor" ):format( ply:GetName(), self.name )
+        return ( "%s was not An Impostor." ):format( ply:GetName(), self.name )
+    end,
+    get_scene_players = function( self )
+        return AmongUs.GetAlivePlayers()
+    end,
+    show_player_name_reveal = false, --  > Whenever we show players names on role reveal
+    second_reveal_sentence = function( self )
+        local impostor = AmongUs.Roles[IMPOSTOR]
+        local count = #AmongUs.GetRolePlayers( impostor )
+        return "There ", count > 1 and "are" or "is", impostor.color, ( " %d %s" ):format( count, impostor.name .. ( count > 1 and "s" or "" ) ), color_white, " among us."
     end,
     --  > Client:
     hud_paint = function( self, ply )
         --  > Use
         local x, y = ScrW() - AmongUs.RealIconSize, ScrH() - AmongUs.RealIconSize
-        AmongUs.DrawIcon( AmongUs.Icons.Use, x, y, false )
+        AmongUs.DrawIcon( AmongUs.Icons.Use, x, y, AmongUs.GetEntityAtTrace( ply, AmongUs.IsUseable, nil, true ) )
     end,
     get_name_color = function( self, ply )
         return color_white
@@ -29,20 +38,26 @@ AmongUs.AddRole( "Crewmate", {
 } )
 
 --  > Impostor
-AmongUs.AddRole( "Impostor", {
+IMPOSTOR = AmongUs.AddRole( "Impostor", {
     color = Color( 238, 72, 79 ), --  > Name/Halos color
     weapons = { --  > Spawned weapons
         "au_kill",
     },
-    max = function( self ) return math.ceil( player.GetCount() / 6 ) end, --  > Max players in this role
+    max = function( self ) 
+        return 2
+    end, --  > Max players in this role
     immortal = true, --  > Immunise to 'au_kill' SWEP?
     has_won = function( self ) --  > Called everytime a player has gone
-        local n = team.NumPlayers( self.id )
+        local n = #AmongUs.GetRolePlayers( self )
         return #AmongUs.GetAlivePlayers() - n <= n
     end,
     get_eject_sentence = function( self, ply )
-        return ( "%s was An Impostor" ):format( ply:GetName() )
+        return ( "%s was An Impostor." ):format( ply:GetName() )
     end,
+    get_scene_players = function( self ) --  > Must return players list to show on role reveal scene
+        return team.GetPlayers( self.id )
+    end,
+    show_player_name_reveal = true, --  > Whenever we show players names on role reveal
     --  > Client:
     hud_paint = function( self, ply )
         --  > Can Kill

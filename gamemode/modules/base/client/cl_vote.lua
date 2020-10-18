@@ -18,6 +18,11 @@ local function create_model( ply, parent, x, y, size )
         self:SetLookAt( eyepos )
         self:SetCamPos( eyepos + Vector( 45, -15, 0 ) )
     end
+    function model:PreDrawModel( ent )
+        if not IsValid( AmongUs.VotePanel ) then return end
+        local alpha = AmongUs.VotePanel:GetAlpha()
+        render.ResetModelLighting( alpha / 255, alpha / 255, alpha / 255 )
+    end
     function model.Entity:GetPlayerColor()
         return ply:GetPlayerColor()
     end
