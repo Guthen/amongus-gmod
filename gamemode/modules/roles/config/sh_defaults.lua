@@ -30,7 +30,9 @@ CREWMATE = AmongUs.AddRole( "Crewmate", {
     hud_paint = function( self, ply )
         --  > Use
         local x, y = ScrW() - AmongUs.RealIconSize, ScrH() - AmongUs.RealIconSize
-        AmongUs.DrawIcon( AmongUs.Icons.Use, x, y, AmongUs.GetEntityAtTrace( ply, AmongUs.IsUseable, nil, true ) )
+        local target = AmongUs.GetEntityAtTrace( ply, AmongUs.IsUseable, nil, true )
+
+        AmongUs.DrawIcon( AmongUs.Icons.Use, x, y, target and not AmongUs.IsVent( target ) )
     end,
     get_name_color = function( self, ply )
         return color_white
@@ -47,6 +49,7 @@ IMPOSTOR = AmongUs.AddRole( "Impostor", {
         return 2
     end, --  > Max players in this role
     immortal = true, --  > Immunise to 'au_kill' SWEP?
+    can_vent = true, --  > Allow to go in vents
     has_won = function( self ) --  > Called everytime a player has gone
         local n = #AmongUs.GetRolePlayers( self )
         return #AmongUs.GetAlivePlayers() - n <= n
@@ -93,8 +96,16 @@ IMPOSTOR = AmongUs.AddRole( "Impostor", {
             AmongUs.DrawText( math.ceil( cooldown ), x + AmongUs.IconSize / 2, y + AmongUs.IconSize / 2, nil, "AmongUs:Big" )
         end
 
-        --  > Sabotage
-        AmongUs.DrawIcon( AmongUs.Icons.Sabotage, x + AmongUs.RealIconSize, y, true )
+        --  > Vent, Use, Sabotage
+        if AmongUs.GetEntityAtTrace( ply, AmongUs.IsVent, nil, true ) then
+            AmongUs.DrawIcon( AmongUs.Icons.Vent, x + AmongUs.RealIconSize, y, true )
+
+        elseif AmongUs.GetEntityAtTrace( ply, AmongUs.IsUseable, nil, true ) then
+            AmongUs.DrawIcon( AmongUs.Icons.Use, x + AmongUs.RealIconSize, y, true )
+
+        else
+            AmongUs.DrawIcon( AmongUs.Icons.Sabotage, x + AmongUs.RealIconSize, y, true )
+        end
     end,
     get_name_color = function( self, ply )
         --  > See as impostor if looker is also impostor 

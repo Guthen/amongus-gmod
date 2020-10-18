@@ -12,3 +12,7 @@ function ENT:Initialize()
 
 	self:SetUseType( SIMPLE_USE )
 end
+
+function ENT:PlayerPressed( ply )
+    ply:Kill()
+end

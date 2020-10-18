@@ -1,6 +1,20 @@
 hook.Add( "PreDrawHalos", "AmongUs:UsableEntities", function()
-    local ent = AmongUs.GetEntityAtTrace( LocalPlayer(), AmongUs.IsUseable, nil, true )
-    if not IsValid( ent ) then return end
+    local ply = LocalPlayer()
+    local role = AmongUs.GetRoleOf( ply )
+
+    if role and role.can_vent then
+        local ent = AmongUs.GetEntityAtTrace( ply, AmongUs.IsVent, nil, true )
+        if IsValid( ent ) then
+            halo.Add( { ent }, role.color, 3, 3, 5, true )
+            
+            return
+        end
+    end
+
+    local ent = AmongUs.GetEntityAtTrace( ply, AmongUs.IsUseable, nil, true )
+    if not IsValid( ent ) or AmongUs.IsVent( ent ) then
+        return
+    end
 
     halo.Add( { ent }, color_white, 3, 3, 5, true )
 end )
@@ -25,6 +39,7 @@ AmongUs.Icons = {
     Sabotage = Material( "amongus/sabotage.png" ),
     Use = Material( "amongus/use.png" ),
     Report = Material( "amongus/report.png" ),
+    Vent = Material( "amongus/vent.png" ),
 }
 
 AmongUs.IconSize, AmongUs.IconSpace = ScreenScale( 60 ), ScreenScale( 10 )

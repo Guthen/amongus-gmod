@@ -18,6 +18,10 @@ function AmongUs.IsUseable( ent )
     return IsValid( ent ) and ent.AmongUsUsable
 end
 
+function AmongUs.IsVent( ent )
+    return IsValid( ent ) and ent:GetClass() == "au_vent"
+end
+
 AmongUs.ViewOffset = Vector( 0, 0, 12 )
 function AmongUs.GetEntityAtTrace( ply, filter, radius, use_distance )
     local pos = util.TraceLine( {
@@ -34,18 +38,6 @@ function AmongUs.GetEntityAtTrace( ply, filter, radius, use_distance )
         end
     end
 end
-
-hook.Add( "PostDrawOpaqueRenderables", "AmongUs:ViewTrace", function()
-    local ply = LocalPlayer()
-    local pos = util.TraceLine( {
-        start = ply:EyePos() - AmongUs.ViewOffset,
-        endpos = ply:EyePos() - AmongUs.ViewOffset + ply:EyeAngles():Forward() * 32768,
-        filter = AmongUs.IsUseable
-    } ).HitPos
-
-    render.SetColorMaterial()
-    render.DrawWireframeSphere( pos, 5, 12, 12, Color( 255, 0, 0 ), true )
-end )
 
 function GM:StartCommand( ply, cmd )
     if ply:IsBot() then

@@ -75,10 +75,14 @@ local use_checks = {
         AmongUs.PlaySound( "amongus/report_body.wav" )
         return true
     end,
-    --  > Usable
+
+    --  > Usable & Vents
     function( ply )
         local usable = AmongUs.GetEntityAtTrace( ply, AmongUs.IsUseable, nil, true )
         if not usable then return end
+
+        local role = AmongUs.GetRoleOf( ply )
+        if AmongUs.IsVent( usable ) and role and not role.can_vent then return end
 
         usable:PlayerPressed( ply )
         return true
