@@ -81,9 +81,6 @@ local use_checks = {
         local usable = AmongUs.GetEntityAtTrace( ply, AmongUs.IsUseable, nil, true )
         if not usable then return end
 
-        local role = AmongUs.GetRoleOf( ply )
-        if AmongUs.IsVent( usable ) and role and not role.can_vent then return end
-
         usable:PlayerPressed( ply )
         return true
     end,
@@ -95,6 +92,21 @@ function GM:KeyPress( ply, key )
         for i, v in ipairs( use_checks ) do
             if v( ply ) then return end
         end
+    elseif key == IN_ATTACK then
+        if not IsValid( ply:GetNWEntity( "AmongUs:Vent" ) ) then return end
+
+        --[[ local vent = AmongUs.GetEntityAtTrace( ply, function( ent ) 
+            return AmongUs.IsVent( ent ) and not ( ply:GetNWEntity( "AmongUs:Vent" ) == ent )
+        end, nil, true ) ]]
+        local role = AmongUs.GetRoleOf( ply )
+        if ( role and not role.can_vent ) then return end
+
+        --local dir = ply:GetE
+        if not vent then return end 
+
+        --[[ print( vent, ply:GetNWEntity( "AmongUs:Vent" ) ) ]]
+
+        vent:PlayerPressed( ply )
     end 
 end
 

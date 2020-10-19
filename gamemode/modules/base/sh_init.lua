@@ -23,17 +23,18 @@ function AmongUs.IsVent( ent )
 end
 
 AmongUs.ViewOffset = Vector( 0, 0, 12 )
-function AmongUs.GetEntityAtTrace( ply, filter, radius, use_distance )
+function AmongUs.GetEntityAtTrace( ply, filter, radius, use_distance, trace_dist )
+    trace_dist = trace_dist or ( use_distance and AmongUs.Settings.UseDistance or 32768 )
     local pos = util.TraceLine( {
         start = ply:EyePos() - AmongUs.ViewOffset,
-        endpos = ply:EyePos() - AmongUs.ViewOffset + ply:EyeAngles():Forward() * 32768,
+        endpos = ply:EyePos() - AmongUs.ViewOffset + ply:EyeAngles():Forward() * trace_dist,
         filter = filter
     } ).HitPos
 
     --local pos = ply:GetEyeTrace().HitPos
-    for i, v in ipairs( ents.FindInSphere( pos, radius or 5 ) ) do
+    for i, v in ipairs( ents.FindInSphere( pos, radius or 50 ) ) do
         if filter( v ) then 
-            if use_distance and v:GetPos():Distance( ply:GetPos() ) > AmongUs.Settings.UseDistance then continue end
+            --if use_distance and v:GetPos():Distance( ply:GetPos() ) > AmongUs.Settings.UseDistance then continue end
             return v
         end
     end

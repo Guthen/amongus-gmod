@@ -104,7 +104,7 @@ end
 concommand.Add( "au_launch_game", AmongUs.LaunchGame )
 
 --  > Voting
-AmongUs.Votes = {}
+AmongUs.Votes = nil
 
 util.AddNetworkString( "AmongUs:Voting" )
 local function send_voting( method, speaker, target )
@@ -195,6 +195,8 @@ function AmongUs.PlayerVoteFor( ply, target )
             --  > Spawn players
             timer.Simple( AmongUs.Settings.EjectTime + 1, AmongUs.RespawnAlivePlayers )
         end )
+
+        AmongUs.Votes = nil
     end
 end
 

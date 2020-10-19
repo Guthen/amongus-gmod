@@ -17,13 +17,15 @@ function ENT:Draw() --  > yea, it's needed to show the entity
 end
 
 function ENT:PlayerPressed( ply ) --  > custom hook (cuz ENT:Use doesn't work here and isn't suit for custom Use press)
-    if AmongUs.GameOver then return end
+    if AmongUs.GameOver or AmongUs.Votes then return end
 
+    print( "before voting" )
     AmongUs.LaunchVoting( ply )
     AmongUs.PlaySound( "amongus/emergency.wav" )
+    print( "after voting" )
 end
 
-if SERVER then
+--[[ if SERVER then
     local function create_emergency_button( ply )
         for k, v in ipairs( ents.FindByClass( "au_emergency_button" ) ) do
             v:Remove()
@@ -38,4 +40,4 @@ if SERVER then
 
     concommand.Add( "au_create_emergency_button", create_emergency_button )
     hook.Add( "InitPostEntity", "AmongUs:EmergencyButton", create_emergency_button )
-end
+end ]]

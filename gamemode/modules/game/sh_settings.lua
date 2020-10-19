@@ -1,7 +1,7 @@
 AmongUs.Settings = {
     --  > Distance
     KillDistance = 156,
-    UseDistance = 200,
+    UseDistance = 100,
 
     --  > Cooldown
     StartKillCooldown = 5,
