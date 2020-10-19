@@ -7,19 +7,6 @@ end
 
 util.AddNetworkString( "AmongUs:ColorizeRagdoll" )
 
-function GM:PlayerInitialSpawn( ply )
-    --  > Get a fake name for bots
-    if ply:IsBot() then
-        ply:SetNWString( "AmongUs:FakeName", table.Random( AmongUs.BasePlayerClass.Names ) )
-    end
-end
-
-concommand.Add( "au_reload_fake_names", function()
-    for k, v in ipairs( player.GetBots() ) do
-        v:SetNWString( "AmongUs:FakeName", table.Random( AmongUs.BasePlayerClass.Names ) )
-    end
-end )
-
 function GM:PlayerSpawn( ply )
     player_manager.SetPlayerClass( ply, AmongUs.BasePlayerClass.Name )
     player_manager.RunClass( ply, "Loadout" )
@@ -35,13 +22,17 @@ function GM:PlayerDeath( ply, inf, atk )
     local ragdoll = ply:GetRagdollEntity()
 
     --  > New ragdoll
+    local color = ply:GetPlayerColor()
     local new_ragdoll = ents.Create( "prop_ragdoll" )
     new_ragdoll:SetModel( ply:GetModel() )
     new_ragdoll:SetPos( ragdoll:GetPos() )
     new_ragdoll:SetAngles( ply:GetAngles() )
     new_ragdoll:Spawn()
-    new_ragdoll:SetColor( ply:GetPlayerColor():ToColor() )
+    new_ragdoll:SetColor( color:ToColor() )
     new_ragdoll:SetCollisionGroup( COLLISION_GROUP_WORLD )
+    function new_ragdoll:GetPlayerColor()
+        return color
+    end
     --[[ print( new_ragdoll:GetPhysicsObject():SetMaterial( "player" ) )
  ]]
     -------------   > TODO: FIX RAGDOLLs COLOR
@@ -71,8 +62,8 @@ local use_checks = {
         local body = AmongUs.GetEntityAtTrace( ply, AmongUs.IsDeadBody, nil, true )
         if not body then return end
 
+        AmongUs.OpenSplashScreen( "report", { color = body:GetPlayerColor():ToColor() } )
         AmongUs.LaunchVoting( ply )
-        AmongUs.PlaySound( "amongus/report_body.wav" )
         return true
     end,
 
@@ -93,20 +84,25 @@ function GM:KeyPress( ply, key )
             if v( ply ) then return end
         end
     elseif key == IN_ATTACK then
-        if not IsValid( ply:GetNWEntity( "AmongUs:Vent" ) ) then return end
+        local current_vent = ply:GetNWEntity( "AmongUs:Vent" )
+        if not IsValid( current_vent ) then return end
 
-        --[[ local vent = AmongUs.GetEntityAtTrace( ply, function( ent ) 
-            return AmongUs.IsVent( ent ) and not ( ply:GetNWEntity( "AmongUs:Vent" ) == ent )
-        end, nil, true ) ]]
         local role = AmongUs.GetRoleOf( ply )
-        if ( role and not role.can_vent ) then return end
+        if role and not role.can_vent then return end
 
-        --local dir = ply:GetE
-        if not vent then return end 
+        for k, v in ipairs( ents.FindByClass( "au_vent" ) ) do
+            if v:GetVentGroup() ~= current_vent:GetVentGroup() then continue end
+            
+            local ang = ( v:GetPos() - ply:EyePos() - AmongUs.ViewOffset ):Angle() - ply:GetAngles()
+            ang:Normalize()
 
-        --[[ print( vent, ply:GetNWEntity( "AmongUs:Vent" ) ) ]]
+            local dist = 3
+            if math.abs( ang.x ) < dist and math.abs( ang.y ) < dist then
+                v:PlayerPressed( ply )
 
-        vent:PlayerPressed( ply )
+                return
+            end
+        end
     end 
 end
 

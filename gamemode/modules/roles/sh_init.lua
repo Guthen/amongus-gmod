@@ -36,7 +36,7 @@ function AmongUs.GetRoleOf( ply )
     return AmongUs.Roles[ply:Team()]
 end
 
-function AmongUs.IsRole( ply, role_name )
-    local role = AmongUs.GetRoleOf( ply )
-    return role and role.name == role_name
+function AmongUs.IsRole( ply, role )
+    local ply_role = AmongUs.GetRoleOf( ply )
+    return ply_role and ply_role.id == role.id
 end

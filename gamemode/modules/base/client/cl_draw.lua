@@ -83,10 +83,14 @@ function AmongUs.DrawStencil( shape_draw_func, draw_func )
 	render.ClearStencil()
 end
 
-function AmongUs.DrawMaterial( material, x, y, w, h, color )
+function AmongUs.DrawMaterial( material, x, y, w, h, color, ang )
 	surface.SetDrawColor( color or color_white )
     surface.SetMaterial( material )
-    surface.DrawTexturedRect( x, y, w, h )
+    if ang then
+		surface.DrawTexturedRectRotated( x, y, w, h, ang )
+	else
+		surface.DrawTexturedRect( x, y, w, h )
+	end
 end
 
 AmongUs.DisableIconColor = Color( 75, 75, 75, 150 )

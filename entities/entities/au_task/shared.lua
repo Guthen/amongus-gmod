@@ -7,5 +7,5 @@ ENT.Author = "Nogitsu"
 ENT.Spawnable = false
 
 function ENT:SetupDataTables()
-    self:NetworkVar( "String", 0, "VentGroup" )
+    self:NetworkVar( "String", 0, "TaskType" )
 end

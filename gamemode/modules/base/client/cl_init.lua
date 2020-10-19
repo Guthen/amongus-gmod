@@ -27,7 +27,7 @@ function GM:PostPlayerDraw( ply )
     local scale = .08
 
     local role = AmongUs.GetRoleOf( ply )
-    local color = role and role:get_name_color( LocalPlayer() ) or color_white
+    local color = role and role:get_name_color( AmongUs.GetRoleOf( LocalPlayer() ) ) or color_white
     cam.Start3D2D( pos, ang, scale )
         AmongUs.DrawText( ply:GetName(), 0, 0, color, "AmongUs:Big" )
     cam.End3D2D()

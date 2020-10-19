@@ -3,27 +3,6 @@ local PLAYER = {}
 PLAYER.Name = "au_crew"
 PLAYER.WalkSpeed = 175
 PLAYER.CanUseFlashlight = false
-PLAYER.Names = {
-    "Jack Daniels",
-    "Amixem Die Pie",
-    "Logan Paul",
-    "The Impostor",
-    "The Crewmate",
-    "The Crewgurl",
-    "Task Dude",
-    "Always Ejected",
-    "Yoh the killed",
-    "Nobody saw him",
-    "I",
-    "He",
-    "She",
-    "You",
-    "Neil Armstrong",
-    "Thomas Pesquet",
-    "Brick with a bob",
-    "Space Core",
-    "No one",
-}
 
 function PLAYER:Loadout()
     self.Player:StripWeapons()

@@ -10,6 +10,7 @@ function AmongUs.AddResources( path )
     end
 end
 
+resource.AddWorkshop( "2227901495" )
 AmongUs.AddResources( "resource/fonts" )
 AmongUs.AddResources( "materials/amongus" ) 
 AmongUs.AddResources( "sound/amongus" )

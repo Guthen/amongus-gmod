@@ -19,10 +19,8 @@ end
 function ENT:PlayerPressed( ply ) --  > custom hook (cuz ENT:Use doesn't work here and isn't suit for custom Use press)
     if AmongUs.GameOver or AmongUs.Votes then return end
 
-    print( "before voting" )
+    AmongUs.OpenSplashScreen( "emergency", { color = ply:GetPlayerColor():ToColor() } )
     AmongUs.LaunchVoting( ply )
-    AmongUs.PlaySound( "amongus/emergency.wav" )
-    print( "after voting" )
 end
 
 --[[ if SERVER then

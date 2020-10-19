@@ -6,16 +6,17 @@ function AmongUs.OpenGameScreen( is_start, role_winner )
 
     local alpha, second_alpha, is_in, text_y, oval_w = -50, 0, true, 0, 0
     local role = AmongUs.GetRoleOf( ply )
+    assert( role, "You must be in game to get this screen (you don't have role)" )
     local winner = AmongUs.Roles[role_winner]
     local victory = role == winner
     role = is_start and role or winner
-    local first_role_player = AmongUs.GetRolePlayers( role )[1]
 
     local main = vgui.Create( "DFrame" )
     main:SetSize( w, h )
+    main:SetTitle( "" )
     main:SetDraggable( false )
     main:SetSizable( false )
-    main:SetTitle( "" )
+    main:ShowCloseButton( false )
     main:MakePopup()
     function main:Paint( w, h )
         draw.RoundedBox( 0, 0, 0, w, h, color_black )
@@ -114,7 +115,7 @@ function AmongUs.OpenGameScreen( is_start, role_winner )
                 local text_w = surface.GetTextSize( name ) * scale
 
                 cam.Start3D2D( v:LocalToWorld( Vector( 0, -text_w / 2, 2 ) ), Angle( 0, 90, 90 ), scale )
-                    AmongUs.DrawText( name, 0, 0, ColorAlpha( is_start and color_white or role:get_name_color( first_role_player ), alpha ), font, TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP )
+                    AmongUs.DrawText( name, 0, 0, ColorAlpha( is_start and color_white or role:get_name_color( role ), alpha ), font, TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP )
                 cam.End3D2D()
             end
         end
@@ -150,5 +151,5 @@ net.Receive( "AmongUs:GameState", function()
     else
         AmongUs.OpenGameScreen( is_start, winner )
     end
-
 end )
+RunConsoleCommand( "gnlib_resetpanels" )

@@ -1,5 +1,6 @@
 AmongUs.VotePanel = nil
 
+local votes = {}
 local background_color = Color( 170, 200, 229 )
 local line_color, line_shadow_color, line_disable_color = Color( 233, 241, 248 ), Color( 114, 134, 153 ), Color( 148, 156, 163 )
 
@@ -23,8 +24,9 @@ local function create_model( ply, parent, x, y, size )
         local alpha = AmongUs.VotePanel:GetAlpha()
         render.ResetModelLighting( alpha / 255, alpha / 255, alpha / 255 )
     end
+    local color = ply:GetPlayerColor()
     function model.Entity:GetPlayerColor()
-        return ply:GetPlayerColor()
+        return color
     end
 
     return model
@@ -38,6 +40,9 @@ local function size_from( panel, width, height, time )
 end
 
 local function create_line( container, ply, w, h, is_speaker )
+    local role = AmongUs.GetRoleOf( ply )
+    local text, color = ply:GetName(), role and role:get_name_color( AmongUs.GetRoleOf( LocalPlayer() ) ) or color_white
+
     --  > Main
     local line, model = container:Add( "DButton" )
     line:SetSize( w / 2 - padding * 2, h * .125 )
@@ -46,6 +51,8 @@ local function create_line( container, ply, w, h, is_speaker )
     line.player = ply
     line.votes = {}
     function line:Paint( w, h )
+        self.is_active = IsValid( ply ) and ply:Alive()
+
         --  > Shadow
         local space = w * .007
         draw.RoundedBox( 8, space, space, w - space, h - space, line_shadow_color )
@@ -54,9 +61,7 @@ local function create_line( container, ply, w, h, is_speaker )
         draw.RoundedBox( 8, 0, 0, w - space, h - space, self.is_active and line_color or line_disable_color )
     
         --  > Name
-        local role = AmongUs.GetRoleOf( ply )
-        local text, color = ply:GetName(), role and role:get_name_color( LocalPlayer() ) or color_white
-        if not ply:Alive() then color = ColorAlpha( color, 100 ) end
+        if not self.is_active then color = ColorAlpha( color, 100 ) end
         AmongUs.DrawText( text, model:GetWide() + padding, padding * .35, color, nil, TEXT_ALIGN_LEFT, TEXT_ALIGN_LEFT )
     
         --  > Speaker
@@ -67,7 +72,7 @@ local function create_line( container, ply, w, h, is_speaker )
         return true
     end
     function line:DoClick()
-        if not self.is_active or container.voted then return end
+        if not self.is_active or AmongUs.VotePanel.Lines[LocalPlayer():UserID()].i_voted:IsVisible() then return end
 
         --  > Remove button
         if IsValid( container.yes ) and IsValid( container.no ) then
@@ -107,11 +112,12 @@ local function create_line( container, ply, w, h, is_speaker )
 
     --  > I voted
     local voted_size = w * .0375
-    local image = AmongUs.VotePanel.content:Add( "DImage" )
-    image:SetPos( container:GetParent():GetParent().x + container.x + line.x - padding, container:GetParent():GetParent().y + container.y + line.y - padding )
+    local image = AmongUs.VotePanel.content.scroll:Add( "DImage" )
+    image:SetPos( container.x + line.x - padding, container.y + line.y - padding )
     image:SetSize( voted_size, voted_size )
     image:SetImage( "amongus/voted.png" )
     image:SetVisible( false )
+    image:NoClipping( true )
     line.i_voted = image
 
     return line
@@ -168,6 +174,7 @@ function AmongUs.OpenVoteTablet( speaker )
     scroll:DockMargin( 0, padding, 0, 0 )
     scroll:GetVBar():SetWide( 0 )
     scroll:InvalidateParent( true )
+    content.scroll = scroll
 
     --  > Container
     local container = scroll:Add( "DIconLayout" )
@@ -200,13 +207,15 @@ function AmongUs.OpenVoteTablet( speaker )
         yes:CenterVertical()
         yes.DoClick = function()
             self:RemoveVoteButtons()
-            self.voted = true
 
             net.Start( "AmongUs:Voting" )
                 net.WriteEntity( parent.player )
             net.SendToServer()
         end
         self.yes = yes
+    end
+    function container:OnRemove()
+        votes = {}
     end
 
     --  > Create Players lines
@@ -243,6 +252,7 @@ function AmongUs.OpenVoteTablet( speaker )
     --  > Bottom
     local bottom = content:Add( "DPanel" )
     bottom:Dock( BOTTOM )
+    bottom:DockMargin( 0, padding, 0, 0 )
     bottom:SetTall( h * .05 )
     function bottom:Paint( w, h )
         local cooldown = ( start + AmongUs.Settings.VoteTime ) - CurTime()
@@ -256,7 +266,7 @@ function AmongUs.OpenVoteTablet( speaker )
     skip:SetImage( "amongus/skip.png" )
     skip.votes = {}
     function skip:DoClick()
-        if container.voted then return end
+        if lines[LocalPlayer():UserID()].i_voted:IsVisible() then return end
 
         if IsValid( container.yes ) or IsValid( container.no ) then
             container:RemoveVoteButtons()
@@ -267,5 +277,86 @@ function AmongUs.OpenVoteTablet( speaker )
         container:CreateVoteButtons( skip.x + skip:GetWide() + padding + button_size + padding / 2, bottom, button_size, padding / 2 )
     end
     main.Skip = skip
+
+    --  > Add votes who wasn't added
+    for i, v in ipairs( votes ) do
+        main.Lines[v.voter:UserID()].i_voted:SetVisible( true )
+        if IsValid( v.target ) then
+            main.Lines[v.target:UserID()].votes[#main.Lines[v.target:UserID()].votes + 1] = v.voter
+        else
+            main.Skip.votes[#main.Skip.votes + 1] = v.voter
+        end
+    end
 end
 concommand.Add( "au_vote_tablet", AmongUs.OpenVoteTablet )
+
+net.Receive( "AmongUs:Voting", function()
+    local method = net.ReadUInt( 3 )
+    
+    --  > Open tablet
+    if method == 0 then
+        local ply = net.ReadEntity()
+        if IsValid( AmongUs.SplashPanel ) then
+            function AmongUs.SplashPanel:OnRemove()
+                AmongUs.OpenVoteTablet( ply )
+            end            
+        else
+            AmongUs.OpenVoteTablet( ply )
+        end
+
+    --  > Vote
+    elseif method == 1 then
+        local ply = net.ReadEntity()
+        local target = net.ReadEntity()
+        if not IsValid( AmongUs.VotePanel ) then 
+            votes[#votes + 1] = {
+                voter = ply,
+                target = target,
+            }
+            return
+        end
+
+        --  > Vote
+        local main = AmongUs.VotePanel
+        main.Lines[ply:UserID()].i_voted:SetVisible( true )
+        if IsValid( target ) then
+            main.Lines[target:UserID()].votes[#main.Lines[target:UserID()].votes + 1] = ply
+        else
+            main.Skip.votes[#main.Skip.votes + 1] = ply
+        end
+        surface.PlaySound( "amongus/vote.wav" )
+    --  > Reveal votes
+    elseif method == 2 then
+        local ply = net.ReadEntity()
+        local tie = net.ReadBool()
+        local main = AmongUs.VotePanel
+        if not IsValid( main ) then return end
+        main:ShowVotes()
+
+        timer.Simple( AmongUs.Settings.ProceedingTime, function()
+            AmongUs.OpenEjectScene( IsValid( ply ) and ply or tie and "Tie" or AmongUs.SkipVoteID )
+        end )
+    --  > Clear votes
+    elseif method == 3 then
+        local votes = net.ReadTable()
+        local main = AmongUs.VotePanel
+        if not IsValid( main ) then return end
+
+        for i, v in ipairs( votes ) do
+            local line = main.Lines[v:UserID()]
+            if not line then continue end
+
+            --  > haha vote go brrrr
+            line.i_voted:SetVisible( false )
+
+            --  > Clear votes
+            for k, voter in ipairs( line.votes ) do
+                for i, to_check in ipairs( votes ) do
+                    if voter == to_check then
+                        table.remove( line.votes, k )
+                    end
+                end
+            end
+        end
+    end
+end )

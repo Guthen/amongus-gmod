@@ -89,6 +89,8 @@ local scenes = {
 
 AmongUs.EjectScene = nil
 function AmongUs.OpenEjectScene( target )
+    if isentity( target ) then assert( AmongUs.GetRoleOf( target ), "Target doesn't have a role" ) end
+
     local time = .75
     LocalPlayer():ScreenFade( SCREENFADE.OUT, color_black, time - .25, 1 )
 

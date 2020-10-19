@@ -34,7 +34,7 @@ CREWMATE = AmongUs.AddRole( "Crewmate", {
 
         AmongUs.DrawIcon( AmongUs.Icons.Use, x, y, target and not AmongUs.IsVent( target ) )
     end,
-    get_name_color = function( self, ply )
+    get_name_color = function( self, role )
         return color_white
     end,
 } )
@@ -107,8 +107,8 @@ IMPOSTOR = AmongUs.AddRole( "Impostor", {
             AmongUs.DrawIcon( AmongUs.Icons.Sabotage, x + AmongUs.RealIconSize, y, true )
         end
     end,
-    get_name_color = function( self, ply )
+    get_name_color = function( self, role )
         --  > See as impostor if looker is also impostor 
-        return AmongUs.IsRole( ply, self.name ) and self.color or color_white
+        return role == self and self.color or color_white
     end,
 } )

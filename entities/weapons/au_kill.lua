@@ -88,5 +88,5 @@ hook.Add( "PreDrawHalos", "AmongUs:Kill", function()
     if role and role.immortal then return end
 
     local ply_role = AmongUs.GetRoleOf( ply )
-    halo.Add( { target }, ply_role:get_name_color( ply ), 3, 3, weapon:CanKill() and 5 or .1, false )
+    halo.Add( { target }, ply_role:get_name_color( AmongUs.GetRoleOf( ply ) ), 3, 3, weapon:CanKill() and 5 or .1, false )
 end )
