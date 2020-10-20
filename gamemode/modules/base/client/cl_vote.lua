@@ -75,6 +75,7 @@ local function create_line( container, ply, w, h, is_speaker )
         return true
     end
     function line:DoClick()
+        if AmongUs.VotePanel.time_id >= #AmongUs.VotePanel.times then return end
         if not self.is_active or AmongUs.VotePanel.Lines[LocalPlayer():UserID()].i_voted:IsVisible() then return end
 
         --  > Remove button
@@ -133,6 +134,8 @@ function AmongUs.OpenVoteTablet( speaker, time_delay )
     local start = CurTime()
     local main = vgui.Create( "DFrame" )
     main:SetDraggable( false )
+    main:SetSizable( false )
+    main:ShowCloseButton( false )
     main:SetTitle( "" )
     main:SetSize( w, h )
     main:Center()
@@ -145,6 +148,11 @@ function AmongUs.OpenVoteTablet( speaker, time_delay )
         surface.SetDrawColor( color_white )
         surface.SetMaterial( tablet )
         surface.DrawTexturedRect( 0, 0, w, h )
+    end
+    function main:OnRemove()
+        if IsValid( AmongUs.TchatPanel ) then
+            AmongUs.TchatPanel:Remove()
+        end
     end
     AmongUs.VotePanel = main
 
@@ -166,6 +174,12 @@ function AmongUs.OpenVoteTablet( speaker, time_delay )
     function title:Paint( w, h )
         AmongUs.DrawText( "Who Is The Impostor?", w / 2, h / 2, nil, "AmongUs:Medium" )
     end
+
+    --  > Tchat
+    local dialog, notification = AmongUs.CreateTchatButton( content, function( dialog )
+        return content:GetWide() - dialog:GetWide() - padding / 2, padding / 2
+    end )
+    main.notification = notification
 
     --  > Players
     local players = player.GetAll()
@@ -341,7 +355,9 @@ function AmongUs.OpenVoteTablet( speaker, time_delay )
         end
     end
 end
-concommand.Add( "au_vote_tablet", AmongUs.OpenVoteTablet )
+concommand.Add( "au_vote_tablet", function()
+    AmongUs.OpenVoteTablet()
+end )
 
 net.Receive( "AmongUs:Voting", function()
     local method = net.ReadUInt( 3 )
@@ -415,3 +431,5 @@ net.Receive( "AmongUs:Voting", function()
         end
     end
 end )
+
+RunConsoleCommand( "gnlib_resetpanels" )

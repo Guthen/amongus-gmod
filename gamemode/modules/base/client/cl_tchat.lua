@@ -4,10 +4,8 @@ local color_black, background_color = Color( 0, 0, 0 ), Color( 107, 113, 123, 20
 local line_color, line_shadow_color, line_disable_color = Color( 233, 241, 248 ), Color( 68, 73, 80 ), Color( 148, 156, 163 )
 
 local padding = ScrH() * .022
-local function create_model( ply, scroll, x, y, size, look_left )
-    if not IsValid( ply ) then return end
-
-    local model = scroll:Add( "DModelPanel" )
+local function create_model( ply, parent, x, y, size, look_left )
+    local model = parent:Add( "DModelPanel" )
     model:SetPos( x, y )
     model:SetSize( size, size )
     model:SetFOV( 40 )
@@ -19,8 +17,8 @@ local function create_model( ply, scroll, x, y, size, look_left )
         self:SetCamPos( eyepos + Vector( 45, 0, 0 ) + Vector( 0, -15, 0 ) * ( look_left and -1 or 1 ) )
     end
     function model:PreDrawModel( ent )
-        if not IsValid( AmongUs.VotePanel ) then return end
-        local alpha = AmongUs.VotePanel:GetAlpha()
+        if not IsValid( AmongUs.TchatPanel ) then return end
+        local alpha = AmongUs.TchatPanel:GetAlpha()
         render.ResetModelLighting( alpha / 255, alpha / 255, alpha / 255 )
     end
     local color = ply:GetPlayerColor()
@@ -84,33 +82,52 @@ local function create_line( scroll, message, w, h )
     scroll:ScrollToChild( line )
 
     --  > I voted
-    --[[ local voted_size = w * .0375
-    local image = line:Add( "DImage" )
-    image:SetPos( scroll.x + line.x - padding, scroll.y + line.y - padding )
-    image:SetSize( voted_size, voted_size )
-    image:SetImage( "amongus/voted.png" )
-    image:SetVisible( false )
-    image:NoClipping( true )
-    line.i_voted = image ]]
+    if message.i_voted then
+        local voted_size = w * .0375
+        local image = line:Add( "DImage" )
+        image:SetPos( model.x + ( is_self and size - padding * 3 or -padding * .5 ), model.y + size - padding * 2.2 )
+        image:SetSize( voted_size, voted_size )
+        image:SetImage( "amongus/voted.png" )
+        --image:NoClipping( true )
+    end
 
     return line
 end
 
 AmongUs.TchatPanel = nil
-function AmongUs.OpenTchat()
+function AmongUs.OpenTchat( parent )
+    local animation_time = .25 
     local w, h = ScrW() * .6, ScrH() * .75
+
+    local x, y = w, 0
+    if parent then
+        x, y = parent:LocalToScreen( parent:GetWide() / 2, parent:GetTall() / 3 )
+    end
 
     --  > Main
     local container, textbox
     local border_wide, corner_radius = 6, 12
     local main = vgui.Create( "DFrame" )
     main:DockPadding( 15, 24, 15, 15 )
+    main:SetPos( x, y )
     main:SetSize( w, h )
+    main:SizeTo( w, h, animation_time, 0, 1 )
+    main:MoveTo( x - w, y, animation_time, 0, 1 )
     main:SetTitle( "" )
     main:SetDraggable( false )
     main:SetSizable( false )
+    main:ShowCloseButton( false )
     main:MakePopup()
-    main:Center()
+    function main:Close()
+        main:SizeTo( 0, 0, animation_time, 0, 1, function()
+            main:Remove()
+        end )
+        main:MoveTo( x, y, animation_time, 0, 1 )
+    end
+    function main:Think()
+        self:MoveToFront()
+    end
+    --main:Center()
     function main:Paint( w, h )
         draw.RoundedBox( corner_radius * .8, border_wide, border_wide, w - border_wide * 2, h - border_wide * 2, background_color )
         AmongUs.DrawOutlinedRoundedRect( corner_radius, 0, 0, w, h, border_wide, color_black )
@@ -177,20 +194,80 @@ function AmongUs.OpenTchat()
     send_button:SetSize( textbox:GetTall(), textbox:GetTall() )
     send_button:SetImage( "amongus/send.png" )
     send_button.DoClick = textbox.OnEnter
+
+    --  > Animation purpose
+    main:SetSize( 0, 0 )
 end
-concommand.Add( "au_tchat", AmongUs.OpenTchat )
+--[[ concommand.Add( "au_tchat", function()
+    AmongUs.OpenTchat()
+end ) ]]
+
+AmongUs.TchatDialog = nil
+function AmongUs.CreateTchatButton( parent, compute_pos ) --  > todo: create button on lobby and ghost (+ open it on tchat command)
+    local dialog, notification = vgui.Create( "DImageButton", parent )
+    dialog:SetWide( padding * 4 )
+    dialog:SetTall( dialog:GetWide() )
+    dialog:SetPos( compute_pos( dialog ) )
+    dialog:SetImage( "amongus/dialog.png" )
+    function dialog:DoClick()
+        if IsValid( AmongUs.TchatPanel ) then
+            AmongUs.TchatPanel:Close()
+        else
+            AmongUs.OpenTchat( self )
+        end
+
+        notification:SetVisible( false )
+    end
+    AmongUs.TchatDialog = dialog
+
+    notification = dialog:Add( "DImage" )
+    notification:SetWide( padding * 2 )
+    notification:SetTall( notification:GetWide() )
+    notification:SetPos( -dialog:GetWide() * .1, dialog:GetTall() - notification:GetTall() * 1.25 )
+    notification:SetImage( "amongus/notification.png" )
+    notification:NoClipping( true )
+    notification:SetVisible( false )
+    function notification:Notify()
+        if IsValid( AmongUs.TchatPanel ) then return end
+
+        local x, y = self:GetPos()
+        local to_y = self:GetTall() / 4
+        self:MoveTo( x, y - to_y, .1, 0, nil, function()
+            self:MoveTo( x, y + to_y, .1, 0, nil, function()
+                self:MoveTo( x, y, .1 )
+            end )
+        end )
+
+        self:SetVisible( true )
+    end
+    dialog.notification = notification
+
+    return dialog, notification
+end
 
 net.Receive( "AmongUs:Tchat", function()
-    local messages = net.ReadTable()
-    if not messages --[[ or not message.text ]] then return end
-    --if #message.text > AmongUs.Settings.LimitTchatLetters then return end --  > server sus
+    local method = net.ReadUInt( 3 )
+    if method == 1 then --  > receive messages
+        local messages = net.ReadTable()
+        if not messages --[[ or not message.text ]] then return end
+        --if #message.text > AmongUs.Settings.LimitTchatLetters then return end --  > server sus
 
-    table.Add( AmongUs.TchatMessages, messages )
+        --  > Store messages
+        table.Add( AmongUs.TchatMessages, messages )
 
-    if IsValid( AmongUs.TchatPanel ) then
-        for i, v in ipairs( messages ) do
-            AmongUs.TchatPanel:AddMessage( v )
+        --  > Add messages to active tchat
+        if IsValid( AmongUs.TchatPanel ) then
+            for i, v in ipairs( messages ) do
+                AmongUs.TchatPanel:AddMessage( v )
+            end
         end
+        surface.PlaySound( "amongus/message.wav" )
+
+        --  > Notify on tablet
+        if IsValid( AmongUs.TchatDialog ) then
+            AmongUs.TchatDialog.notification:Notify()
+        end
+    elseif method == 2 then --  > clear messages
+        AmongUs.TchatMessages = {}
     end
-    surface.PlaySound( "amongus/message.wav" )
 end )

@@ -99,6 +99,13 @@ function AmongUs.OpenEjectScene( target )
         AmongUs.VotePanel:AlphaTo( 0, time, 0, function()
             AmongUs.VotePanel:Remove()
         end )
+        
+    end
+    --  > Remove tchat
+    if IsValid( AmongUs.TchatPanel ) then
+        AmongUs.TchatPanel:AlphaTo( 0, time, 0, function()
+            AmongUs.TchatPanel:Remove()
+        end )
     end
 
     timer.Simple( time, function()

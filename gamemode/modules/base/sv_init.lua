@@ -128,17 +128,26 @@ function AmongUs.AddMessage( ply, text )
     local message = {
         player = ply,
         text = text:sub( 0, AmongUs.Settings.LimitTchatLetters ), --  > crop to limit
+        i_voted = AmongUs.Votes and AmongUs.Votes[ply] and AmongUs.Votes[ply].has_voted
     }
     AmongUs.TchatMessages[#AmongUs.TchatMessages + 1] = message
 
     net.Start( "AmongUs:Tchat" )
+        net.WriteUInt( 1, 3 )
         net.WriteTable( { message } )
-    net.Broadcast()
+    if not ply:Alive() then -- > send message to ghosts
+        net.SendOmit( AmongUs.GetAlivePlayers() )
+    else --  > send message to everyone
+        net.Broadcast()
+    end
 
     --  > Test
     if not ply:IsBot() then
         timer.Simple( .5 + math.random() * 2, function()
-            AmongUs.AddMessage( table.Random( player.GetBots() ), "you sus" )
+            local bot = table.Random( player.GetBots() )
+            if bot:Alive() == ply:Alive() then
+                AmongUs.AddMessage( bot, "you sus" )
+            end
         end )
     end
 end

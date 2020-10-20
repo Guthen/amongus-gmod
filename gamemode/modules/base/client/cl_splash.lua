@@ -97,6 +97,7 @@ function AmongUs.OpenSplashScreen( type, info )
     table.Merge( splash_type, info )
 
     local main = vgui.Create( "DFrame" )
+    main:SetCursor( "blank" )
     main:SetSize( w, h )
     main:SetTitle( "" )
     main:SetDraggable( false )

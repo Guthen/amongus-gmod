@@ -77,6 +77,7 @@ function AmongUs.OpenGameScreen( is_start, role_winner )
 
     local beam_tall = h / 2.35
     local scene = main:Add( "DModelPanel" )
+    scene:SetCursor( "blank" )
     scene:Dock( FILL )
     scene:SetEntity( ply )
     scene:SetLookAt( entities[1]:GetPos() + Vector( 0, 0, 62 ) )

@@ -4,6 +4,7 @@ function AmongUs.CheckRoleWinner()
     timer.Create( "AmongUs:RoleWinCheck", 0, 1, function() 
         for i, v in ipairs( AmongUs.Roles ) do
             if v.has_won and v:has_won() then
+                --  > Network end
                 timer.Simple( 1, function()
                     net.Start( "AmongUs:GameState" )
                         net.WriteBool( false ) --  > ending
@@ -12,12 +13,18 @@ function AmongUs.CheckRoleWinner()
                 end )
 
                 AmongUs.GameOver = true
+                --  > Everyone go to lobby
                 timer.Create( "AmongUs:NextGame", 8, 1, function()
                     for i, v in ipairs( player.GetAll() ) do
                         v:SetTeam( TEAM_UNASSIGNED )
                         v:Spawn()
                     end
                 end )
+
+                --  > Reset messages
+                net.Start( "AmongUs:Tchat" )
+                    net.WriteUInt( 2, 3 )
+                net.Broadcast()
                 break
             end
         end
@@ -205,6 +212,10 @@ function AmongUs.PlayerVoteFor( ply, target )
     --  > Count vote
     AmongUs.Votes[target] = AmongUs.Votes[target] or {}
     AmongUs.Votes[target][#AmongUs.Votes[target] + 1] = ply
+
+    --  > Has voted
+    AmongUs.Votes[ply] = AmongUs.Votes[ply] or {}
+    AmongUs.Votes[ply].has_voted = true
 
     --print( ply:GetName() .. " voted for " .. ( isentity( target ) and target:GetName() or AmongUs.SkipVoteID ) )
 
