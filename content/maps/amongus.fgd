@@ -1,0 +1,51 @@
+@include "base.fgd"
+
+@PointClass base( Targetname ) studioprop( "models/dav0r/buttons/button.mdl" ) = au_emergency_button : "Emergency Button" [
+
+]
+
+@PointClass base( Targetname, Studiomodel ) = au_task : "Task" [
+    task_type( choice ) : "Task type" : 0 = [
+        0 : "align_engine_output"
+        1 : "align_telescope"
+        2 : "assemble_artifact"
+        3 : "buy_beverage"
+        4 : "calibrate_distributor"
+        5 : "chart_course"
+        6 : "clean_o2_filter"
+        7 : "clear_asteroids"
+        8 : "divert_power"
+        9 : "empty_chute"
+        10 : "empty_garbage"
+        11 : "enter_id_code"
+        12 : "fill_canisters"
+        13 : "fix_weather_node"
+        14 : "fix_wiring"
+        15 : "fuel_engines"
+        16 : "insert_keys"
+        17 : "inspect_sample"
+        18 : "measure_weather"
+        19 : "monitor_tree"
+        20 : "open_waterways"
+        21 : "prime_shields"
+        22 : "process_data"
+        23 : "reboot_wifi"
+        24 : "record_temperature"
+        25 : "repair_drill"
+        26 : "replace_water_jug"
+        27 : "run_diagnostics"
+        28 : "scan_boarding_pass"
+        29 : "sort_samples"
+        30 : "stabilize_steering"
+        31 : "start_reactor"
+        32 : "submit_scan"
+        33 : "swipe_card"
+        34 : "unlock_manifolds"
+        35 : "upload_data"
+        36 : "water_plants"
+    ]
+]
+
+@PointClass studioprop( "models/props_junk/vent001.mdl" ) base( Targetname ) = au_vent : "Ventilation" [
+    vent_group( string ): "Ventilation's Group" : "default"
+]
