@@ -1,6 +1,10 @@
 AmongUs = AmongUs or {}
 
-function AmongUs.requireFolder( path )
+function AmongUs.Print( text, ... )
+    print( "Among Us - " .. ( #{ ... } > 0 and text:format( ... ) or text ) )
+end
+
+function AmongUs.RequireFolder( path, verbose )
     local abs_path = ( "%s/gamemode/%s" ):format( GM.FolderName, path )
     local files, folders = file.Find( abs_path .. "/*", "LUA" )
 
@@ -26,14 +30,15 @@ function AmongUs.requireFolder( path )
         n = n + 1
     end
 
-    for i, v in ipairs( folders ) do n = n + AmongUs.requireFolder( path .. "/" .. v ) end
+    for i, v in ipairs( folders ) do n = n + AmongUs.RequireFolder( path .. "/" .. v ) end
 
+    if verbose then AmongUs.Print( "Load %q: %d files", path, n ) end
     return n
 end
 
 GM.Name = "Among Us"
 GM.Author = "Guthen"
 
-print( "Among Us: loading necessited files" )
-print( ( "\tmodules: %d files" ):format( AmongUs.requireFolder( "modules" ) ) )
-print( ( "\tplayerclasses: %d files" ):format( AmongUs.requireFolder( "playerclasses" ) ) )
+AmongUs.Print( "Loading necessited files" )
+AmongUs.RequireFolder( "modules", true )
+AmongUs.RequireFolder( "playerclasses", true )

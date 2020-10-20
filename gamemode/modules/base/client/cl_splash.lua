@@ -78,8 +78,9 @@ local bolt_sequences = {
     {
         ang = 0,
         scale_x = 1,
-        scale_y = .5,
-        time = .1,
+        scale_y = 1,
+        scale_y_to = 0,
+        time = .35,
     },
 }
 
@@ -100,13 +101,15 @@ function AmongUs.OpenSplashScreen( type, info )
     main:SetTitle( "" )
     main:SetDraggable( false )
     main:SetSizable( false )
+    main:ShowCloseButton( false )
     main:MakePopup()
+    local scale_y = 1
     function main:Paint( w, h )
         local sequence = bolt_sequences[sequence_id]
 
         --  > Draw Bolt
         local img_w, img_h = bolt:Width(), bolt:Height() * 2
-        AmongUs.DrawMaterial( bolt, w / 2, h / 2, w * sequence.scale_x, img_h * sequence.scale_y, nil, sequence.ang )
+        AmongUs.DrawMaterial( bolt, w / 2, h / 2, w * sequence.scale_x, img_h * sequence.scale_y * scale_y, nil, sequence.ang )
     
         --  > Draw Type
         local splash_type = AmongUs.SplashScreens[type] -- hot reload
@@ -124,8 +127,20 @@ function AmongUs.OpenSplashScreen( type, info )
             sequence_id = sequence_id + 1
             time = 0
         end
+
+        --  > Scale Y
+        if bolt_sequences[sequence_id].scale_y_to then
+            scale_y = math.Approach( scale_y, bolt_sequences[sequence_id].scale_y_to, FrameTime() / bolt_sequences[sequence_id].time )
+        end
     end
     AmongUs.SplashPanel = main
+
+    --  > Compute total time
+    local total_time = 0
+    for i, v in ipairs( bolt_sequences ) do
+        total_time = total_time + ( v.time or splash_type.time )
+    end
+    main.total_time = total_time
 end
 concommand.Add( "au_splash_screen", function( ply, cmd, args )
     AmongUs.OpenSplashScreen( args[1] )

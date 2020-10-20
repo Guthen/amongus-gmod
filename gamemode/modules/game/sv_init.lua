@@ -77,7 +77,9 @@ function AmongUs.LaunchGame( force_impostors )
                     ply = table.remove( players, math.random( #players ) )
                 end
 
-                AmongUs.SetRole( ply, v )
+                if IsValid( ply ) then
+                    AmongUs.SetRole( ply, v )
+                end
             end
 
             table.remove( roles, i )
@@ -141,16 +143,14 @@ util.AddNetworkString( "AmongUs:Voting" )
 local function send_voting( method, speaker, target )
     net.Start( "AmongUs:Voting" )
         net.WriteUInt( method, 3 ) --  > 0: start a vote session; 1: votes someone; 2: reveal votes; 3: clear votes
-        if speaker then --  > 0: guy who start the vote session; 1: guy who votes someone; 3: table of voters to clear
-            if istable( speaker ) then
-                net.WriteTable( speaker )
-            else
-                net.WriteEntity( speaker ) 
-            end
+        if speaker then --  > 0: guy who start the vote session; 1: guy who votes someone; 3: player to be clear
+            net.WriteEntity( speaker ) 
         end 
-        if target then --  > 1: guy voted by player; 2: is tie
+        if target then --  > 1: guy voted by player; 2: is tie; 3: table of voters to clear
             if isbool( target ) then 
                 net.WriteBool( target ) 
+            elseif istable( target ) then
+                net.WriteTable( target )
             else
                 net.WriteEntity( target ) 
             end
@@ -168,23 +168,38 @@ function AmongUs.LaunchVoting( speaker )
         v:Freeze( true )
     end
 
-    players[ #players + 1 ] = AmongUs.SkipVoteID
-    for i, v in ipairs( player.GetBots() ) do
-        if not v:Alive() then continue end
-        --  > Vote bots
-        if v:IsBot() then
-            timer.Simple( math.random() * 4, function()
-                AmongUs.PlayerVoteFor( v, table.Random( players ) )
-            end )
-        end
-    end
-
     --  > Open tablet
     send_voting( 0, speaker )
+
+    ---  > Prepare times
+    timer.Create( "AmongUs:VoteBegins", AmongUs.Settings.DiscussionTime, 1, function()
+        --  > Ready
+        AmongUs.VotesBegins = true
+        
+        --  > Vote bots
+        local players = AmongUs.GetAlivePlayers()
+        players[ #players + 1 ] = AmongUs.SkipVoteID
+        for i, v in ipairs( player.GetBots() ) do
+            if not v:Alive() then continue end
+
+            if v:IsBot() then
+                timer.Simple( math.random() * 4, function()
+                    AmongUs.PlayerVoteFor( v, table.Random( players ) )
+                end )
+            end
+        end
+    end )
+
+    --  > Force Proceed
+    timer.Create( "AmongUs:VoteEnds", AmongUs.Settings.DiscussionTime + AmongUs.Settings.VoteTime, 1, function()
+        AmongUs.ProceedVotes()
+    end )
 end
 concommand.Add( "au_launch_voting", AmongUs.LaunchVoting )
 
 function AmongUs.PlayerVoteFor( ply, target )
+    if not AmongUs.VotesBegins or not AmongUs.Votes then return end
+
     send_voting( 1, ply, isentity( target ) and target or NULL )
 
     --  > Count vote
@@ -197,6 +212,52 @@ function AmongUs.PlayerVoteFor( ply, target )
     AmongUs.CheckVotes()
 end
 
+function AmongUs.ProceedVotes()
+    if not AmongUs.Votes then return end
+
+    --  > Get voted player
+    local voted, max_votes = nil, 0
+    for k, v in pairs( AmongUs.Votes ) do
+        if #v > max_votes then
+            max_votes = #v
+            voted = k
+        elseif #v == max_votes then
+            voted = nil
+        end
+    end
+
+    --  > Reveal votes
+    send_voting( 2, isentity( voted ) and voted or NULL, not ( voted == AmongUs.SkipVoteID ) )
+
+    --  > Proceeding Game
+    local sentence = isentity( voted ) and AmongUs.GetRoleOf( voted ):get_eject_sentence( voted )
+    timer.Simple( AmongUs.Settings.ProceedingTime, function()
+        --  > Eject
+        if isentity( voted ) then
+            if IsValid( voted ) then
+                voted:KillSilent()
+            end
+            MsgAll( sentence )
+        elseif voted == AmongUs.SkipVoteID then
+            MsgAll( "No one was ejected. (Skipped)" )
+        else
+            MsgAll( "No One was ejected. (Tie)" )
+        end
+
+        --  > Clear Corpses
+        for i, v in ipairs( ents.FindByClass( "prop_ragdoll" ) ) do
+            v:Remove()
+        end
+
+        --  > Spawn players
+        timer.Simple( AmongUs.Settings.EjectTime + .5, AmongUs.RespawnAlivePlayers )
+    end )
+
+    AmongUs.Votes = nil
+    AmongUs.VotesBegins = false
+    timer.Remove( "AmongUs:VoteEnds" )
+end
+
 function AmongUs.CheckVotes()
     if not AmongUs.Votes then return end
 
@@ -207,45 +268,7 @@ function AmongUs.CheckVotes()
     end
 
     if votes == #players then
-        --  > Get voted player
-        local voted, max_votes = nil, 0
-        for k, v in pairs( AmongUs.Votes ) do
-            if #v > max_votes then
-                max_votes = #v
-                voted = k
-            elseif #v == max_votes then
-                voted = nil
-            end
-        end
-
-        --  > Reveal votes
-        send_voting( 2, isentity( voted ) and voted or NULL, not ( voted == AmongUs.SkipVoteID ) )
-
-        --  > Proceeding Game
-        local sentence = isentity( voted ) and AmongUs.GetRoleOf( voted ):get_eject_sentence( voted )
-        timer.Simple( AmongUs.Settings.ProceedingTime, function()
-            --  > Eject
-            if isentity( voted ) then
-                if IsValid( voted ) then
-                    voted:KillSilent()
-                end
-                MsgAll( sentence )
-            elseif voted == AmongUs.SkipVoteID then
-                MsgAll( "No one was ejected. (Skipped)" )
-            else
-                MsgAll( "No One was ejected. (Tie)" )
-            end
-
-            --  > Clear Corpses
-            for i, v in ipairs( ents.FindByClass( "prop_ragdoll" ) ) do
-                v:Remove()
-            end
-
-            --  > Spawn players
-            timer.Simple( AmongUs.Settings.EjectTime + .5, AmongUs.RespawnAlivePlayers )
-        end )
-
-        AmongUs.Votes = nil
+        AmongUs.ProceedVotes()
     end
 end
 
@@ -269,11 +292,24 @@ end )
 --  > Undo vote
 function GM:PlayerDisconnected( ply )
     if AmongUs.Votes then
+        local players = AmongUs.GetAlivePlayers()
+        players[ #players + 1 ] = AmongUs.SkipVoteID
+
         local vote_remove = false
         for k, v in pairs( AmongUs.Votes ) do
             --  > Remove votes towards player
             if k == ply then
-                send_voting( 3, v )
+                send_voting( 3, ply, v )
+
+                --  > Roll vote of bots
+                for i, voter in ipairs( v ) do
+                    if voter:IsBot() then
+                        timer.Simple( math.random() * 4, function()
+                            AmongUs.PlayerVoteFor( voter, table.Random( players ) )
+                        end )
+                    end
+                end
+
                 AmongUs.Votes[k] = nil
             end
             --  > Remove his vote

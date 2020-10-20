@@ -6,7 +6,7 @@ function AmongUs.AddRole( name, tbl )
     AmongUs.Roles[tbl.id] = tbl
 
     team.SetUp( tbl.id, name, tbl.color, tbl.id == 0 )
-    print( ( "AmongUs: new role %q" ):format( name ) )
+    AmongUs.Print( ( "New role %q" ):format( name ) )
 
     return tbl.id
 end

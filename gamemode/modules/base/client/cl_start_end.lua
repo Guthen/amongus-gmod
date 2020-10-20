@@ -73,6 +73,7 @@ function AmongUs.OpenGameScreen( is_start, role_winner )
         --  > Add entity
         entities[i] = ent
     end
+    if not IsValid( entities[1] ) then return main:Remove() end
 
     local beam_tall = h / 2.35
     local scene = main:Add( "DModelPanel" )

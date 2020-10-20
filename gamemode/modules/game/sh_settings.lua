@@ -8,6 +8,7 @@ AmongUs.Settings = {
     KillCooldown = 3,
     
     --  > Time
+    DiscussionTime = 5,
     VoteTime = 15,
     ProceedingTime = 5,
     EjectTime = 6,

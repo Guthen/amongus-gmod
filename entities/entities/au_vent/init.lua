@@ -9,8 +9,6 @@ function ENT:Initialize()
     self:SetAngles( ang )
 
     self:SetModel( "models/props_junk/vent001.mdl" )
-
-    self:SetUseType( SIMPLE_USE )
 end
 
 function ENT:KeyValue( key, value )

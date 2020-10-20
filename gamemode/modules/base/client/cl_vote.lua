@@ -8,6 +8,8 @@ local w, h = ScrW() * .75, ScrH() * .9
 local padding = h * .022
 local speaker = Material( "amongus/speaker.png" )
 local function create_model( ply, parent, x, y, size )
+    if not IsValid( ply ) then return end
+
     local model = parent:Add( "DModelPanel" )
     model:SetPos( x, y )
     model:SetSize( size, size )
@@ -51,7 +53,7 @@ local function create_line( container, ply, w, h, is_speaker )
     line.player = ply
     line.votes = {}
     function line:Paint( w, h )
-        self.is_active = IsValid( ply ) and ply:Alive()
+        self.is_active = AmongUs.VotePanel.time_id >= 2 and IsValid( ply ) and ply:Alive()
 
         --  > Shadow
         local space = w * .007
@@ -61,6 +63,7 @@ local function create_line( container, ply, w, h, is_speaker )
         draw.RoundedBox( 8, 0, 0, w - space, h - space, self.is_active and line_color or line_disable_color )
     
         --  > Name
+        local color = color
         if not self.is_active then color = ColorAlpha( color, 100 ) end
         AmongUs.DrawText( text, model:GetWide() + padding, padding * .35, color, nil, TEXT_ALIGN_LEFT, TEXT_ALIGN_LEFT )
     
@@ -93,7 +96,7 @@ local function create_line( container, ply, w, h, is_speaker )
     line.model = model
 
     --  > Dead Cross
-    if not line.is_active then
+    if not IsValid( ply ) or not ply:Alive() then
         local x, y = container.x + line.x + model.x, container.y + line.y + model.y
         local w, h = model:GetSize()
 
@@ -124,7 +127,7 @@ local function create_line( container, ply, w, h, is_speaker )
 end
 
 local tablet, skip = Material( "amongus/tablet.png" )
-function AmongUs.OpenVoteTablet( speaker )
+function AmongUs.OpenVoteTablet( speaker, time_delay )
     if IsValid( AmongUs.VotePanel ) then AmongUs.VotePanel:Remove() end
 
     local start = CurTime()
@@ -229,8 +232,9 @@ function AmongUs.OpenVoteTablet( speaker )
     function main:ShowVotes()
         local size = padding * 2
         local function show_model( i, ply, line, x, y )
-            timer.Simple( i * .75, function()
+            timer.Simple( i * .65, function()
                 local model = create_model( ply, line, x, y, size )
+                if not model then return end
                 size_from( model, model:GetWide() * 1.25, model:GetTall() * 1.25, .75 )
             end )
         end
@@ -247,16 +251,65 @@ function AmongUs.OpenVoteTablet( speaker )
         for i, ply in ipairs( main.Skip.votes ) do
             show_model( i, ply, main.Skip:GetParent(), main.Skip:GetWide() + padding + ( i - 1 ) * model_total_space, 0 )
         end
+
+        --  > Force Proceeding
+        main.time_id = #main.times
+        main.time = 0
     end
 
-    --  > Bottom
+    --  > Bottom  
+    local text_color, alert_color = color_white, Color( 230, 15, 15 )
+    main.times = {
+        {
+            name = "Voting Begins",
+            max_time = AmongUs.Settings.DiscussionTime,
+            alert_time = 0,
+        },
+        {
+            name = "Voting Ends",
+            max_time = AmongUs.Settings.VoteTime,
+            alert_time = 10,
+            alert_critical = true, --  > bip every second
+        },
+        {
+            name = "Proceeding",
+            max_time = AmongUs.Settings.ProceedingTime,
+            alert_time = AmongUs.Settings.ProceedingTime,
+        }
+    }
+    main.time_id, main.time = 1, time_delay or 0
+
     local bottom = content:Add( "DPanel" )
     bottom:Dock( BOTTOM )
     bottom:DockMargin( 0, padding, 0, 0 )
     bottom:SetTall( h * .05 )
     function bottom:Paint( w, h )
-        local cooldown = ( start + AmongUs.Settings.VoteTime ) - CurTime()
-        AmongUs.DrawText( ( "Voting Ends in: %ds" ):format( cooldown ), w - 1, h / 2, cooldown > 10 and color_white or Color( 230, 15, 15 ), "AmongUs:Little", TEXT_ALIGN_RIGHT )
+        local time = main.times[main.time_id]
+        local cooldown = time.max_time - main.time
+
+        --  > Alert Color
+        if cooldown <= time.alert_time then
+            --  > Reset Color
+            if time.alert_critical and cooldown - math.floor( cooldown ) <= .5 and not ( text_color == color_white ) then 
+                text_color = color_white 
+            end
+
+            --  > Compute Color
+            local t = FrameTime() * 5
+            text_color = Color( Lerp( t, text_color.r, alert_color.r ), Lerp( t, text_color.g, alert_color.g ), Lerp( t, text_color.b, alert_color.b ) )
+        end
+
+        AmongUs.DrawText( ( "%s in: %ds" ):format( time.name, cooldown ), w - 1, h / 2, text_color, "AmongUs:Little", TEXT_ALIGN_RIGHT )
+    end
+    function bottom:Think()
+        local time = main.times[main.time_id]
+        main.time = math.min( main.time + FrameTime(), time.max_time )
+
+        if not main.times[main.time_id + 1] then return end
+        if main.time >= time.max_time then
+            main.time_id = main.time_id + 1
+            main.time = 0
+        end
     end
 
     --  > Skip
@@ -294,11 +347,11 @@ net.Receive( "AmongUs:Voting", function()
     local method = net.ReadUInt( 3 )
     
     --  > Open tablet
+    local ply = net.ReadEntity()
     if method == 0 then
-        local ply = net.ReadEntity()
         if IsValid( AmongUs.SplashPanel ) then
             function AmongUs.SplashPanel:OnRemove()
-                AmongUs.OpenVoteTablet( ply )
+                AmongUs.OpenVoteTablet( ply, self.total_time )
             end            
         else
             AmongUs.OpenVoteTablet( ply )
@@ -306,7 +359,6 @@ net.Receive( "AmongUs:Voting", function()
 
     --  > Vote
     elseif method == 1 then
-        local ply = net.ReadEntity()
         local target = net.ReadEntity()
         if not IsValid( AmongUs.VotePanel ) then 
             votes[#votes + 1] = {
@@ -327,7 +379,6 @@ net.Receive( "AmongUs:Voting", function()
         surface.PlaySound( "amongus/vote.wav" )
     --  > Reveal votes
     elseif method == 2 then
-        local ply = net.ReadEntity()
         local tie = net.ReadBool()
         local main = AmongUs.VotePanel
         if not IsValid( main ) then return end
@@ -342,6 +393,7 @@ net.Receive( "AmongUs:Voting", function()
         local main = AmongUs.VotePanel
         if not IsValid( main ) then return end
 
+        votes[#votes + 1] = ply
         for i, v in ipairs( votes ) do
             local line = main.Lines[v:UserID()]
             if not line then continue end
@@ -357,6 +409,9 @@ net.Receive( "AmongUs:Voting", function()
                     end
                 end
             end
+
+            --  > Reset votes on target
+            if ply == v then line.votes = {} end
         end
     end
 end )
