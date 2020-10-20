@@ -119,3 +119,33 @@ function GM:PlayerFootstep( ply, pos, foot, path, volume, rf )
     ply:EmitSound( "amongus/footsteps/" .. sound.name .. math.random( 1, sound.max ) .. ".wav" )
     return true
 end
+
+--  > Tchat
+util.AddNetworkString( "AmongUs:Tchat" )
+
+AmongUs.TchatMessages = {}
+function AmongUs.AddMessage( ply, text )
+    local message = {
+        player = ply,
+        text = text:sub( 0, AmongUs.Settings.LimitTchatLetters ), --  > crop to limit
+    }
+    AmongUs.TchatMessages[#AmongUs.TchatMessages + 1] = message
+
+    net.Start( "AmongUs:Tchat" )
+        net.WriteTable( { message } )
+    net.Broadcast()
+
+    --  > Test
+    if not ply:IsBot() then
+        timer.Simple( .5 + math.random() * 2, function()
+            AmongUs.AddMessage( table.Random( player.GetBots() ), "you sus" )
+        end )
+    end
+end
+
+net.Receive( "AmongUs:Tchat", function( len, ply )
+    local text = net.ReadString()
+    if #text > AmongUs.Settings.LimitTchatLetters then return end --  > haha you tried to bypass
+
+    AmongUs.AddMessage( ply, text )
+end )

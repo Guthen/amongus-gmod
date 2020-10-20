@@ -92,7 +92,7 @@ local function create_line( container, ply, w, h, is_speaker )
     local padding = padding / 2
 
     --  > Crew Model
-    model = create_model( ply, line, padding, padding, line:GetTall() - padding * 2 )
+    model = create_model( ply, line, padding, padding * .5, line:GetTall() - padding * 2 )
     line.model = model
 
     --  > Dead Cross
