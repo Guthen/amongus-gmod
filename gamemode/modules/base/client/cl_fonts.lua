@@ -1,4 +1,10 @@
 --  > Fonts
+surface.CreateFont( "AmongUs:Mini", {
+	font = "Varela",
+	size = ScreenScale( 8 ),
+	weight = 250,
+} )
+
 surface.CreateFont( "AmongUs:Little", {
 	font = "Varela",
 	size = ScreenScale( 11 ),

@@ -66,6 +66,7 @@ end
 
 local hud_hide = {
     ["CHudHealth"] = true,
+    ["CHudChat"] = true,
 }
 hook.Add( "HUDShouldDraw", "AmongUs:HUD", function( element )
     if hud_hide[element] then return false end
@@ -78,6 +79,10 @@ function GM:CalcView( ply, pos, ang, fov, znear, zfar )
         fov = fov,
         --drawviewer = true,
     }
+end
+
+function GM:StartChat()
+    return true
 end
 
 --  > Colorize Ragdoll

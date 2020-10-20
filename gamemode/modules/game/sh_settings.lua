@@ -1,4 +1,6 @@
 AmongUs.Settings = {
+    LimitTchatLetters = 100,
+
     --  > Distance
     KillDistance = 156,
     UseDistance = 100,

@@ -153,4 +153,4 @@ net.Receive( "AmongUs:GameState", function()
         AmongUs.OpenGameScreen( is_start, winner )
     end
 end )
-RunConsoleCommand( "gnlib_resetpanels" )
+--RunConsoleCommand( "gnlib_resetpanels" )
