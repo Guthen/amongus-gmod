@@ -56,6 +56,7 @@ function AmongUs.OpenGameScreen( is_start, role_winner )
         ent:SetPos( Vector( -200 + z * 50, 50 + x * ( 35 + i * 1.5 ) * factor, -5 ) )
         ent:SetNoDraw( true )
         ent:SetIK( false )
+        ent.dead = not v:Alive()
 
         --  > Change positions
         if i % 2 == 1 then 
@@ -99,7 +100,7 @@ function AmongUs.OpenGameScreen( is_start, role_winner )
             end
             --  > Ghosts
             local blend = render.GetBlend()
-            if not players[i]:Alive() then 
+            if v.dead then 
                 render.SetBlend( .75 )
             end
             render.ResetModelLighting( alpha / 255, alpha / 255, alpha / 255 )
@@ -135,7 +136,7 @@ function AmongUs.OpenGameScreen( is_start, role_winner )
     timer.Simple( is_start and 3 or 6, function()
         is_in = false
     end )
-    surface.PlaySound( is_start and "amongus/reveal.wav" or victory and "amongus/victory.wav" or "amongus/defeat.wav" )
+    surface.PlaySound( is_start and "amongus/reveal.wav" or victory and winner.victory_sound or "amongus/defeat.wav" )
 end
 concommand.Add( "au_start_scene", function()
     AmongUs.OpenGameScreen( true )

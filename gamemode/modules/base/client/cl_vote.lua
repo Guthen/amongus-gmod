@@ -14,7 +14,7 @@ local function create_model( ply, parent, x, y, size )
     model:SetPos( x, y )
     model:SetSize( size, size )
     model:SetFOV( 40 )
-    model:SetModel( ply:GetModel() )
+    model:SetModel( AmongUs.BasePlayerClass.Model )
     function model:LayoutEntity( ent )
         local eyepos = ent:GetBonePosition( 6 )
     
@@ -176,10 +176,9 @@ function AmongUs.OpenVoteTablet( speaker, time_delay )
     end
 
     --  > Tchat
-    local dialog, notification = AmongUs.CreateTchatButton( content, function( dialog )
-        return content:GetWide() - dialog:GetWide() - padding / 2, padding / 2
-    end )
-    main.notification = notification
+    AmongUs.TchatDialog:SetParent( content )
+    AmongUs.TchatDialog:SetPos( content:GetWide() - AmongUs.TchatDialog:GetWide() - padding / 2, padding / 2 )
+    main.notification = AmongUs.TchatDialog.notification
 
     --  > Players
     local players = player.GetAll()

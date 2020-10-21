@@ -108,6 +108,7 @@ function AmongUs.OpenEjectScene( target )
         end )
     end
 
+    local color = isentity( target ) and IsValid( target ) and target:GetPlayerColor()
     timer.Simple( time, function()
         --  > Create scene
         local w, h = ScrW(), ScrH()
@@ -143,8 +144,7 @@ function AmongUs.OpenEjectScene( target )
         model:SetSize( size, size )
         model.y = h / 2 - size / 2
         if IsValid( target ) then 
-            model:SetModel( target:GetModel() ) 
-            local color = target:GetPlayerColor()
+            model:SetModel( AmongUs.BasePlayerClass.Model ) 
             function model.Entity:GetPlayerColor()
                 return color
             end

@@ -27,6 +27,7 @@ CREWMATE = AmongUs.AddRole( "Crewmate", {
         return "There ", count > 1 and "are" or "is", impostor.color, ( " %d %s" ):format( count, impostor.name .. ( count > 1 and "s" or "" ) ), color_white, " among us."
     end,
     --  > Client:
+    victory_sound = "amongus/victory.wav",
     hud_paint = function( self, ply )
         --  > Use
         local x, y = ScrW() - AmongUs.RealIconSize, ScrH() - AmongUs.RealIconSize
@@ -62,6 +63,7 @@ IMPOSTOR = AmongUs.AddRole( "Impostor", {
     end,
     show_player_name_reveal = true, --  > Whenever we show players names on role reveal
     --  > Client:
+    victory_sound = "amongus/defeat.wav",
     hud_paint = function( self, ply )
         --  > Can Kill
         local can_kill, kill_weapon, cooldown = false, ply:GetWeapon( "au_kill" ), -1

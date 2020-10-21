@@ -2,11 +2,12 @@ local PLAYER = {}
 
 PLAYER.Name = "au_crew"
 PLAYER.WalkSpeed = 175
+PLAYER.Model = "models/kaesar/amongus/amongus.mdl"
 PLAYER.CanUseFlashlight = false
 
 function PLAYER:Loadout()
     self.Player:StripWeapons()
-    self.Player:SetModel( "models/kaesar/amongus/amongus.mdl" )
+    self.Player:SetModel( self.Model )
 
     --  > Color
     --[[ local color = table.Random( AmongUs.Settings.Colors )

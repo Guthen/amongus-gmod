@@ -47,12 +47,22 @@ AmongUs.RealIconSize = AmongUs.IconSize + AmongUs.IconSpace
 
 function GM:HUDPaint()
     local ply = LocalPlayer()
+
+    --  > Create Tchat
+    if not IsValid( AmongUs.TchatDialog ) then
+        AmongUs.CreateTchatButton()
+    elseif not IsValid( AmongUs.VotePanel ) then
+        local padding = ScrH() * .022
+        AmongUs.TchatDialog:SetParent()
+        AmongUs.TchatDialog:SetPos( ScrW() - AmongUs.TchatDialog:GetWide() - padding, padding )
+    end
+
     local role = AmongUs.GetRoleOf( ply )
     if not role or not role.hud_paint then return end
 
-    role:hud_paint( ply )
-
+    --  > Custom HUD
     if not ply:Alive() then return end
+    role:hud_paint( ply )
 
     --  > Report
     local ent = AmongUs.GetEntityAtTrace( ply, AmongUs.IsDeadBody )
@@ -72,17 +82,23 @@ hook.Add( "HUDShouldDraw", "AmongUs:HUD", function( element )
     if hud_hide[element] then return false end
 end )
 
+--  > Disable default Tchat
+function GM:PlayerBindPress( ply, bind, pressed )
+    if bind:StartWith( "messagemode" ) then
+        if pressed and IsValid( AmongUs.TchatDialog ) and AmongUs.TchatDialog:GetAlpha() == 255 then
+            AmongUs.TchatDialog:DoClick()
+        end
+        return true
+    end
+end
+
+--  > Custom view
 function GM:CalcView( ply, pos, ang, fov, znear, zfar )
     return {
         origin = pos - AmongUs.ViewOffset,
         angles = ang,
         fov = fov,
-        --drawviewer = true,
     }
-end
-
-function GM:StartChat()
-    return true
 end
 
 --  > Colorize Ragdoll

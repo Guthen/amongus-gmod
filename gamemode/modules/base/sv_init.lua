@@ -127,8 +127,11 @@ AmongUs.TchatMessages = {}
 function AmongUs.AddMessage( ply, text )
     local message = {
         player = ply,
+        name = ply:GetName(),
+        color = ply:GetPlayerColor(),
         text = text:sub( 0, AmongUs.Settings.LimitTchatLetters ), --  > crop to limit
-        i_voted = AmongUs.Votes and AmongUs.Votes[ply] and AmongUs.Votes[ply].has_voted
+        i_voted = AmongUs.Votes and AmongUs.Votes[ply] and AmongUs.Votes[ply].has_voted,
+        dead = ply:Alive(),
     }
     AmongUs.TchatMessages[#AmongUs.TchatMessages + 1] = message
 
@@ -145,6 +148,7 @@ function AmongUs.AddMessage( ply, text )
     if not ply:IsBot() then
         timer.Simple( .5 + math.random() * 2, function()
             local bot = table.Random( player.GetBots() )
+            if not IsValid( bot ) then return end
             if bot:Alive() == ply:Alive() then
                 AmongUs.AddMessage( bot, "you sus" )
             end
@@ -152,9 +156,23 @@ function AmongUs.AddMessage( ply, text )
     end
 end
 
-net.Receive( "AmongUs:Tchat", function( len, ply )
-    local text = net.ReadString()
-    if #text > AmongUs.Settings.LimitTchatLetters then return end --  > haha you tried to bypass
+function GM:PlayerCanSeePlayersChat( text, team, listner, speaker ) --  > Disable default tchat
+    return false
+end
 
-    AmongUs.AddMessage( ply, text )
+net.Receive( "AmongUs:Tchat", function( len, ply )
+    local method = net.ReadUInt( 3 )
+    --  > Add message
+    if method == 1 then
+        local text = net.ReadString()
+        if #text > AmongUs.Settings.LimitTchatLetters then return end --  > haha you tried to bypass
+        AmongUs.AddMessage( ply, text )
+    --  > Send all messages
+    elseif method == 2 then
+        if #AmongUs.TchatMessages <= 0 then return end
+        net.Start( "AmongUs:Tchat" )
+            net.WriteUInt( 1, 3 )
+            net.WriteTable( AmongUs.TchatMessages )
+        net.Send( ply )
+    end
 end )
