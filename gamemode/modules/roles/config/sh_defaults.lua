@@ -15,7 +15,7 @@ CREWMATE = AmongUs.AddRole( "Crewmate", {
         return true
     end,
     get_eject_sentence = function( self, ply )
-        return ( "%s was not An Impostor." ):format( ply:GetName(), self.name )
+        return ( "%s was not %s Impostor." ):format( ply:GetName(), AmongUs.Roles[IMPOSTOR]:max() > 1 and "An" or "The" )
     end,
     get_scene_players = function( self )
         return AmongUs.GetAlivePlayers()
@@ -55,7 +55,7 @@ IMPOSTOR = AmongUs.AddRole( "Impostor", {
         return #AmongUs.GetAlivePlayers() - n <= n
     end,
     get_eject_sentence = function( self, ply )
-        return ( "%s was An Impostor." ):format( ply:GetName() )
+        return ( "%s was %s Impostor." ):format( ply:GetName(), self:max() > 1 and "An" or "The" )
     end,
     get_scene_players = function( self ) --  > Must return players list to show on role reveal scene
         return team.GetPlayers( self.id )

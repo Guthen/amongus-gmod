@@ -80,7 +80,7 @@ local bolt_sequences = {
         scale_x = 1,
         scale_y = 1,
         scale_y_to = 0,
-        time = .35,
+        time = .15,
     },
 }
 
