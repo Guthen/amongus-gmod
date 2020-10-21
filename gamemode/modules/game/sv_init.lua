@@ -55,6 +55,7 @@ AmongUs.GameOver = true
 function AmongUs.LaunchGame( force_impostors )
     AmongUs.GameOver = false
     AmongUs.Votes = nil
+    AmongUs.PlayersTasks = {}
 
     --  > Clean
     game.CleanUpMap()
@@ -103,12 +104,16 @@ function AmongUs.LaunchGame( force_impostors )
         ply:SetPlayerColor( Vector( color.r / 255, color.g / 255, color.b / 255 ) )
     end
 
-    --  > Set Color
     local colors = table.Copy( AmongUs.Settings.Colors )
     for i, v in ipairs( player.GetAll() ) do
+        --  > Give Tasks
+        AmongUs.GivePlayerTasks( v )
+
+        --  > Spawn
         v:Spawn()
         v:ScreenFade( SCREENFADE.IN, Color( 0, 0, 0 ), .25, 1 )
 
+        --  > Set Color
         if table.Count( colors ) > 0 then
             local color, name = table.Random( colors )
             colors[ name ] = nil

@@ -172,7 +172,7 @@ function AmongUs.OpenVoteTablet( speaker, time_delay )
     title:Dock( TOP )
     title:SetHeight( h * .09 )
     function title:Paint( w, h )
-        AmongUs.DrawText( "Who Is The Impostor?", w / 2, h / 2, nil, "AmongUs:Medium" )
+        AmongUs.DrawText( main.time_id == #main.times and "Voting Results" or "Who Is The Impostor?", w / 2, h / 2, nil, "AmongUs:Medium" )
     end
 
     --  > Tchat
@@ -292,6 +292,7 @@ function AmongUs.OpenVoteTablet( speaker, time_delay )
     }
     main.time_id, main.time = 1, time_delay or 0
 
+    local sound_played = false
     local bottom = content:Add( "DPanel" )
     bottom:Dock( BOTTOM )
     bottom:DockMargin( 0, padding, 0, 0 )
@@ -304,7 +305,13 @@ function AmongUs.OpenVoteTablet( speaker, time_delay )
         if cooldown <= time.alert_time then
             --  > Reset Color
             if time.alert_critical and cooldown - math.floor( cooldown ) <= .5 and not ( text_color == color_white ) then 
-                text_color = color_white 
+                text_color = color_white
+                if not sound_played then
+                    EmitSound( "amongus/vote_timer.wav", Vector(), -1, nil, nil, nil, nil, 75 + time.max_time * 5 - cooldown * 5 )
+                    sound_played = true
+                end
+            else
+                sound_played = false
             end
 
             --  > Compute Color
@@ -430,5 +437,3 @@ net.Receive( "AmongUs:Voting", function()
         end
     end
 end )
-
-RunConsoleCommand( "gnlib_resetpanels" )

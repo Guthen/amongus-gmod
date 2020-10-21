@@ -1,4 +1,6 @@
 AmongUs.Settings = {
+    --  > Basic
+    CommonTasks = 1,
     LimitTchatLetters = 100,
 
     --  > Distance
@@ -7,7 +9,7 @@ AmongUs.Settings = {
 
     --  > Cooldown
     StartKillCooldown = 5,
-    KillCooldown = 3,
+    KillCooldown = 5,
     
     --  > Time
     DiscussionTime = 5,

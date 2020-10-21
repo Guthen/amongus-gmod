@@ -16,7 +16,7 @@ hook.Add( "PreDrawHalos", "AmongUs:UsableEntities", function()
         return
     end
 
-    halo.Add( { ent }, color_white, 3, 3, 5, true )
+    halo.Add( { ent }, ent.AmongUsHaloColor or color_white, 3, 3, 5, true )
 end )
 
 --  > Hooks
@@ -104,13 +104,11 @@ end
 --  > Colorize Ragdoll
 net.Receive( "AmongUs:ColorizeRagdoll", function()
     local ragdoll, color = net.ReadEntity(), net.ReadVector()
-    print( ragdoll )
     if not IsValid( ragdoll ) then return end
     
     function ragdoll:GetPlayerColor()
         return color
     end
-    print( ragdoll, color )
 end )
 
 --  > Play Sound

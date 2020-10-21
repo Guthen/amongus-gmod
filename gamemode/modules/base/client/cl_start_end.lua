@@ -1,6 +1,8 @@
 local beam_mat = Material( "effects/lamp_beam" )
 local color_black = Color( 0, 0, 0 )
 function AmongUs.OpenGameScreen( is_start, role_winner )
+    if IsValid( AmongUs.TchatPanel ) then AmongUs.TchatPanel:Remove() end
+
     local ply = LocalPlayer()
     local w, h = ScrW(), ScrH()
 
@@ -155,4 +157,3 @@ net.Receive( "AmongUs:GameState", function()
         AmongUs.OpenGameScreen( is_start, winner )
     end
 end )
---RunConsoleCommand( "gnlib_resetpanels" )

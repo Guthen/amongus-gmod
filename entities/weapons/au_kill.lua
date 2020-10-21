@@ -27,6 +27,7 @@ SWEP.SlotPos = 2
 SWEP.DrawAmmo = false
 SWEP.DrawCrosshair = false
 
+SWEP.Cooldown = 0
 SWEP.MaxCooldown = 0
 
 function AmongUs.GetFacingTarget( ply )
@@ -38,6 +39,7 @@ function AmongUs.GetFacingTarget( ply )
 end
 
 function SWEP:ApplyCooldown( time )
+    self.Cooldown = 0
     self:SetNWInt( "AmongUs:MaxCooldown", time )
     self:SetNextPrimaryFire( CurTime() + time )
 end
@@ -47,12 +49,17 @@ function SWEP:Equip()
 end
 
 function SWEP:CanKill()
-    local cur_time, next_time = CurTime(), self:GetNextPrimaryFire()
-    return next_time <= cur_time, next_time - cur_time
+    local cooldown, max_cooldown = self.Cooldown, self:GetNWInt( "AmongUs:MaxCooldown" )
+    return cooldown > max_cooldown, max_cooldown - cooldown
+end
+
+function SWEP:Think()
+    if IsValid( self.Owner:GetNWEntity( "AmongUs:Vent" ) ) then return end
+    self.Cooldown = self.Cooldown + FrameTime() / 4
 end
 
 function SWEP:PrimaryAttack()
-    if CLIENT or not IsFirstTimePredicted() then return end
+    if not IsFirstTimePredicted() then return end
 
     --  > Target
     local target = AmongUs.GetFacingTarget( self.Owner )
@@ -63,9 +70,11 @@ function SWEP:PrimaryAttack()
     if role and role.immortal then return end
 
     --  > Kill target
-    self.Owner:SetPos( target:GetPos() )
-    target:TakeDamage( math.huge, self.Owner, self )
-    target:EmitSound( "amongus/kill01.wav", 120, 100 + math.random( -15, 15 ) )
+    if SERVER then
+        self.Owner:SetPos( target:GetPos() )
+        target:TakeDamage( math.huge, self.Owner, self )
+        target:EmitSound( "amongus/kill01.wav", 120, 100 + math.random( -15, 15 ) )
+    end
 
     --  > Cooldown
     self:ApplyCooldown( AmongUs.Settings.KillCooldown )

@@ -27,19 +27,19 @@ function GM:PlayerDeath( ply, inf, atk )
     new_ragdoll:SetModel( ply:GetModel() )
     new_ragdoll:SetPos( ragdoll:GetPos() )
     new_ragdoll:SetAngles( ply:GetAngles() )
-    new_ragdoll:Spawn()
-    new_ragdoll:SetColor( color:ToColor() )
     new_ragdoll:SetCollisionGroup( COLLISION_GROUP_WORLD )
     function new_ragdoll:GetPlayerColor()
         return color
     end
-    --[[ print( new_ragdoll:GetPhysicsObject():SetMaterial( "player" ) )
- ]]
-    -------------   > TODO: FIX RAGDOLLs COLOR
-    --[[ net.Start( "AmongUs:ColorizeRagdoll" )
-        net.WriteEntity( new_ragdoll )
-        net.WriteVector( ply:GetPlayerColor() )
-    net.Broadcast() ]]
+    new_ragdoll:Spawn()
+
+    --  > Network Ragdoll Color
+    timer.Simple( 0.1, function()
+        net.Start( "AmongUs:ColorizeRagdoll" )
+            net.WriteEntity( new_ragdoll )
+            net.WriteVector( color )
+        net.Broadcast()    
+    end )
 
     ragdoll:Remove()
 
