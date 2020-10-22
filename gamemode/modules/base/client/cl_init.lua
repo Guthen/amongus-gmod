@@ -16,6 +16,7 @@ hook.Add( "PreDrawHalos", "AmongUs:UsableEntities", function()
         return
     end
 
+    if ent.CanHalo and not ent:CanHalo() then return end
     halo.Add( { ent }, ent.AmongUsHaloColor or color_white, 3, 3, 5, true )
 end )
 

@@ -4,8 +4,8 @@
 
 ]
 
-@PointClass base( Targetname, Studiomodel ) = au_task : "Task" [
-    task_type( choice ) : "Task type" : 0 = [
+@PointClass base( Targetname, Angles ) studio() = au_task : "Task" [
+    task_type( choices ) : "Task Type" : 0 = [
         0 : "align_engine_output"
         1 : "align_telescope"
         2 : "assemble_artifact"
@@ -44,6 +44,7 @@
         35 : "upload_data"
         36 : "water_plants"
     ]
+    model(studio) : "World model" : "models/props_junk/vent001.mdl"
 ]
 
 @PointClass studioprop( "models/props_junk/vent001.mdl" ) base( Targetname ) = au_vent : "Ventilation" [

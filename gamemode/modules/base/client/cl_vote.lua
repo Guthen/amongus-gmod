@@ -316,7 +316,7 @@ function AmongUs.OpenVoteTablet( speaker, time_delay )
 
             --  > Compute Color
             local t = FrameTime() * 5
-            text_color = Color( Lerp( t, text_color.r, alert_color.r ), Lerp( t, text_color.g, alert_color.g ), Lerp( t, text_color.b, alert_color.b ) )
+            text_color = AmongUs.LerpColor( t, text_color, alert_color )
         end
 
         AmongUs.DrawText( ( "%s in: %ds" ):format( time.name, cooldown ), w - 1, h / 2, text_color, "AmongUs:Little", TEXT_ALIGN_RIGHT )

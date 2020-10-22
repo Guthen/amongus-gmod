@@ -32,6 +32,7 @@ CREWMATE = AmongUs.AddRole( "Crewmate", {
         --  > Use
         local x, y = ScrW() - AmongUs.RealIconSize, ScrH() - AmongUs.RealIconSize
         local target = AmongUs.GetEntityAtTrace( ply, AmongUs.IsUseable, nil, true )
+        if IsValid( target ) and target.CanHalo and not target:CanHalo() then return end 
 
         AmongUs.DrawIcon( AmongUs.Icons.Use, x, y, target and not AmongUs.IsVent( target ) )
     end,
@@ -101,12 +102,12 @@ IMPOSTOR = AmongUs.AddRole( "Impostor", {
         --  > Vent, Use, Sabotage
         if AmongUs.GetEntityAtTrace( ply, AmongUs.IsVent, nil, true ) then
             AmongUs.DrawIcon( AmongUs.Icons.Vent, x + AmongUs.RealIconSize, y, true )
-
-        elseif AmongUs.GetEntityAtTrace( ply, AmongUs.IsUseable, nil, true ) then
-            AmongUs.DrawIcon( AmongUs.Icons.Use, x + AmongUs.RealIconSize, y, true )
-
         else
-            AmongUs.DrawIcon( AmongUs.Icons.Sabotage, x + AmongUs.RealIconSize, y, true )
+            local target = AmongUs.GetEntityAtTrace( ply, AmongUs.IsUseable, nil, true )
+
+            local icon = AmongUs.Icons.Use
+            if not IsValid( target ) or target.CanHalo and not target:CanHalo() then icon = AmongUs.Icons.Sabotage end
+            AmongUs.DrawIcon( icon, x + AmongUs.RealIconSize, y, true )
         end
     end,
     get_name_color = function( self, role )

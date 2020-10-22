@@ -1,3 +1,6 @@
+function AmongUs.LerpColor( t, a, b )
+	return Color( Lerp( t, a.r, b.r ), Lerp( t, a.g, b.g ), Lerp( t, a.b, b.b ) )
+end
 
 function AmongUs.DrawText( text, x, y, text_color, font, align_x, align_y )
     draw.SimpleTextOutlined( text, font or "AmongUs:Default", x, y, text_color or color_white, align_x or TEXT_ALIGN_CENTER, align_y or TEXT_ALIGN_CENTER, 2, color_black )

@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "8538"
-	"mapversion" "26"
+	"mapversion" "30"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -20,7 +20,7 @@ viewsettings
 world
 {
 	"id" "1"
-	"mapversion" "26"
+	"mapversion" "30"
 	"classname" "worldspawn"
 	"detailmaterial" "detail/detailsprites"
 	"detailvbsp" "detail.vbsp"
@@ -18029,7 +18029,6 @@ entity
 	"id" "1264"
 	"classname" "au_vent"
 	"angles" "-90 0 0"
-	"targetname" "Vent1"
 	"vent_group" "COA"
 	"origin" "640 -192 -63"
 	editor
@@ -18045,7 +18044,6 @@ entity
 	"id" "1289"
 	"classname" "au_vent"
 	"angles" "-90 0 0"
-	"targetname" "Vent1"
 	"vent_group" "COA"
 	"origin" "1120 -928 -64"
 	editor
@@ -18061,7 +18059,6 @@ entity
 	"id" "1297"
 	"classname" "au_vent"
 	"angles" "-90 0 0"
-	"targetname" "Vent1"
 	"vent_group" "COA"
 	"origin" "320 -1376 -64"
 	editor
@@ -18232,6 +18229,48 @@ entity
 	editor
 	{
 		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 0]"
+	}
+}
+entity
+{
+	"id" "1412"
+	"classname" "au_task"
+	"task_type" "stabilize_steering"
+	"origin" "2048 -707.876 -16"
+	editor
+	{
+		"color" "0 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 0]"
+	}
+}
+entity
+{
+	"id" "1428"
+	"classname" "au_task"
+	"task_type" "prime_shields"
+	"origin" "896 -1846.24 -16"
+	editor
+	{
+		"color" "0 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 0]"
+	}
+}
+entity
+{
+	"id" "1455"
+	"classname" "au_task"
+	"task_type" "clear_asteroids"
+	"origin" "1344 -96 -16"
+	editor
+	{
+		"color" "0 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
 		"logicalpos" "[0 0]"

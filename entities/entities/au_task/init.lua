@@ -4,12 +4,14 @@ AddCSLuaFile( "shared.lua" )
 AddCSLuaFile( "cl_init.lua" )
 
 function ENT:Initialize()
-    self:SetModel( "models/props_junk/vent001.mdl" )
+    --self:SetModel( "models/props_junk/vent001.mdl" )
 end
 
 function ENT:KeyValue( key, value )
     if key == "task_type" then
         self:SetTaskType( AmongUs.Tasks[ value ] and value or "default" )
+    elseif key == "model" then
+        self:SetModel( value )
     end
 end
 
@@ -64,7 +66,7 @@ net.Receive( "AmongUs:Task", function( _, ply )
         end
 
         --  > The player was too fast to finish it
-        if current.started_at + 1 > CurTime() then
+        if current.started_at + ( AmongUs.Tasks[current.task].min_time or 1 ) > CurTime() then
             ply:Kick( "Our anti-cheat system detected that you were too fast." )
             
             return
@@ -78,4 +80,9 @@ net.Receive( "AmongUs:Task", function( _, ply )
     elseif method == 2 then
         current_tasks[ply] = nil
     end
+end )
+
+--  > Reset Current Tasks
+hook.Add( "AmongUs:RoundStart", "AmongUs:ResetCurrentTasks", function()
+    current_tasks = {}
 end )

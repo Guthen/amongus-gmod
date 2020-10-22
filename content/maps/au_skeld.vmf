@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "8538"
-	"mapversion" "27"
+	"mapversion" "31"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -14,13 +14,13 @@ viewsettings
 	"bSnapToGrid" "1"
 	"bShowGrid" "1"
 	"bShowLogicalGrid" "0"
-	"nGridSpacing" "16"
+	"nGridSpacing" "8"
 	"bShow3DGrid" "0"
 }
 world
 {
 	"id" "1"
-	"mapversion" "27"
+	"mapversion" "31"
 	"classname" "worldspawn"
 	"detailmaterial" "detail/detailsprites"
 	"detailvbsp" "detail.vbsp"
@@ -18226,6 +18226,57 @@ entity
 	"angles" "-90 0 0"
 	"vent_group" "UR"
 	"origin" "-2896.02 -414.675 -61.6146"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 0]"
+	}
+}
+entity
+{
+	"id" "1412"
+	"classname" "au_task"
+	"angles" "0 180 0"
+	"model" "models/props_combine/combine_interface001.mdl"
+	"skin" "0"
+	"task_type" "stabilize_steering"
+	"origin" "2088 -736 -64"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 0]"
+	}
+}
+entity
+{
+	"id" "1428"
+	"classname" "au_task"
+	"angles" "0 0 0"
+	"model" "models/props_combine/combine_intwallunit.mdl"
+	"skin" "0"
+	"task_type" "prime_shields"
+	"origin" "832 -1896 -16"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 0]"
+	}
+}
+entity
+{
+	"id" "1455"
+	"classname" "au_task"
+	"angles" "0 30 0"
+	"model" "models/chairs/armchair.mdl"
+	"skin" "0"
+	"task_type" "clear_asteroids"
+	"origin" "1344 -96.2164 -75.8943"
 	editor
 	{
 		"color" "220 30 220"

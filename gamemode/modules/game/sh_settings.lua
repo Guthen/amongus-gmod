@@ -1,6 +1,6 @@
 AmongUs.Settings = {
     --  > Basic
-    CommonTasks = 1,
+    CommonTasks = 3,
     LimitTchatLetters = 100,
 
     --  > Distance

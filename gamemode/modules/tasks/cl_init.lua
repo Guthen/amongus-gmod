@@ -1,3 +1,5 @@
+AmongUs.SquareTaskSize = math.floor( ScrH() * 0.85 )
+
 AmongUs.TasksCompleted = 0
 AmongUs.PlayerTasks = AmongUs.PlayerTasks or nil
 
@@ -6,9 +8,10 @@ function AmongUs.OpenTaskPanel( type, on_submit )
     local task_base = AmongUs.Tasks[type]
     assert( task_base, ( "Task %q doesn't exists" ):format( type or "" ) )
 
+    --  > Instantiate Task
     local task = setmetatable( {}, { __index = task_base } )
-    task.background_color = task.background_color or Color( 0, 0, 0 )
 
+    --  > Create Main
     local time = .25
     local w, h = task.w or ScrW() * .75, task.h or ScrH() * .75
     local main, close = vgui.Create( "DFrame" )
@@ -17,13 +20,19 @@ function AmongUs.OpenTaskPanel( type, on_submit )
     main:MoveTo( main.x, ScrH() / 2 - h / 2, time, 0, 1 )
     main:SetDraggable( false )
     main:SetSizable( false )
+    main:ShowCloseButton( false )
     main:SetTitle( "" )
     main:MakePopup()
     function main:Close()
         task:close()
-        self:MoveTo( self.x, ScrH(), time, 0, 1, function()
-            self:Remove()
-        end )
+
+        if task.custom_close then 
+            task:custom_close( time, self, close ) 
+        else
+            self:MoveTo( self.x, ScrH(), time, 0, 1, function()
+                self:Remove()
+            end )
+        end
 
         if not task.completed then
             net.Start( "AmongUs:Task" )
@@ -42,7 +51,10 @@ function AmongUs.OpenTaskPanel( type, on_submit )
 
     --  > task:paint
     function main:Paint( w, h )
-        draw.RoundedBox( 0, 0, 0, w, h, task.background_color )
+        if task.background_color then
+            draw.RoundedBox( 0, 0, 0, w, h, task.background_color )
+        end
+
         task:paint( w, h )
     end
     
@@ -62,16 +74,15 @@ function AmongUs.OpenTaskPanel( type, on_submit )
     end
 
     --  > Close Button
-    local size = w * .05
+    local size = w * .098
     close = vgui.Create( "DImageButton" )
     close:SetSize( size, size )
-    local x, y = main:GetPos()
-    close:SetPos( x - size * 1.01, y )
     close:SetImage( "amongus/close.png" )
     function close:DoClick()
         main:Close()
     end
     function close:Think()
+        self.x = main.x - size * 1.01
         self.y = main.y
     end
     
