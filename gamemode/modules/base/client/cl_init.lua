@@ -117,3 +117,9 @@ net.Receive( "AmongUs:PlaySound", function()
     local path = net.ReadString()
     surface.PlaySound( path )
 end )
+
+--  > Network Hook
+net.Receive( "AmongUs:NetworkHook", function()
+    local name, args = net.ReadString(), net.ReadTable()
+    hook.Run( name, args )
+end )

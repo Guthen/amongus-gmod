@@ -5,7 +5,13 @@ function AmongUs.PlaySound( path )
     net.Broadcast()
 end
 
-util.AddNetworkString( "AmongUs:ColorizeRagdoll" )
+util.AddNetworkString( "AmongUs:NetworkHook" )
+function AmongUs.NetworkHook( name, ... )
+    net.Start( "AmongUs:NetworkHook" )
+        net.WriteString( name )
+        net.WriteTable( { ... } )
+    net.Broadcast()
+end
 
 function GM:PlayerSpawn( ply )
     player_manager.SetPlayerClass( ply, AmongUs.BasePlayerClass.Name )
@@ -18,6 +24,7 @@ function GM:PlayerDeathSound()
     return true
 end
 
+util.AddNetworkString( "AmongUs:ColorizeRagdoll" )
 function GM:PlayerDeath( ply, inf, atk )
     local ragdoll = ply:GetRagdollEntity()
 

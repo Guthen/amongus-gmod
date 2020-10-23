@@ -119,12 +119,13 @@ local task_places = {}
 local function find_task_places()
     task_places = {}
 
-    for i, v in ipairs( ents.FindByClass( "au_task" ) ) do
-        task_places[v:GetTaskType()] = v:GetPlaceName()
-    end
+    --timer.Simple( .1, function()
+        for i, v in ipairs( ents.FindByClass( "au_task" ) ) do
+            task_places[v:GetTaskType()] = v:GetPlaceName()
+        end
+    --end )
 end
-find_task_places()
-hook.Add( "InitPostEntity", "AmongUs:FindTaskPlaces", find_task_places )
+hook.Add( "AmongUs:RoundStart", "AmongUs:FindTaskPlaces", find_task_places )
 
 --  > HUD
 local colors = {

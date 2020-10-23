@@ -11,6 +11,8 @@ return {
     background_color = Color( 0, 0, 0, 0 ),
     min_time = .1, --  > Minimal time toke to do this task (used by anti-cheat system)
     init = function( self )
+        surface.PlaySound( "amongus/generic_appear.wav" )
+
         self.space = self.w * 0.037
 
         self.x = math.random( self.space * 3, self.w - self.space * 3 )
@@ -65,5 +67,6 @@ return {
         self.y = y
     end,
     close = function( self )
+        surface.PlaySound( "amongus/generic_disappear.wav" )
     end,
 }

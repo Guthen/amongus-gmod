@@ -108,7 +108,7 @@ IMPOSTOR = AmongUs.AddRole( "Impostor", {
             local target = AmongUs.GetEntityAtTrace( ply, AmongUs.IsUseable, nil, true )
 
             local icon = AmongUs.Icons.Use
-            if not IsValid( target ) or target.CanHalo and not target:CanHalo() then icon = AmongUs.Icons.Sabotage end
+            if not IsValid( target ) or target.CanHalo and not target:CanHalo() or target:GetClass() == "au_task" then icon = AmongUs.Icons.Sabotage end
             AmongUs.DrawIcon( icon, x + AmongUs.RealIconSize, y, true )
         end
     end,

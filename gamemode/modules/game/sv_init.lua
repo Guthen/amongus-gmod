@@ -143,6 +143,7 @@ function AmongUs.LaunchGame( force_impostors )
     end )
 
     hook.Run( "AmongUs:RoundStart" )
+    AmongUs.NetworkHook( "AmongUs:RoundStart" )
     AmongUs.Print( "Game launched" )
 end
 concommand.Add( "au_launch_game", function( ply, cmd, args )
@@ -269,7 +270,9 @@ function AmongUs.ProceedVotes()
         --  > Spawn players
         timer.Simple( AmongUs.Settings.EjectTime + .5, function()
             AmongUs.RespawnAlivePlayers()
+
             hook.Run( "AmongUs:RoundStart" )
+            AmongUs.NetworkHook( "AmongUs:RoundStart" )
         end )
     end )
 
