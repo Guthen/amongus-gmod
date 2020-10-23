@@ -13,6 +13,7 @@ return {
     name = "Prime Shields",
     w = AmongUs.SquareTaskSize,
     h = AmongUs.SquareTaskSize,
+    min_time = .1, --  > Minimal time toke to do this task (used by anti-cheat system)
     init = function( self )
         surface.PlaySound( "amongus/generic_appear.wav" )
 

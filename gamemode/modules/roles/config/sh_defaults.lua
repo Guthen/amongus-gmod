@@ -3,6 +3,7 @@ AmongUs.Roles = {}
 --  > Crewmate
 CREWMATE = AmongUs.AddRole( "Crewmate", {
     color = Color( 141, 255, 253 ),
+    can_do_task = true, --  > Allow to do tasks
     has_won = function( self )
         local plys = AmongUs.GetAlivePlayers()
 
@@ -32,7 +33,7 @@ CREWMATE = AmongUs.AddRole( "Crewmate", {
         --  > Use
         local x, y = ScrW() - AmongUs.RealIconSize, ScrH() - AmongUs.RealIconSize
         local target = AmongUs.GetEntityAtTrace( ply, AmongUs.IsUseable, nil, true )
-        if IsValid( target ) and target.CanHalo and not target:CanHalo() then return end 
+        if IsValid( target ) and target.CanHalo and not target:CanHalo() then target = false end 
 
         AmongUs.DrawIcon( AmongUs.Icons.Use, x, y, target and not AmongUs.IsVent( target ) )
     end,
@@ -52,6 +53,7 @@ IMPOSTOR = AmongUs.AddRole( "Impostor", {
     end, --  > Max players in this role
     immortal = true, --  > Immunise to 'au_kill' SWEP?
     can_vent = true, --  > Allow to go in vents
+    can_do_task = false, --  > Allow to do tasks
     has_won = function( self ) --  > Called everytime a player has gone
         local n = #AmongUs.GetRolePlayers( self )
         return #AmongUs.GetAlivePlayers() - n <= n

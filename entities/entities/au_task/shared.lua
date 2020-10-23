@@ -9,8 +9,10 @@ ENT.Spawnable = false
 
 function ENT:SetupDataTables()
     self:NetworkVar( "String", 0, "TaskType" )
+    self:NetworkVar( "String", 1, "PlaceName" )
 
     if SERVER then
         self:SetTaskType( "default" )
+        self:SetPlaceName( "N/A" )
     end
 end

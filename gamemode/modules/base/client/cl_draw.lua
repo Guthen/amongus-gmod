@@ -1,3 +1,13 @@
+function AmongUs.GetMaterialsInFolder( path )
+	local materials = {}
+
+	for i, v in ipairs( file.Find( "materials/" .. path .. "/*.png", "GAME" ) ) do
+		materials[v:gsub( "%.%w+$", "" )] = Material( path .. "/" .. v )
+	end
+
+	return materials
+end
+
 function AmongUs.LerpColor( t, a, b )
 	return Color( Lerp( t, a.r, b.r ), Lerp( t, a.g, b.g ), Lerp( t, a.b, b.b ) )
 end

@@ -9,9 +9,16 @@ end
 
 function ENT:KeyValue( key, value )
     if key == "task_type" then
+        print( "task", value )
         self:SetTaskType( AmongUs.Tasks[ value ] and value or "default" )
     elseif key == "model" then
         self:SetModel( value )
+--[[     elseif key == "angles" then
+        local angles = value:gmatch( "(%d+)" )
+        self:SetAngles( Angle( angles(), angles(), angles() ) ) ]]
+    elseif key == "place_name" then
+        print( "place", value )
+        self:SetPlaceName( value )
     end
 end
 
@@ -19,6 +26,7 @@ local current_tasks = {}
 function ENT:PlayerPressed( ply )
     if not AmongUs.PlayersTasks[ply][self:GetTaskType()] then return end --  > don't have this task
     if AmongUs.PlayersTasks[ply][self:GetTaskType()].completed then return end --  > already done this task
+    if not AmongUs.GetRoleOf( ply ).can_do_task then return end
 
     if current_tasks[ply] then
         ply:Kick( "Our anti-cheat system detected that you were already in a task." )
@@ -33,6 +41,10 @@ function ENT:PlayerPressed( ply )
         net.WriteUInt( 1, 3 )
         net.WriteEntity( self )
     net.Send( ply )
+end
+
+function ENT:UpdateTransmitState()	
+	return TRANSMIT_ALWAYS 
 end
 
 net.Receive( "AmongUs:Task", function( _, ply )
@@ -73,9 +85,9 @@ net.Receive( "AmongUs:Task", function( _, ply )
         end
 
         --  > Task is valid, done !
-        current_tasks[ply] = nil
-        AmongUs.CompletePlayerTask( ply, current.task )
-        MsgAll( ply:GetName() .. " is a good crewmate, task done!" )
+        if AmongUs.CompletePlayerTask( ply, current.task ) then
+            current_tasks[ply] = nil
+        end
     --  > Cancel Task
     elseif method == 2 then
         current_tasks[ply] = nil

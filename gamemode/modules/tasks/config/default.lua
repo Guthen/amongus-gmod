@@ -2,6 +2,7 @@ return {
     name = "Default",
     w = nil,
     h = nil,
+    background_color = Color( 0, 0, 0 ),
     init = function( self )
         self.clicks = {}
 

@@ -1,6 +1,6 @@
 AmongUs.SquareTaskSize = math.floor( ScrH() * 0.85 )
 
-AmongUs.TasksCompleted = 0
+AmongUs.TasksRatio = AmongUs.TasksRatio or 0
 AmongUs.PlayerTasks = AmongUs.PlayerTasks or nil
 
 AmongUs.TaskPanel = AmongUs.TaskPanel or nil
@@ -22,7 +22,8 @@ function AmongUs.OpenTaskPanel( type, on_submit )
     main:SetSizable( false )
     main:ShowCloseButton( false )
     main:SetTitle( "" )
-    main:MakePopup()
+    --main:MakePopup()
+    if task.no_clipping then main:NoClipping( true ) end
     function main:Close()
         task:close()
 
@@ -41,11 +42,13 @@ function AmongUs.OpenTaskPanel( type, on_submit )
         end
     end
     function main:OnRemove()
+        gui.EnableScreenClicker( false )
         close:Remove()
     end
 
     --  > task:update
     function main:Think()
+        --if self.mouse_capture then self:MouseCapture( true ) end
         task:update( FrameTime() )
     end
 
@@ -61,6 +64,7 @@ function AmongUs.OpenTaskPanel( type, on_submit )
     --  > task:click
     function main:OnMousePressed( button )
         local x, y = self:ScreenToLocal( input.GetCursorPos() )
+        --if x < 0 or x > self:GetWide() or y < 0 or y > self:GetTall() then self.mouse_capture = false end
         task:click( x, y, button, true )
     end
     function main:OnMouseReleased( button )
@@ -85,26 +89,42 @@ function AmongUs.OpenTaskPanel( type, on_submit )
         self.x = main.x - size * 1.01
         self.y = main.y
     end
+    gui.EnableScreenClicker( true )
     
     --  > Launch Task
     task.w, task.h = w, h
     task:init()
 
-    function task:submit()
+    function task:submit( force )
         if isfunction( on_submit ) then
             on_submit( type )
         end
 
-        timer.Simple( 1, function()
-            if not IsValid( main ) then return end
-            self.completed = true
-            main:Close()
-        end )
+        --  > Close
+        if force or not AmongUs.PlayerTasks[type].max_stages or AmongUs.PlayerTasks[type].stages + 1 >= AmongUs.PlayerTasks[type].max_stages then
+            timer.Simple( 1, function()
+                if not IsValid( main ) then return end
+                self.completed = true
+                main:Close()
+            end )
+        end
     end
 end
 concommand.Add( "au_task_panel", function( ply, cmd, args )
     AmongUs.OpenTaskPanel( args[1] or "default" )
 end )
+
+--  > Find Task Entities
+local task_places = {}
+local function find_task_places()
+    task_places = {}
+
+    for i, v in ipairs( ents.FindByClass( "au_task" ) ) do
+        task_places[v:GetTaskType()] = v:GetPlaceName()
+    end
+end
+find_task_places()
+hook.Add( "InitPostEntity", "AmongUs:FindTaskPlaces", find_task_places )
 
 --  > HUD
 local colors = {
@@ -120,17 +140,12 @@ hook.Add( "HUDPaint", "AmongUs:Tasks", function()
     --  > Tasks Counter
     if not AmongUs.PlayerTasks then return end
 
-    --  > Compute max
-    local max = 0
-    for i, v in ipairs( AmongUs.GetAlivePlayers() ) do
-        max = max + AmongUs.Settings.CommonTasks
-    end
-
     --  > Draw
     local w, h = ScrW(), ScrH()
-    local x, y = w * .01, w * .01
+    local space = w * .01
+    local x, y = space, space
     local box_w, box_h = w * .35, draw.GetFontHeight( "AmongUs:Mini" ) * 1.5
-    ratio = Lerp( FrameTime(), ratio, AmongUs.TasksCompleted / max )
+    ratio = Lerp( FrameTime() * 5, ratio, AmongUs.TasksRatio )
 
     --  > Black
     draw.RoundedBox( 2, x, y, box_w, box_h + outline * 5, colors.black )
@@ -152,6 +167,49 @@ hook.Add( "HUDPaint", "AmongUs:Tasks", function()
 
     --  > Text
     AmongUs.DrawText( "TOTAL TASKS COMPLETED", x + outline, y + box_h / 2, nil, "AmongUs:Mini", TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER )
+
+    ---  > Task List
+    local font = "AmongUs:Little"
+    local height = draw.GetFontHeight( font )
+    local tasks = AmongUs.PlayerTasks
+
+    --  > Compute Max Wide
+    local wide = 0
+    surface.SetFont( font )
+    for k, v in pairs( AmongUs.PlayerTasks ) do
+        v.text = ( "%s: %s" ):format( task_places[k] or "N/A", AmongUs.Tasks[k].name .. ( v.stages and ( " (%d/%d)" ):format( v.stages, v.max_stages ) or "" ) )
+        wide = math.max( surface.GetTextSize( v.text ), wide )
+    end
+    wide = wide + space * 2
+
+    --  > Background
+    local background_color = ColorAlpha( colors.light_gray, 100 )
+    draw.RoundedBox( 0, space, y + box_h + space, wide, space * 2 + table.Count( tasks ) * height, background_color )
+
+    --  > "Tasks"
+    local text = "Tasks"
+    local text_w, text_h = surface.GetTextSize( text )
+    draw.RoundedBox( 0, space + wide, y + box_h + space, text_h, text_w * 1.5, background_color )
+
+    --  > https://wiki.facepunch.com/gmod/cam.PushModelMatrix
+    local ang = -90
+    local rad = -math.rad( ang )
+	local text_x = -( math.cos( rad ) * text_w / 2 + math.sin( rad ) * text_h / 2 )
+	local text_y = ( math.sin( rad ) * text_w / 2 + math.cos( rad ) * text_h / 2 )
+
+	local m = Matrix()
+	m:SetAngles( Angle( 0, ang, 0 ) )
+	m:SetTranslation( Vector( space + wide + text_h * .45 + text_x, y + box_h + space + text_w * .75 + text_y, 0 ) )
+	cam.PushModelMatrix( m )
+        AmongUs.DrawText( text, 0, 0, nil, font, TEXT_ALIGN_LEFT, TEXT_ALIGN_LEFT )
+	cam.PopModelMatrix()
+
+    --  > Tasks
+    local i = 0
+    for k, v in pairs( AmongUs.PlayerTasks ) do
+        AmongUs.DrawText( v.text, space * 2, y + box_h + space * 2 + i * height, v.completed and Color( 0, 221, 0 ) or v.in_progress and Color( 245, 246, 18 ) or color_white, font, TEXT_ALIGN_LEFT, TEXT_ALIGN_LEFT )
+        i = i + 1
+    end
 end )
 
 --  > Task Completed message
@@ -183,6 +241,7 @@ hook.Add( "PostRenderVGUI", "AmongUs:TaskCompleted", function()
 end )
 
 --  > Network
+local can_play_progress_sound = true
 net.Receive( "AmongUs:Task", function()
     local method = net.ReadUInt( 3 )
     --  > Open Task Panel
@@ -190,6 +249,7 @@ net.Receive( "AmongUs:Task", function()
         local ent = net.ReadEntity()
         if not IsValid( ent ) then return end
 
+        AmongUs.PlayerTasks[ent:GetTaskType()].in_progress = true
         AmongUs.OpenTaskPanel( ent:GetTaskType(), function( task )
             if not IsValid( ent ) then return end
 
@@ -202,17 +262,37 @@ net.Receive( "AmongUs:Task", function()
     --  > Get Player Tasks
     elseif method == 2 then
         AmongUs.PlayerTasks = net.ReadTable()
+        AmongUs.TasksRatio = 0
         PrintTable( AmongUs.PlayerTasks )
     --  > Complete Task
     elseif method == 3 then
         local id = net.ReadString()
-        AmongUs.PlayerTasks[id].completed = true
+        local task = AmongUs.PlayerTasks[id]
+        if not task then return end
+
+        if task.stages then
+            task.stages = task.stages + 1
+            if task.stages >= task.max_stages then
+                task.completed = true
+            end
+        else
+            task.completed = true
+        end
 
         --  > Effect
-        task_completed_show = true
-        surface.PlaySound( "amongus/task_complete.wav" )
+        if task.completed then
+            task_completed_show = true
+            surface.PlaySound( "amongus/task_complete.wav" )
+        elseif can_play_progress_sound then
+            surface.PlaySound( "amongus/task_progress.wav" )
+
+            can_play_progress_sound = false
+            timer.Simple( 1, function()
+                can_play_progress_sound = true
+            end )
+        end
     --  > Progress In Global Tasks
     elseif method == 4 then
-        AmongUs.TasksCompleted = net.ReadUInt( 10 )
+        AmongUs.TasksRatio = net.ReadFloat()
     end
 end )

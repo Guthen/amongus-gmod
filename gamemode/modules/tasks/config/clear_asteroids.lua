@@ -36,10 +36,9 @@ return {
     name = "Clear Asteroids",
     w = AmongUs.SquareTaskSize,
     h = AmongUs.SquareTaskSize,
-    stages = 20,
+    max_stages = 20, --  > Stages: represent number of step before accomplishement
     sprites_size_factor = .65,
     asteroid_hitbox_factor = .8,
-    destroyed = 0,
     init = function( self )
         --  > Base
         self.base = {}
@@ -142,7 +141,7 @@ return {
 
         --  > Spawn Asteroids
         self.asteroid_time = self.asteroid_time + dt
-        if self.destroyed < self.stages and self.asteroid_time >= self.asteroid_max_time then
+        if AmongUs.PlayerTasks[self.id].stages < self.max_stages and self.asteroid_time >= self.asteroid_max_time then
             self:add_asteroid()
             self.asteroid_time = 0
         end
@@ -191,11 +190,11 @@ return {
         end )
 
         --  > Counter
-        draw.SimpleText( "Destroyed: " .. self.destroyed, "AmongUs:Asteroids", w / 2, self.base.size, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
+        draw.SimpleText( "Destroyed: " .. AmongUs.PlayerTasks[self.id].stages, "AmongUs:Asteroids", w / 2, self.base.size, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
     end,
     click = function( self, x, y, button, is_down )
         if not is_down then return end
-        if self.destroyed >= self.stages then return end
+        if AmongUs.PlayerTasks[self.id].stages >= self.max_stages then return end
         if self.fire_time < self.fire_max_time then return end
         if not is_collide( self.base.pos, self.base.pos, self.base.size, self.base.size, x, y, 1, 1 ) then return end
 
@@ -208,12 +207,11 @@ return {
 
         --  > Destroy Asteroid
         timer.Simple( .1, function()
-            local destroy = false
+            local destroyed = 0
             for i, v in ipairs( self.asteroids ) do
                 local w, h = v:get_size()
                 if v.alive and not v.explosion and is_collide( v.x + w * ( 1 - self.asteroid_hitbox_factor ), v.y + h * ( 1 - self.asteroid_hitbox_factor ), w * self.asteroid_hitbox_factor, h * self.asteroid_hitbox_factor, self.cursor.x, self.cursor.y, self.cursor.size, self.cursor.size ) then
-                    self.destroyed = self.destroyed + 1
-                    destroy = true
+                    destroyed = destroyed + 1
 
                     --  > Add explosion
                     local explosion = {
@@ -226,14 +224,14 @@ return {
                     }
                     self.explosions[#self.explosions + 1] = explosion
                     v.explosion = explosion
+
+                    surface.PlaySound( ( "amongus/tasks/clear_asteroids/hit0%d.wav" ):format( math.random( 1, 3 ) ) )
                 end
             end
 
-            if destroy then
-                surface.PlaySound( ( "amongus/tasks/clear_asteroids/hit0%d.wav" ):format( math.random( 1, 3 ) ) )
-            
-                if self.destroyed >= self.stages then
-                    self:submit()
+            if destroyed > 0 then
+                for i = 1, destroyed do --  > submit up stages to 1 so as we can destroy multiple asteroids..
+                    self:submit( AmongUs.PlayerTasks[self.id].stages + destroyed >= self.max_stages )
                 end
             end
         end )
