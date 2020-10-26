@@ -17,7 +17,6 @@ function AmongUs.SetRole( ply, role )
 
     ply:SetTeam( role.id )
     ply:Spawn()
-    print( ply:GetName(), role.name )
 end
 
 function AmongUs.GetRolePlayers( role )

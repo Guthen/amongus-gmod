@@ -51,7 +51,7 @@ function AmongUs.RespawnAlivePlayers()
     end
 end
 
-AmongUs.GameOver = true
+AmongUs.GameOver = AmongUs.GameOver or true
 function AmongUs.LaunchGame( force_impostors )
     AmongUs.GameOver = false
     AmongUs.Votes = nil
@@ -70,7 +70,7 @@ function AmongUs.LaunchGame( force_impostors )
                 if force_impostors and #force_impostors > 0 then
                     for i, name in ipairs( force_impostors ) do
                         for k, p in ipairs( players ) do
-                            if p:GetName() == name then
+                            if p:Name() == name then
                                 ply = p
                                 table.remove( force_impostors, i )
                                 table.remove( players, k )
@@ -130,6 +130,8 @@ function AmongUs.LaunchGame( force_impostors )
                 v:SetNWString( "AmongUs:FakeName", v:Name() )
             end
         end
+
+        print( v:GetName(), AmongUs.GetRoleOf( v ).name )
     end
 
     --  > Set position
@@ -142,8 +144,12 @@ function AmongUs.LaunchGame( force_impostors )
         net.Broadcast()
     end )
 
+    --  > Hooks
+    hook.Run( "AmondUs:GameStart" )
     hook.Run( "AmongUs:RoundStart" )
+    AmongUs.NetworkHook( "AmongUs:GameStart" )
     AmongUs.NetworkHook( "AmongUs:RoundStart" )
+    
     AmongUs.Print( "Game launched" )
 end
 concommand.Add( "au_launch_game", function( ply, cmd, args )
@@ -151,7 +157,7 @@ concommand.Add( "au_launch_game", function( ply, cmd, args )
 end )
 
 --  > Voting
-AmongUs.Votes = nil
+AmongUs.Votes = AmongUs.Votes or nil
 
 util.AddNetworkString( "AmongUs:Voting" )
 local function send_voting( method, speaker, target )

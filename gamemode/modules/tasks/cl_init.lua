@@ -112,6 +112,17 @@ function AmongUs.OpenTaskPanel( type, on_submit )
 end
 concommand.Add( "au_task_panel", function( ply, cmd, args )
     AmongUs.OpenTaskPanel( args[1] or "default" )
+end, function( cmd, arg )
+    local tasks = {}
+
+    arg = arg:Trim()
+    for id, task in pairs( AmongUs.Tasks ) do
+        if #arg <= 0 or id:StartWith( arg ) then
+            tasks[#tasks + 1] = "au_task_panel " .. id
+        end
+    end
+
+    return tasks
 end )
 
 --  > Find Task Entities
@@ -119,11 +130,10 @@ local task_places = {}
 local function find_task_places()
     task_places = {}
 
-    --timer.Simple( .1, function()
-        for i, v in ipairs( ents.FindByClass( "au_task" ) ) do
-            task_places[v:GetTaskType()] = v:GetPlaceName()
-        end
-    --end )
+    for i, v in ipairs( ents.FindByClass( "au_task" ) ) do
+        if not task_places[v:GetTaskType()] then task_places[v:GetTaskType()] = {} end
+        task_places[v:GetTaskType()][#task_places[v:GetTaskType()] + 1] = v:GetPlaceName()
+    end
 end
 hook.Add( "AmongUs:RoundStart", "AmongUs:FindTaskPlaces", find_task_places )
 
@@ -138,6 +148,8 @@ local colors = {
 local outline = 4
 local ratio = 0
 hook.Add( "HUDPaint", "AmongUs:Tasks", function()
+    if LocalPlayer():Team() == TEAM_UNASSIGNED then return end
+
     --  > Tasks Counter
     if not AmongUs.PlayerTasks then return end
 
@@ -178,7 +190,7 @@ hook.Add( "HUDPaint", "AmongUs:Tasks", function()
     local wide = 0
     surface.SetFont( font )
     for k, v in pairs( AmongUs.PlayerTasks ) do
-        v.text = ( "%s: %s" ):format( task_places[k] or "N/A", AmongUs.Tasks[k].name .. ( v.stages and ( " (%d/%d)" ):format( v.stages, v.max_stages ) or "" ) )
+        v.text = ( "%s: %s" ):format( task_places[k] and ( task_places[k][( v.stages or 1 ) + 1] or task_places[k][1] ) or "N/A", AmongUs.Tasks[k].name .. ( v.stages and ( " (%d/%d)" ):format( v.stages, v.max_stages ) or "" ) )
         wide = math.max( surface.GetTextSize( v.text ), wide )
     end
     wide = wide + space * 2
@@ -250,7 +262,7 @@ net.Receive( "AmongUs:Task", function()
         local ent = net.ReadEntity()
         if not IsValid( ent ) then return end
 
-        AmongUs.PlayerTasks[ent:GetTaskType()].in_progress = true
+        --AmongUs.PlayerTasks[ent:GetTaskType()].in_progress = true
         AmongUs.OpenTaskPanel( ent:GetTaskType(), function( task )
             if not IsValid( ent ) then return end
 
@@ -264,18 +276,27 @@ net.Receive( "AmongUs:Task", function()
     elseif method == 2 then
         AmongUs.PlayerTasks = net.ReadTable()
         AmongUs.TasksRatio = 0
-        PrintTable( AmongUs.PlayerTasks )
+        --PrintTable( AmongUs.PlayerTasks )
     --  > Complete Task
     elseif method == 3 then
         local id = net.ReadString()
         local task = AmongUs.PlayerTasks[id]
         if not task then return end
 
+        --  > Stage 
         if task.stages then
+            task.in_progress = true
             task.stages = task.stages + 1
             if task.stages >= task.max_stages then
                 task.completed = true
             end
+
+            --  > Disable Entity on Halos
+            local ent = net.ReadEntity()
+            if IsValid( ent ) and AmongUs.Tasks[id].disable_entity_task then
+                AmongUs.BlockedEntities[ent] = true
+            end
+        --  > Complete
         else
             task.completed = true
         end

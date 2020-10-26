@@ -6,6 +6,7 @@ local materials = {
 
 return {
     name = "Stabilize Steering",
+    type = AU_TASK_SHORT,
     w = AmongUs.SquareTaskSize,
     h = AmongUs.SquareTaskSize,
     background_color = Color( 0, 0, 0, 0 ),

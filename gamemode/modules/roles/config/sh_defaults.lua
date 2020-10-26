@@ -1,10 +1,13 @@
 AmongUs.Roles = {}
 
 --  > Crewmate
-CREWMATE = AmongUs.AddRole( "Crewmate", {
+AU_CREWMATE = AmongUs.AddRole( "Crewmate", {
     color = Color( 141, 255, 253 ),
     can_do_task = true, --  > Allow to do tasks
     has_won = function( self )
+        if AmongUs.TasksRatio >= 1 then return true end --  > Win on task ratio completed
+
+        --  > Check alive crews
         local plys = AmongUs.GetAlivePlayers()
 
         for i, v in ipairs( plys ) do
@@ -16,14 +19,14 @@ CREWMATE = AmongUs.AddRole( "Crewmate", {
         return true
     end,
     get_eject_sentence = function( self, ply )
-        return ( "%s was not %s Impostor." ):format( ply:GetName(), AmongUs.Roles[IMPOSTOR]:max() > 1 and "An" or "The" )
+        return ( "%s was not %s Impostor." ):format( ply:GetName(), AmongUs.Roles[AU_IMPOSTOR]:max() > 1 and "An" or "The" )
     end,
     get_scene_players = function( self )
         return AmongUs.GetAlivePlayers()
     end,
     show_player_name_reveal = false, --  > Whenever we show players names on role reveal
     second_reveal_sentence = function( self )
-        local impostor = AmongUs.Roles[IMPOSTOR]
+        local impostor = AmongUs.Roles[AU_IMPOSTOR]
         local count = #AmongUs.GetRolePlayers( impostor )
         return "There ", count > 1 and "are" or "is", impostor.color, ( " %d %s" ):format( count, impostor.name .. ( count > 1 and "s" or "" ) ), color_white, " among us."
     end,
@@ -43,13 +46,13 @@ CREWMATE = AmongUs.AddRole( "Crewmate", {
 } )
 
 --  > Impostor
-IMPOSTOR = AmongUs.AddRole( "Impostor", {
+AU_IMPOSTOR = AmongUs.AddRole( "Impostor", {
     color = Color( 238, 72, 79 ), --  > Name/Halos color
     weapons = { --  > Spawned weapons
         "au_kill",
     },
     max = function( self ) 
-        return 2
+        return 1
     end, --  > Max players in this role
     immortal = true, --  > Immunise to 'au_kill' SWEP?
     can_vent = true, --  > Allow to go in vents

@@ -11,28 +11,33 @@ local colors = {
 
 return {
     name = "Prime Shields",
+    type = AU_TASK_SHORT,
     w = AmongUs.SquareTaskSize,
     h = AmongUs.SquareTaskSize,
     min_time = .1, --  > Minimal time toke to do this task (used by anti-cheat system)
     init = function( self )
         surface.PlaySound( "amongus/generic_appear.wav" )
 
+        --  > Big shield maths
         self.big_shield_angle = 0
         self.big_shield_size = self.w * .885
 
+        --  > Doing maths, yea again
         local w, h = self.big_shield_size / 3, self.big_shield_size / 3.5
         self.shields = {}
         self.shield_radius = materials.shield:Width() / 2 * 1.5
 
+        --  > Create shields
         local space = self.big_shield_size * .01
         local x, y = self.big_shield_size / 2 - w * 1.11, self.big_shield_size / 2 - h * .8
         for i = 1, 7 do
             self.shields[i] = {
+                id = i,
                 x = x,
                 y = y,
                 w = w,
                 h = h,
-                active = math.random( 1, 2 ) == 1 and true or false,
+                active = true,
             }
 
             y = y + h + space
@@ -43,6 +48,12 @@ return {
                 x = x + w / 1.3 + space
                 y = y - ( h + space ) * 3 + h / 2
             end
+        end
+
+        --  > Disactive shields
+        local shields = table.Copy( self.shields )
+        for i = 1, math.random( #self.shields ) do
+            self.shields[table.remove( shields, math.random( #shields ) ).id].active = false
         end
     end,
     can_submit = function( self )

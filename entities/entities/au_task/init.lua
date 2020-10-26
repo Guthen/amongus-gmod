@@ -4,31 +4,34 @@ AddCSLuaFile( "shared.lua" )
 AddCSLuaFile( "cl_init.lua" )
 
 function ENT:Initialize()
-    --self:SetModel( "models/props_junk/vent001.mdl" )
+    self:PhysicsInit( SOLID_VPHYSICS )
+
+    local phys = self:GetPhysicsObject()
+    if IsValid( phys ) then
+        phys:EnableMotion( false )
+    end
+
+    self.PlayersBlocked = {} --  > Used for 'disable_entity_task' option on tasks
 end
 
 function ENT:KeyValue( key, value )
     if key == "task_type" then
-        print( "task", value )
         self:SetTaskType( AmongUs.Tasks[ value ] and value or "default" )
     elseif key == "model" then
         self:SetModel( value )
---[[     elseif key == "angles" then
-        local angles = value:gmatch( "(%d+)" )
-        self:SetAngles( Angle( angles(), angles(), angles() ) ) ]]
     elseif key == "place_name" then
-        print( "place", value )
         self:SetPlaceName( value )
     end
 end
 
 local current_tasks = {}
 function ENT:PlayerPressed( ply )
+    if self.PlayersBlocked[ply] then return end --  > entity blocked for this player
     if not AmongUs.PlayersTasks[ply][self:GetTaskType()] then return end --  > don't have this task
     if AmongUs.PlayersTasks[ply][self:GetTaskType()].completed then return end --  > already done this task
     if not AmongUs.GetRoleOf( ply ).can_do_task then return end
 
-    if current_tasks[ply] then
+    if current_tasks[ply] and not current_tasks[ply].task == self:GetTaskType() then
         ply:Kick( "Our anti-cheat system detected that you were already in a task." )
 
         return
@@ -85,8 +88,13 @@ net.Receive( "AmongUs:Task", function( _, ply )
         end
 
         --  > Task is valid, done !
-        if AmongUs.CompletePlayerTask( ply, current.task ) then
+        if AmongUs.CompletePlayerTask( ply, current.task, ent ) then
             current_tasks[ply] = nil
+        end
+
+        --  > Block player if 'disable_entity_task' is active
+        if AmongUs.Tasks[ent:GetTaskType()].disable_entity_task then
+            ent.PlayersBlocked[ply] = true
         end
     --  > Cancel Task
     elseif method == 2 then

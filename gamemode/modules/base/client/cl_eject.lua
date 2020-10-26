@@ -23,7 +23,7 @@ local scenes = {
             self.text_state = 0
             self.alpha = 0
 
-            self.impostors_left = #AmongUs.GetRolePlayers( AmongUs.Roles[IMPOSTOR] )
+            self.impostors_left = #AmongUs.GetRolePlayers( AmongUs.Roles[AU_IMPOSTOR] )
             self.impostors_scale = 0
             self.impostors_text = ""
             self.impostors_second = 1

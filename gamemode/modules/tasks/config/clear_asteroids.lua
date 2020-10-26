@@ -34,6 +34,7 @@ end
 
 return {
     name = "Clear Asteroids",
+    type = AU_TASK_LONG,
     w = AmongUs.SquareTaskSize,
     h = AmongUs.SquareTaskSize,
     max_stages = 20, --  > Stages: represent number of step before accomplishement

@@ -144,7 +144,7 @@ concommand.Add( "au_start_scene", function()
     AmongUs.OpenGameScreen( true )
 end )
 concommand.Add( "au_end_scene", function()
-    AmongUs.OpenGameScreen( false, IMPOSTOR )
+    AmongUs.OpenGameScreen( false, AU_IMPOSTOR )
 end )
 
 net.Receive( "AmongUs:GameState", function()

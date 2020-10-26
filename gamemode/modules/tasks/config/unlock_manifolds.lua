@@ -7,6 +7,7 @@ end
 local green, red = Color( 0, 191, 91 ), Color( 200, 18, 66 )
 return {
     name = "Unlock Manifolds",
+    type = AU_TASK_SHORT,
     w = AmongUs.SquareTaskSize,
     h = CLIENT and AmongUs.SquareTaskSize / 2,
     no_clipping = true, --  > Make drawing possible outside panel

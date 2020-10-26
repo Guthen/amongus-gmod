@@ -10,6 +10,8 @@ ENT.Spawnable = false
 function ENT:Initialize()
     self:SetModel( "models/dav0r/buttons/button.mdl" )
     self:SetModelScale( 2, 0 )
+
+    self.Cooldown = CurTime() + 10
 end
 
 function ENT:Draw() --  > yea, it's needed to show the entity
@@ -17,11 +19,14 @@ function ENT:Draw() --  > yea, it's needed to show the entity
 end
 
 function ENT:PlayerPressed( ply ) --  > custom hook (cuz ENT:Use doesn't work here and isn't suit for custom Use press)
+    if CurTime() < self.Cooldown then return end
     if AmongUs.GameOver or AmongUs.Votes then return end
 
     AmongUs.OpenSplashScreen( "emergency", { color = ply:GetPlayerColor():ToColor() } )
     AmongUs.LaunchVoting( ply )
 end
+
+
 
 --[[ if SERVER then
     local function create_emergency_button( ply )

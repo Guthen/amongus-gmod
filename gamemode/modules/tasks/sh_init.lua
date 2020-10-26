@@ -1,5 +1,11 @@
 AmongUs.Tasks = {}
 
+--  > Enums
+AU_TASK_COMMON = 0
+AU_TASK_SHORT = 1
+AU_TASK_LONG = 2
+
+--  > Loader
 local path = ( "%s/gamemode/modules/tasks/config" ):format( GM.FolderName )
 AmongUs.Print( "Searching tasks..." )
 

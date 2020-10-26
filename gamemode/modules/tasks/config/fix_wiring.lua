@@ -11,6 +11,8 @@ local materials = {
 
 return {
     name = "Fix Wiring",
+    type = AU_TASK_COMMON,
+    max_stages = 3,
     w = AmongUs.SquareTaskSize,
     h = AmongUs.SquareTaskSize,
     wire_h = CLIENT and math.floor( AmongUs.SquareTaskSize / materials.base:Height() * 17 ),

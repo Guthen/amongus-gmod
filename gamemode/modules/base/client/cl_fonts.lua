@@ -41,6 +41,12 @@ surface.CreateFont( "AmongUs:Asteroids", {
 	weight = 250,
 } )
 
+surface.CreateFont( "AmongUs:SwipeCard", {
+	font = "DS-Digital",
+	size = ScreenScale( 17 ),
+	weight = 250,
+} )
+
 surface.CreateFont( "AmongUs:RoleLittle", {
 	font = "VCR OSD Mono",
 	size = ScreenScale( 15 ),

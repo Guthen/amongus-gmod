@@ -15,6 +15,7 @@ local function create_model( ply, parent, x, y, size )
     model:SetSize( size, size )
     model:SetFOV( 40 )
     model:SetModel( AmongUs.BasePlayerClass.Model )
+    model:SetCursor( "none" )
     function model:LayoutEntity( ent )
         local eyepos = ent:GetBonePosition( 6 )
     
