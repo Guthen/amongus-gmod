@@ -105,6 +105,7 @@ function AmongUs.OpenTaskPanel( type, on_submit )
         main:Close()
     end
     function close:Think()
+        if not IsValid( main ) then return self:Remove() end
         self.x = main.x - size * 1.01
         self.y = main.y
     end
