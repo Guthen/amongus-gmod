@@ -36,7 +36,7 @@ function AmongUs.OpenTaskPanel( type, on_submit )
             task:custom_close( time, self, close ) 
         else
             self:MoveTo( self.x, ScrH(), time, 0, 1, function()
-                screen:Remove()
+                self:Remove()
             end )
         end
 
@@ -45,6 +45,9 @@ function AmongUs.OpenTaskPanel( type, on_submit )
                 net.WriteUInt( 2, 3 )
             net.SendToServer()
         end
+    end
+    function main:OnRemove()
+        screen:Remove()
     end
 
     --  > task:update

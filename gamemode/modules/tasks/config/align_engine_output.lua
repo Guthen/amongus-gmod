@@ -23,6 +23,7 @@ return {
     h = AmongUs.SquareTaskSize,
     disable_entity_task = true, --  > Disable Task Entity to be redone on the same player
     max_stages = 2,
+    min_time = .2, --  > Minimal time toke to do this task (used by anti-cheat system)
     --no_clipping = true,
     init = function( self )
         surface.PlaySound( "amongus/generic_appear.wav" )
