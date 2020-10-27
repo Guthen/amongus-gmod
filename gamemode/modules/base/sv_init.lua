@@ -99,15 +99,14 @@ function GM:KeyPress( ply, key )
 
         for k, v in ipairs( ents.FindByClass( "au_vent" ) ) do
             if v:GetVentGroup() ~= current_vent:GetVentGroup() then continue end
+            if current_vent == v then continue end
             
             local ang = ( v:GetPos() - ply:EyePos() - AmongUs.ViewOffset ):Angle() - ply:GetAngles()
             ang:Normalize()
 
             local dist = 3
-            if math.abs( ang.x ) < dist and math.abs( ang.y ) < dist then
-                v:PlayerPressed( ply )
-
-                return
+            if math.abs( ang.y ) < dist then
+                return v:PlayerPressed( ply )
             end
         end
     end 

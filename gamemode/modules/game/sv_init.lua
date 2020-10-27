@@ -34,7 +34,7 @@ end
 function AmongUs.RespawnAlivePlayers()
     local players = AmongUs.GetAlivePlayers()
     local ang = 0
-    local radius = math.max( 200, #players * 16 )
+    local radius = math.max( 50, #players * 16 )
     local origin = Vector( 0, 0, 0 )
 
     for i, v in ipairs( players ) do
@@ -51,7 +51,7 @@ function AmongUs.RespawnAlivePlayers()
     end
 end
 
-AmongUs.GameOver = AmongUs.GameOver or true
+AmongUs.GameOver = AmongUs.GameOver == nil and true or AmongUs.GameOver
 function AmongUs.LaunchGame( force_impostors )
     AmongUs.GameOver = false
     AmongUs.Votes = nil
