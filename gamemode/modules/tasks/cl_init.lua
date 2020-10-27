@@ -14,15 +14,20 @@ function AmongUs.OpenTaskPanel( type, on_submit )
     --  > Create Main
     local time = .25
     local w, h = task.w or ScrW() * .75, task.h or ScrH() * .75
-    local main, close = vgui.Create( "DFrame" )
+    local screen, close = vgui.Create( "DFrame" )
+    screen:SetSize( ScrW(), ScrH() )
+    screen:SetDraggable( false )
+    screen:SetSizable( false )
+    screen:ShowCloseButton( false )
+    screen:SetTitle( "" )
+    screen:MakePopup()
+    function screen:Paint()
+    end
+
+    local main = screen:Add( "DPanel" )
     main:SetSize( w, h )
     main:SetPos( ScrW() / 2 - w / 2, ScrH() )
     main:MoveTo( main.x, ScrH() / 2 - h / 2, time, 0, 1 )
-    main:SetDraggable( false )
-    main:SetSizable( false )
-    main:ShowCloseButton( false )
-    main:SetTitle( "" )
-    --main:MakePopup()
     if task.no_clipping then main:NoClipping( true ) end
     function main:Close()
         task:close()
@@ -31,7 +36,7 @@ function AmongUs.OpenTaskPanel( type, on_submit )
             task:custom_close( time, self, close ) 
         else
             self:MoveTo( self.x, ScrH(), time, 0, 1, function()
-                self:Remove()
+                screen:Remove()
             end )
         end
 
@@ -41,15 +46,19 @@ function AmongUs.OpenTaskPanel( type, on_submit )
             net.SendToServer()
         end
     end
-    function main:OnRemove()
-        gui.EnableScreenClicker( false )
-        close:Remove()
-    end
 
     --  > task:update
+    local last_mouse_x, last_mouse_y = 0, 0
     function main:Think()
-        --if self.mouse_capture then self:MouseCapture( true ) end
         task:update( FrameTime() )
+        
+        --  > Moved
+        if not task.mouse_outside_canvas then return end
+        local mouse_x, mouse_y = self:ScreenToLocal( input.GetCursorPos() )
+        if not ( mouse_x == last_mouse_x ) or not ( mouse_y == last_mouse_y ) then
+            task:cursor_moved( mouse_x, mouse_y )
+            last_mouse_x, last_mouse_y = mouse_x, mouse_y
+        end
     end
 
     --  > task:paint
@@ -63,23 +72,33 @@ function AmongUs.OpenTaskPanel( type, on_submit )
     
     --  > task:click
     function main:OnMousePressed( button )
-        local x, y = self:ScreenToLocal( input.GetCursorPos() )
-        --if x < 0 or x > self:GetWide() or y < 0 or y > self:GetTall() then self.mouse_capture = false end
+        local x, y = main:ScreenToLocal( input.GetCursorPos() )
         task:click( x, y, button, true )
     end
     function main:OnMouseReleased( button )
-        local x, y = self:ScreenToLocal( input.GetCursorPos() )
+        local x, y = main:ScreenToLocal( input.GetCursorPos() )
         task:click( x, y, button, false )
     end
-    
+
+    if task.mouse_outside_canvas then
+        screen.OnMousePressed = main.OnMousePressed
+        screen.OnMouseReleased = main.OnMouseReleased
+    end
+
     --  > task:cursor_moved
-    function main:OnCursorMoved( x, y )
-        task:cursor_moved( x, y )
+    if task.mouse_outside_canvas then 
+        function screen:OnCursorMoved( x, y )
+            task:cursor_moved( x, y )
+        end
+    else
+        function main:OnCursorMoved( x, y )
+            task:cursor_moved( x, y )
+        end
     end
 
     --  > Close Button
     local size = w * .098
-    close = vgui.Create( "DImageButton" )
+    close = screen:Add( "DImageButton" )
     close:SetSize( size, size )
     close:SetImage( "amongus/close.png" )
     function close:DoClick()
@@ -89,11 +108,11 @@ function AmongUs.OpenTaskPanel( type, on_submit )
         self.x = main.x - size * 1.01
         self.y = main.y
     end
-    gui.EnableScreenClicker( true )
     
     --  > Launch Task
     task.w, task.h = w, h
-    task:init()
+    local success, err = pcall( task.init, task )
+    if not success then error( err ) screen:Remove() end
 
     function task:submit( force )
         if isfunction( on_submit ) then
@@ -101,7 +120,7 @@ function AmongUs.OpenTaskPanel( type, on_submit )
         end
 
         --  > Close
-        if force or not AmongUs.PlayerTasks[type].max_stages or AmongUs.PlayerTasks[type].stages + 1 >= AmongUs.PlayerTasks[type].max_stages then
+        if not AmongUs.PlayerTasks or force or not AmongUs.PlayerTasks[type].max_stages or AmongUs.PlayerTasks[type].stages + 1 >= AmongUs.PlayerTasks[type].max_stages then
             timer.Simple( 1, function()
                 if not IsValid( main ) then return end
                 self.completed = true
@@ -110,6 +129,7 @@ function AmongUs.OpenTaskPanel( type, on_submit )
         end
     end
 end
+RunConsoleCommand( "gnlib_resetpanels" )
 concommand.Add( "au_task_panel", function( ply, cmd, args )
     AmongUs.OpenTaskPanel( args[1] or "default" )
 end, function( cmd, arg )
