@@ -120,8 +120,7 @@ local sounds = {
 function GM:PlayerFootstep( ply, pos, foot, path, volume, rf )
     local id = path:match( "player/footsteps/(%D+)" )
     local sound = sounds[id] or sounds["concrete"]
-    --print( path, id, sound )
-    
+
     ply:EmitSound( "amongus/footsteps/" .. sound.name .. math.random( 1, sound.max ) .. ".wav" )
     return true
 end

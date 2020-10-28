@@ -1289,3 +1289,2180 @@ Level flags = 0
 Total triangle count: 1863
 Writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
 0 seconds elapsed
+
+
+
+materialPath: K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.vmf
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 136 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.prt...Building visibility clusters...
+done (0)
+Creating default LDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Creating default HDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (0) (110068 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 501 texinfos to 401
+Reduced 17 texdatas to 17 (544 bytes to 544)
+Writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+12 threads
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.prt
+  52 portalclusters
+ 139 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 0 visible clusters (0.00%)
+Total clusters visible: 1958
+Average clusters visible: 37
+Building PAS...
+Average clusters audible: 52
+visdatasize:1162  compressed from 832
+writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+[Reading texlights from 'lights.rad']
+[45 texlights parsed from 'lights.rad']
+
+Loading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+PREP OK
+854 faces
+25505 square feet [3672798.25 square inches]
+0 Displacements
+0 Square Feet [0.00 Square Inches]
+854 patches before subdivision
+3580 patches after subdivision
+0 direct lights
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10transfers 437196, max 494
+transfer lists:   3.3 megs
+0...1...2...3...4...5...6...7...8...9...10	Bounce #1 added RGB(0, 0, 0)
+Build Patch/Sample Hash Table(s).....Done<0.0005 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0 of 0 (0% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                   1/4096           48/196608   ( 0.0%) 
+brushes                268/16384        3216/196608   ( 1.6%) 
+brushsides            2712/65536       21696/524288   ( 4.1%) 
+planes                2876/65536       57520/1310720  ( 4.4%) 
+vertexes              1471/65536       17652/786432   ( 2.2%) 
+nodes                  111/65536        3552/2097152  ( 0.2%) 
+texinfos               401/12288       28872/884736   ( 3.3%) 
+texdata                 17/2048          544/65536    ( 0.8%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                  854/65536       47824/3670016  ( 1.3%) 
+hdr faces                0/65536           0/3670016  ( 0.0%) 
+origfaces              784/65536       43904/3670016  ( 1.2%) 
+leaves                 113/65536        3616/2097152  ( 0.2%) 
+leaffaces              988/65536        1976/131072   ( 1.5%) 
+leafbrushes            406/65536         812/131072   ( 0.6%) 
+areas                    2/1024           16/8192     ( 0.2%) 
+surfedges             7096/512000      28384/2048000  ( 1.4%) 
+edges                 4368/256000      17472/1024000  ( 1.7%) 
+LDR worldlights          0/8192            0/720896   ( 0.0%) 
+HDR worldlights          0/8192            0/720896   ( 0.0%) 
+leafwaterdata            0/32768           0/393216   ( 0.0%) 
+waterstrips             67/32768         670/327680   ( 0.2%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices           969/65536        1938/131072   ( 1.5%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                 0/512             0/180224   ( 0.0%) 
+LDR lightdata         [variable]      100936/0        ( 0.0%) 
+HDR lightdata         [variable]           0/0        ( 0.0%) 
+visdata               [variable]        1162/16777216 ( 0.0%) 
+entdata               [variable]        1128/393216   ( 0.3%) 
+LDR ambient table      113/65536         452/262144   ( 0.2%) 
+HDR ambient table      113/65536         452/262144   ( 0.2%) 
+LDR leaf ambient        52/65536        1456/1835008  ( 0.1%) 
+HDR leaf ambient       113/65536        3164/1835008  ( 0.2%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+detail props          [variable]           1/12       ( 8.3%) 
+static props          [variable]           1/12       ( 8.3%) 
+pakfile               [variable]      105691/0        ( 0.0%) 
+physics               [variable]      110068/4194304  ( 2.6%) 
+physics terrain       [variable]           2/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 2138
+Writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+materialPath: K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.vmf
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...10**** leaked ****
+Entity au_vent (1528.00 -412.00 -63.00) leaked!
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (-512.0 -2048.0 -32.0)
+Leaf 0 contents: CONTENTS_SOLID 
+Leaf 1 contents: 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (0.0 -1536.0 -32.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (-768.0 -1024.0 64.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (-256.0 -1024.0 64.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (-32.0 -1024.0 -8.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (-768.0 -1024.0 -8.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (-288.0 -1024.0 -8.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (-768.0 -1024.0 -104.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+*** Suppressing further FindPortalSide errors.... ***
+Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 136 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+Creating default LDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Creating default HDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (1) (138072 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 623 texinfos to 457
+Reduced 17 texdatas to 17 (544 bytes to 544)
+Writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+1 second elapsed
+
+
+
+12 threads
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.prt
+LoadPortals: couldn't read k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.prt
+
+
+
+[Reading texlights from 'lights.rad']
+[45 texlights parsed from 'lights.rad']
+
+Loading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+PREP OK
+No vis information, direct lighting only.
+969 faces
+34768 square feet [5006662.00 square inches]
+0 Displacements
+0 Square Feet [0.00 Square Inches]
+0 direct lights
+0...1...2...3...4...5...6...7...8...9...10Build Patch/Sample Hash Table(s).....Done<0.0006 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0 of 0 (0% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                   1/4096           48/196608   ( 0.0%) 
+brushes                351/16384        4212/196608   ( 2.1%) 
+brushsides            3223/65536       25784/524288   ( 4.9%) 
+planes                2978/65536       59560/1310720  ( 4.5%) 
+vertexes              1994/65536       23928/786432   ( 3.0%) 
+nodes                  454/65536       14528/2097152  ( 0.7%) 
+texinfos               457/12288       32904/884736   ( 3.7%) 
+texdata                 17/2048          544/65536    ( 0.8%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                  969/65536       54264/3670016  ( 1.5%) 
+hdr faces                0/65536           0/3670016  ( 0.0%) 
+origfaces              877/65536       49112/3670016  ( 1.3%) 
+leaves                 456/65536       14592/2097152  ( 0.7%) 
+leaffaces             1132/65536        2264/131072   ( 1.7%) 
+leafbrushes            488/65536         976/131072   ( 0.7%) 
+areas                    2/1024           16/8192     ( 0.2%) 
+surfedges             8051/512000      32204/2048000  ( 1.6%) 
+edges                 4957/256000      19828/1024000  ( 1.9%) 
+LDR worldlights          0/8192            0/720896   ( 0.0%) 
+HDR worldlights          0/8192            0/720896   ( 0.0%) 
+leafwaterdata            0/32768           0/393216   ( 0.0%) 
+waterstrips            126/32768        1260/327680   ( 0.4%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices          1842/65536        3684/131072   ( 2.8%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                 0/512             0/180224   ( 0.0%) 
+LDR lightdata         [variable]      134452/0        ( 0.0%) 
+HDR lightdata         [variable]           0/0        ( 0.0%) 
+visdata               [variable]           0/16777216 ( 0.0%) 
+entdata               [variable]        1881/393216   ( 0.5%) 
+LDR ambient table      456/65536        1824/262144   ( 0.7%) 
+HDR ambient table      456/65536        1824/262144   ( 0.7%) 
+LDR leaf ambient       280/65536        7840/1835008  ( 0.4%) 
+HDR leaf ambient       456/65536       12768/1835008  ( 0.7%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+detail props          [variable]           1/12       ( 8.3%) 
+static props          [variable]           1/12       ( 8.3%) 
+pakfile               [variable]      105691/0        ( 0.0%) 
+physics               [variable]      138072/4194304  ( 3.3%) 
+physics terrain       [variable]           2/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 2491
+Writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+materialPath: K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.vmf
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.prt...Building visibility clusters...
+done (0)
+Creating default LDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Creating default HDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (0) (51260 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 186 texinfos to 101
+Reduced 14 texdatas to 14 (447 bytes to 447)
+Writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+12 threads
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.prt
+  84 portalclusters
+ 203 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 3 visible clusters (0.09%)
+Total clusters visible: 3499
+Average clusters visible: 41
+Building PAS...
+Average clusters audible: 77
+visdatasize:2530  compressed from 2688
+writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+[Reading texlights from 'lights.rad']
+[45 texlights parsed from 'lights.rad']
+
+Loading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+PREP OK
+299 faces
+28714 square feet [4134903.00 square inches]
+0 Displacements
+0 Square Feet [0.00 Square Inches]
+299 patches before subdivision
+3731 patches after subdivision
+0 direct lights
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10transfers 297283, max 270
+transfer lists:   2.3 megs
+0...1...2...3...4...5...6...7...8...9...10	Bounce #1 added RGB(0, 0, 0)
+Build Patch/Sample Hash Table(s).....Done<0.0007 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0 of 0 (0% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                   1/4096           48/196608   ( 0.0%) 
+brushes                147/16384        1764/196608   ( 0.9%) 
+brushsides             954/65536        7632/524288   ( 1.5%) 
+planes                 360/65536        7200/1310720  ( 0.5%) 
+vertexes               552/65536        6624/786432   ( 0.8%) 
+nodes                  187/65536        5984/2097152  ( 0.3%) 
+texinfos               101/12288        7272/884736   ( 0.8%) 
+texdata                 14/2048          448/65536    ( 0.7%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                  299/65536       16744/3670016  ( 0.5%) 
+hdr faces                0/65536           0/3670016  ( 0.0%) 
+origfaces              178/65536        9968/3670016  ( 0.3%) 
+leaves                 189/65536        6048/2097152  ( 0.3%) 
+leaffaces              359/65536         718/131072   ( 0.5%) 
+leafbrushes            255/65536         510/131072   ( 0.4%) 
+areas                    2/1024           16/8192     ( 0.2%) 
+surfedges             2167/512000       8668/2048000  ( 0.4%) 
+edges                 1353/256000       5412/1024000  ( 0.5%) 
+LDR worldlights          0/8192            0/720896   ( 0.0%) 
+HDR worldlights          0/8192            0/720896   ( 0.0%) 
+leafwaterdata            0/32768           0/393216   ( 0.0%) 
+waterstrips             42/32768         420/327680   ( 0.1%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices           633/65536        1266/131072   ( 1.0%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                 0/512             0/180224   ( 0.0%) 
+LDR lightdata         [variable]       91616/0        ( 0.0%) 
+HDR lightdata         [variable]           0/0        ( 0.0%) 
+visdata               [variable]        2530/16777216 ( 0.0%) 
+entdata               [variable]        1790/393216   ( 0.5%) 
+LDR ambient table      189/65536         756/262144   ( 0.3%) 
+HDR ambient table      189/65536         756/262144   ( 0.3%) 
+LDR leaf ambient        84/65536        2352/1835008  ( 0.1%) 
+HDR leaf ambient       189/65536        5292/1835008  ( 0.3%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+detail props          [variable]           1/12       ( 8.3%) 
+static props          [variable]           1/12       ( 8.3%) 
+pakfile               [variable]      105691/0        ( 0.0%) 
+physics               [variable]       51260/4194304  ( 1.2%) 
+physics terrain       [variable]           2/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 848
+Writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+materialPath: K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.vmf
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 136 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.prt...Building visibility clusters...
+done (0)
+Creating default LDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Creating default HDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (0) (141024 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 625 texinfos to 457
+Reduced 17 texdatas to 17 (544 bytes to 544)
+Writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+12 threads
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.prt
+  84 portalclusters
+ 203 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 3 visible clusters (0.09%)
+Total clusters visible: 3499
+Average clusters visible: 41
+Building PAS...
+Average clusters audible: 77
+visdatasize:2530  compressed from 2688
+writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+[Reading texlights from 'lights.rad']
+[45 texlights parsed from 'lights.rad']
+
+Loading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+PREP OK
+998 faces
+34768 square feet [5006663.00 square inches]
+0 Displacements
+0 Square Feet [0.00 Square Inches]
+998 patches before subdivision
+5140 patches after subdivision
+0 direct lights
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10transfers 552118, max 501
+transfer lists:   4.2 megs
+0...1...2...3...4...5...6...7...8...9...10	Bounce #1 added RGB(0, 0, 0)
+Build Patch/Sample Hash Table(s).....Done<0.0009 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0 of 0 (0% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                   1/4096           48/196608   ( 0.0%) 
+brushes                360/16384        4320/196608   ( 2.2%) 
+brushsides            3283/65536       26264/524288   ( 5.0%) 
+planes                2982/65536       59640/1310720  ( 4.6%) 
+vertexes              1716/65536       20592/786432   ( 2.6%) 
+nodes                  187/65536        5984/2097152  ( 0.3%) 
+texinfos               457/12288       32904/884736   ( 3.7%) 
+texdata                 17/2048          544/65536    ( 0.8%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                  998/65536       55888/3670016  ( 1.5%) 
+hdr faces                0/65536           0/3670016  ( 0.0%) 
+origfaces              877/65536       49112/3670016  ( 1.3%) 
+leaves                 189/65536        6048/2097152  ( 0.3%) 
+leaffaces             1195/65536        2390/131072   ( 1.8%) 
+leafbrushes            567/65536        1134/131072   ( 0.9%) 
+areas                    2/1024           16/8192     ( 0.2%) 
+surfedges             8181/512000      32724/2048000  ( 1.6%) 
+edges                 5049/256000      20196/1024000  ( 2.0%) 
+LDR worldlights          0/8192            0/720896   ( 0.0%) 
+HDR worldlights          0/8192            0/720896   ( 0.0%) 
+leafwaterdata            0/32768           0/393216   ( 0.0%) 
+waterstrips            101/32768        1010/327680   ( 0.3%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices          1467/65536        2934/131072   ( 2.2%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                 0/512             0/180224   ( 0.0%) 
+LDR lightdata         [variable]      135536/0        ( 0.0%) 
+HDR lightdata         [variable]           0/0        ( 0.0%) 
+visdata               [variable]        2530/16777216 ( 0.0%) 
+entdata               [variable]        1881/393216   ( 0.5%) 
+LDR ambient table      189/65536         756/262144   ( 0.3%) 
+HDR ambient table      189/65536         756/262144   ( 0.3%) 
+LDR leaf ambient        84/65536        2352/1835008  ( 0.1%) 
+HDR leaf ambient       189/65536        5292/1835008  ( 0.3%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+detail props          [variable]           1/12       ( 8.3%) 
+static props          [variable]           1/12       ( 8.3%) 
+pakfile               [variable]      105691/0        ( 0.0%) 
+physics               [variable]      141024/4194304  ( 3.4%) 
+physics terrain       [variable]           2/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 2563
+Writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+materialPath: K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.vmf
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...10**** leaked ****
+Entity au_task (1739.00 -458.00 -64.00) leaked!
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (-512.0 -2048.0 -32.0)
+Leaf 0 contents: CONTENTS_SOLID 
+Leaf 1 contents: 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (0.0 -1536.0 -32.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (-768.0 -1024.0 64.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (-256.0 -1024.0 64.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (-32.0 -1024.0 -8.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (-768.0 -1024.0 -8.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (-288.0 -1024.0 -8.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (-768.0 -1024.0 -104.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+*** Suppressing further FindPortalSide errors.... ***
+Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 136 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+Creating default LDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Creating default HDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (0) (148928 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 640 texinfos to 463
+Reduced 18 texdatas to 18 (575 bytes to 575)
+Writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+1 second elapsed
+
+
+
+12 threads
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.prt
+LoadPortals: couldn't read k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.prt
+
+
+
+[Reading texlights from 'lights.rad']
+[45 texlights parsed from 'lights.rad']
+
+Loading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+PREP OK
+No vis information, direct lighting only.
+1260 faces
+4 degenerate faces
+34457 square feet [4961947.00 square inches]
+0 Displacements
+0 Square Feet [0.00 Square Inches]
+0 direct lights
+0...1...2...3...4...5...6...7...8...9...10Build Patch/Sample Hash Table(s).....Done<0.0006 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0 of 0 (0% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                   1/4096           48/196608   ( 0.0%) 
+brushes                372/16384        4464/196608   ( 2.3%) 
+brushsides            3572/65536       28576/524288   ( 5.5%) 
+planes                3470/65536       69400/1310720  ( 5.3%) 
+vertexes              2518/65536       30216/786432   ( 3.8%) 
+nodes                  700/65536       22400/2097152  ( 1.1%) 
+texinfos               463/12288       33336/884736   ( 3.8%) 
+texdata                 18/2048          576/65536    ( 0.9%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                 1260/65536       70560/3670016  ( 1.9%) 
+hdr faces                0/65536           0/3670016  ( 0.0%) 
+origfaces              960/65536       53760/3670016  ( 1.5%) 
+leaves                 702/65536       22464/2097152  ( 1.1%) 
+leaffaces             1473/65536        2946/131072   ( 2.2%) 
+leafbrushes            602/65536        1204/131072   ( 0.9%) 
+areas                    2/1024           16/8192     ( 0.2%) 
+surfedges             9907/512000      39628/2048000  ( 1.9%) 
+edges                 6039/256000      24156/1024000  ( 2.4%) 
+LDR worldlights          0/8192            0/720896   ( 0.0%) 
+HDR worldlights          0/8192            0/720896   ( 0.0%) 
+leafwaterdata            0/32768           0/393216   ( 0.0%) 
+waterstrips            193/32768        1930/327680   ( 0.6%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices          2913/65536        5826/131072   ( 4.4%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                 0/512             0/180224   ( 0.0%) 
+LDR lightdata         [variable]      142840/0        ( 0.0%) 
+HDR lightdata         [variable]           0/0        ( 0.0%) 
+visdata               [variable]           0/16777216 ( 0.0%) 
+entdata               [variable]        1874/393216   ( 0.5%) 
+LDR ambient table      702/65536        2808/262144   ( 1.1%) 
+HDR ambient table      702/65536        2808/262144   ( 1.1%) 
+LDR leaf ambient       429/65536       12012/1835008  ( 0.7%) 
+HDR leaf ambient       702/65536       19656/1835008  ( 1.1%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+detail props          [variable]           1/12       ( 8.3%) 
+static props          [variable]           1/12       ( 8.3%) 
+pakfile               [variable]      105691/0        ( 0.0%) 
+physics               [variable]      148928/4194304  ( 3.6%) 
+physics terrain       [variable]           2/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 3430
+Writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+materialPath: K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.vmf
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 136 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.prt...Building visibility clusters...
+done (0)
+Creating default LDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Creating default HDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (0) (148800 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 640 texinfos to 463
+Reduced 18 texdatas to 18 (575 bytes to 575)
+Writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+12 threads
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.prt
+ 217 portalclusters
+ 748 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 77 visible clusters (0.24%)
+Total clusters visible: 32355
+Average clusters visible: 149
+Building PAS...
+Average clusters audible: 209
+visdatasize:14040  compressed from 13888
+writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+2 seconds elapsed
+
+
+
+[Reading texlights from 'lights.rad']
+[45 texlights parsed from 'lights.rad']
+
+Loading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+PREP OK
+1281 faces
+4 degenerate faces
+34457 square feet [4961911.50 square inches]
+0 Displacements
+0 Square Feet [0.00 Square Inches]
+1277 patches before subdivision
+5351 patches after subdivision
+0 direct lights
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10transfers 648168, max 532
+transfer lists:   4.9 megs
+0...1...2...3...4...5...6...7...8...9...10	Bounce #1 added RGB(0, 0, 0)
+Build Patch/Sample Hash Table(s).....Done<0.0008 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0 of 0 (0% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                   1/4096           48/196608   ( 0.0%) 
+brushes                372/16384        4464/196608   ( 2.3%) 
+brushsides            3568/65536       28544/524288   ( 5.4%) 
+planes                3466/65536       69320/1310720  ( 5.3%) 
+vertexes              2181/65536       26172/786432   ( 3.3%) 
+nodes                  398/65536       12736/2097152  ( 0.6%) 
+texinfos               463/12288       33336/884736   ( 3.8%) 
+texdata                 18/2048          576/65536    ( 0.9%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                 1281/65536       71736/3670016  ( 2.0%) 
+hdr faces                0/65536           0/3670016  ( 0.0%) 
+origfaces              961/65536       53816/3670016  ( 1.5%) 
+leaves                 400/65536       12800/2097152  ( 0.6%) 
+leaffaces             1531/65536        3062/131072   ( 2.3%) 
+leafbrushes            669/65536        1338/131072   ( 1.0%) 
+areas                    2/1024           16/8192     ( 0.2%) 
+surfedges             9987/512000      39948/2048000  ( 2.0%) 
+edges                 6084/256000      24336/1024000  ( 2.4%) 
+LDR worldlights          0/8192            0/720896   ( 0.0%) 
+HDR worldlights          0/8192            0/720896   ( 0.0%) 
+leafwaterdata            0/32768           0/393216   ( 0.0%) 
+waterstrips            152/32768        1520/327680   ( 0.5%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices          2238/65536        4476/131072   ( 3.4%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                 0/512             0/180224   ( 0.0%) 
+LDR lightdata         [variable]      143052/0        ( 0.0%) 
+HDR lightdata         [variable]           0/0        ( 0.0%) 
+visdata               [variable]       14040/16777216 ( 0.1%) 
+entdata               [variable]        1874/393216   ( 0.5%) 
+LDR ambient table      400/65536        1600/262144   ( 0.6%) 
+HDR ambient table      400/65536        1600/262144   ( 0.6%) 
+LDR leaf ambient       217/65536        6076/1835008  ( 0.3%) 
+HDR leaf ambient       400/65536       11200/1835008  ( 0.6%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+detail props          [variable]           1/12       ( 8.3%) 
+static props          [variable]           1/12       ( 8.3%) 
+pakfile               [variable]      105691/0        ( 0.0%) 
+physics               [variable]      148800/4194304  ( 3.5%) 
+physics terrain       [variable]           2/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 3464
+Writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+materialPath: K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.vmf
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 136 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.prt...Building visibility clusters...
+done (0)
+Creating default LDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Creating default HDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (0) (152544 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 641 texinfos to 463
+Reduced 20 texdatas to 20 (647 bytes to 647)
+Writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+12 threads
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.prt
+ 129 portalclusters
+ 388 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 25 visible clusters (0.25%)
+Total clusters visible: 10020
+Average clusters visible: 77
+Building PAS...
+Average clusters audible: 121
+visdatasize:5555  compressed from 6192
+writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+[Reading texlights from 'lights.rad']
+[45 texlights parsed from 'lights.rad']
+
+Loading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+PREP OK
+1112 faces
+34420 square feet [4956570.50 square inches]
+0 Displacements
+0 Square Feet [0.00 Square Inches]
+1112 patches before subdivision
+5152 patches after subdivision
+0 direct lights
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10transfers 582775, max 511
+transfer lists:   4.4 megs
+0...1...2...3...4...5...6...7...8...9...10	Bounce #1 added RGB(0, 0, 0)
+Build Patch/Sample Hash Table(s).....Done<0.0008 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0 of 0 (0% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                   1/4096           48/196608   ( 0.0%) 
+brushes                388/16384        4656/196608   ( 2.4%) 
+brushsides            3571/65536       28568/524288   ( 5.4%) 
+planes                3284/65536       65680/1310720  ( 5.0%) 
+vertexes              1907/65536       22884/786432   ( 2.9%) 
+nodes                  243/65536        7776/2097152  ( 0.4%) 
+texinfos               463/12288       33336/884736   ( 3.8%) 
+texdata                 20/2048          640/65536    ( 1.0%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                 1112/65536       62272/3670016  ( 1.7%) 
+hdr faces                0/65536           0/3670016  ( 0.0%) 
+origfaces              939/65536       52584/3670016  ( 1.4%) 
+leaves                 245/65536        7840/2097152  ( 0.4%) 
+leaffaces             1330/65536        2660/131072   ( 2.0%) 
+leafbrushes            611/65536        1222/131072   ( 0.9%) 
+areas                    2/1024           16/8192     ( 0.2%) 
+surfedges             8984/512000      35936/2048000  ( 1.8%) 
+edges                 5545/256000      22180/1024000  ( 2.2%) 
+LDR worldlights          0/8192            0/720896   ( 0.0%) 
+HDR worldlights          0/8192            0/720896   ( 0.0%) 
+leafwaterdata            0/32768           0/393216   ( 0.0%) 
+waterstrips            112/32768        1120/327680   ( 0.3%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices          1716/65536        3432/131072   ( 2.6%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                 0/512             0/180224   ( 0.0%) 
+LDR lightdata         [variable]      138424/0        ( 0.0%) 
+HDR lightdata         [variable]           0/0        ( 0.0%) 
+visdata               [variable]        5555/16777216 ( 0.0%) 
+entdata               [variable]        1876/393216   ( 0.5%) 
+LDR ambient table      245/65536         980/262144   ( 0.4%) 
+HDR ambient table      245/65536         980/262144   ( 0.4%) 
+LDR leaf ambient       129/65536        3612/1835008  ( 0.2%) 
+HDR leaf ambient       245/65536        6860/1835008  ( 0.4%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+detail props          [variable]           1/12       ( 8.3%) 
+static props          [variable]           1/12       ( 8.3%) 
+pakfile               [variable]      105691/0        ( 0.0%) 
+physics               [variable]      152544/4194304  ( 3.6%) 
+physics terrain       [variable]           2/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 2893
+Writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+materialPath: K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.vmf
+material "amongus/textures/navigation/floor03" not found.
+Material not found!: AMONGUS/TEXTURES/NAVIGATION/FLOOR03
+ConVarRef mat_reduceparticles doesn't point to an existing ConVar
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 136 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.prt...Building visibility clusters...
+done (0)
+Creating default LDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Creating default HDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (0) (157262 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 672 texinfos to 488
+Reduced 25 texdatas to 24 (842 bytes to 792)
+Writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+12 threads
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.prt
+ 154 portalclusters
+ 465 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 29 visible clusters (0.26%)
+Total clusters visible: 11019
+Average clusters visible: 71
+Building PAS...
+Average clusters audible: 140
+visdatasize:7153  compressed from 7392
+writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+[Reading texlights from 'lights.rad']
+[45 texlights parsed from 'lights.rad']
+
+Loading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+PREP OK
+1130 faces
+34420 square feet [4956570.50 square inches]
+0 Displacements
+0 Square Feet [0.00 Square Inches]
+1130 patches before subdivision
+5110 patches after subdivision
+0 direct lights
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10transfers 581390, max 511
+transfer lists:   4.4 megs
+0...1...2...3...4...5...6...7...8...9...10	Bounce #1 added RGB(0, 0, 0)
+Build Patch/Sample Hash Table(s).....Done<0.0008 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0 of 0 (0% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                   1/4096           48/196608   ( 0.0%) 
+brushes                402/16384        4824/196608   ( 2.5%) 
+brushsides            3653/65536       29224/524288   ( 5.6%) 
+planes                3308/65536       66160/1310720  ( 5.0%) 
+vertexes              1979/65536       23748/786432   ( 3.0%) 
+nodes                  275/65536        8800/2097152  ( 0.4%) 
+texinfos               488/12288       35136/884736   ( 4.0%) 
+texdata                 24/2048          768/65536    ( 1.2%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                 1130/65536       63280/3670016  ( 1.7%) 
+hdr faces                0/65536           0/3670016  ( 0.0%) 
+origfaces              958/65536       53648/3670016  ( 1.5%) 
+leaves                 277/65536        8864/2097152  ( 0.4%) 
+leaffaces             1358/65536        2716/131072   ( 2.1%) 
+leafbrushes            646/65536        1292/131072   ( 1.0%) 
+areas                    2/1024           16/8192     ( 0.2%) 
+surfedges             9167/512000      36668/2048000  ( 1.8%) 
+edges                 5668/256000      22672/1024000  ( 2.2%) 
+LDR worldlights          0/8192            0/720896   ( 0.0%) 
+HDR worldlights          0/8192            0/720896   ( 0.0%) 
+leafwaterdata            0/32768           0/393216   ( 0.0%) 
+waterstrips            115/32768        1150/327680   ( 0.4%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices          1770/65536        3540/131072   ( 2.7%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                 0/512             0/180224   ( 0.0%) 
+LDR lightdata         [variable]      139628/0        ( 0.0%) 
+HDR lightdata         [variable]           0/0        ( 0.0%) 
+visdata               [variable]        7153/16777216 ( 0.0%) 
+entdata               [variable]        1876/393216   ( 0.5%) 
+LDR ambient table      277/65536        1108/262144   ( 0.4%) 
+HDR ambient table      277/65536        1108/262144   ( 0.4%) 
+LDR leaf ambient       154/65536        4312/1835008  ( 0.2%) 
+HDR leaf ambient       277/65536        7756/1835008  ( 0.4%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+detail props          [variable]           1/12       ( 8.3%) 
+static props          [variable]           1/12       ( 8.3%) 
+pakfile               [variable]      211629/0        ( 0.0%) 
+physics               [variable]      157262/4194304  ( 3.7%) 
+physics terrain       [variable]           2/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 2961
+Writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+materialPath: K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.vmf
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 190 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.prt...Building visibility clusters...
+done (0)
+Creating default LDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Creating default HDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (0) (156160 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 689 texinfos to 461
+Reduced 25 texdatas to 22 (843 bytes to 722)
+Writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+12 threads
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.prt
+  87 portalclusters
+ 270 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 21 visible clusters (0.49%)
+Total clusters visible: 4268
+Average clusters visible: 49
+Building PAS...
+Average clusters audible: 81
+visdatasize:2528  compressed from 2784
+writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+[Reading texlights from 'lights.rad']
+[45 texlights parsed from 'lights.rad']
+
+Loading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+PREP OK
+989 faces
+1 degenerate faces
+31613 square feet [4552314.00 square inches]
+0 Displacements
+0 Square Feet [0.00 Square Inches]
+988 patches before subdivision
+4606 patches after subdivision
+0 direct lights
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10transfers 521161, max 501
+transfer lists:   4.0 megs
+0...1...2...3...4...5...6...7...8...9...10	Bounce #1 added RGB(0, 0, 0)
+Build Patch/Sample Hash Table(s).....Done<0.0008 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0 of 0 (0% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                   1/4096           48/196608   ( 0.0%) 
+brushes                417/16384        5004/196608   ( 2.5%) 
+brushsides            3939/65536       31512/524288   ( 6.0%) 
+planes                3730/65536       74600/1310720  ( 5.7%) 
+vertexes              1752/65536       21024/786432   ( 2.7%) 
+nodes                  172/65536        5504/2097152  ( 0.3%) 
+texinfos               461/12288       33192/884736   ( 3.8%) 
+texdata                 22/2048          704/65536    ( 1.1%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                  989/65536       55384/3670016  ( 1.5%) 
+hdr faces                0/65536           0/3670016  ( 0.0%) 
+origfaces              915/65536       51240/3670016  ( 1.4%) 
+leaves                 174/65536        5568/2097152  ( 0.3%) 
+leaffaces             1219/65536        2438/131072   ( 1.9%) 
+leafbrushes            576/65536        1152/131072   ( 0.9%) 
+areas                    2/1024           16/8192     ( 0.2%) 
+surfedges             8282/512000      33128/2048000  ( 1.6%) 
+edges                 5181/256000      20724/1024000  ( 2.0%) 
+LDR worldlights          0/8192            0/720896   ( 0.0%) 
+HDR worldlights          0/8192            0/720896   ( 0.0%) 
+leafwaterdata            0/32768           0/393216   ( 0.0%) 
+waterstrips            105/32768        1050/327680   ( 0.3%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices          1560/65536        3120/131072   ( 2.4%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                 0/512             0/180224   ( 0.0%) 
+LDR lightdata         [variable]      125724/0        ( 0.0%) 
+HDR lightdata         [variable]           0/0        ( 0.0%) 
+visdata               [variable]        2528/16777216 ( 0.0%) 
+entdata               [variable]        1876/393216   ( 0.5%) 
+LDR ambient table      174/65536         696/262144   ( 0.3%) 
+HDR ambient table      174/65536         696/262144   ( 0.3%) 
+LDR leaf ambient        87/65536        2436/1835008  ( 0.1%) 
+HDR leaf ambient       174/65536        4872/1835008  ( 0.3%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+detail props          [variable]           1/12       ( 8.3%) 
+static props          [variable]           1/12       ( 8.3%) 
+pakfile               [variable]      211629/0        ( 0.0%) 
+physics               [variable]      156160/4194304  ( 3.7%) 
+physics terrain       [variable]           2/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 2530
+Writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+materialPath: K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.vmf
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 190 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.prt...Building visibility clusters...
+done (0)
+Creating default LDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Creating default HDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (0) (162656 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 686 texinfos to 496
+Reduced 25 texdatas to 24 (843 bytes to 793)
+Writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+12 threads
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.prt
+ 119 portalclusters
+ 369 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 25 visible clusters (0.44%)
+Total clusters visible: 5647
+Average clusters visible: 47
+Building PAS...
+Average clusters audible: 102
+visdatasize:4240  compressed from 3808
+writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+[Reading texlights from 'lights.rad']
+[45 texlights parsed from 'lights.rad']
+
+Loading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+PREP OK
+1064 faces
+1 degenerate faces
+34517 square feet [4970587.50 square inches]
+0 Displacements
+0 Square Feet [0.00 Square Inches]
+1063 patches before subdivision
+5129 patches after subdivision
+0 direct lights
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10transfers 572320, max 501
+transfer lists:   4.4 megs
+0...1...2...3...4...5...6...7...8...9...10	Bounce #1 added RGB(0, 0, 0)
+Build Patch/Sample Hash Table(s).....Done<0.0008 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0 of 0 (0% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                   1/4096           48/196608   ( 0.0%) 
+brushes                416/16384        4992/196608   ( 2.5%) 
+brushsides            3929/65536       31432/524288   ( 6.0%) 
+planes                3712/65536       74240/1310720  ( 5.7%) 
+vertexes              1971/65536       23652/786432   ( 3.0%) 
+nodes                  213/65536        6816/2097152  ( 0.3%) 
+texinfos               496/12288       35712/884736   ( 4.0%) 
+texdata                 24/2048          768/65536    ( 1.2%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                 1064/65536       59584/3670016  ( 1.6%) 
+hdr faces                0/65536           0/3670016  ( 0.0%) 
+origfaces              983/65536       55048/3670016  ( 1.5%) 
+leaves                 215/65536        6880/2097152  ( 0.3%) 
+leaffaces             1335/65536        2670/131072   ( 2.0%) 
+leafbrushes            623/65536        1246/131072   ( 1.0%) 
+areas                    2/1024           16/8192     ( 0.2%) 
+surfedges             8988/512000      35952/2048000  ( 1.8%) 
+edges                 5651/256000      22604/1024000  ( 2.2%) 
+LDR worldlights          0/8192            0/720896   ( 0.0%) 
+HDR worldlights          0/8192            0/720896   ( 0.0%) 
+leafwaterdata            0/32768           0/393216   ( 0.0%) 
+waterstrips            129/32768        1290/327680   ( 0.4%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices          1947/65536        3894/131072   ( 3.0%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                 0/512             0/180224   ( 0.0%) 
+LDR lightdata         [variable]      139032/0        ( 0.0%) 
+HDR lightdata         [variable]           0/0        ( 0.0%) 
+visdata               [variable]        4240/16777216 ( 0.0%) 
+entdata               [variable]        1876/393216   ( 0.5%) 
+LDR ambient table      215/65536         860/262144   ( 0.3%) 
+HDR ambient table      215/65536         860/262144   ( 0.3%) 
+LDR leaf ambient       119/65536        3332/1835008  ( 0.2%) 
+HDR leaf ambient       215/65536        6020/1835008  ( 0.3%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+detail props          [variable]           1/12       ( 8.3%) 
+static props          [variable]           1/12       ( 8.3%) 
+pakfile               [variable]      211629/0        ( 0.0%) 
+physics               [variable]      162656/4194304  ( 3.9%) 
+physics terrain       [variable]           2/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 2813
+Writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+materialPath: K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.vmf
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 190 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.prt...Building visibility clusters...
+done (0)
+Creating default LDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Creating default HDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (0) (162656 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 686 texinfos to 496
+Reduced 25 texdatas to 24 (843 bytes to 793)
+Writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+12 threads
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.prt
+ 119 portalclusters
+ 369 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 25 visible clusters (0.44%)
+Total clusters visible: 5647
+Average clusters visible: 47
+Building PAS...
+Average clusters audible: 102
+visdatasize:4240  compressed from 3808
+writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+[Reading texlights from 'lights.rad']
+[45 texlights parsed from 'lights.rad']
+
+Loading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+PREP OK
+1064 faces
+1 degenerate faces
+34517 square feet [4970587.50 square inches]
+0 Displacements
+0 Square Feet [0.00 Square Inches]
+1063 patches before subdivision
+5129 patches after subdivision
+0 direct lights
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10transfers 569550, max 501
+transfer lists:   4.3 megs
+0...1...2...3...4...5...6...7...8...9...10	Bounce #1 added RGB(0, 0, 0)
+Build Patch/Sample Hash Table(s).....Done<0.0008 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0 of 0 (0% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                   1/4096           48/196608   ( 0.0%) 
+brushes                416/16384        4992/196608   ( 2.5%) 
+brushsides            3929/65536       31432/524288   ( 6.0%) 
+planes                3712/65536       74240/1310720  ( 5.7%) 
+vertexes              1971/65536       23652/786432   ( 3.0%) 
+nodes                  213/65536        6816/2097152  ( 0.3%) 
+texinfos               496/12288       35712/884736   ( 4.0%) 
+texdata                 24/2048          768/65536    ( 1.2%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                 1064/65536       59584/3670016  ( 1.6%) 
+hdr faces                0/65536           0/3670016  ( 0.0%) 
+origfaces              983/65536       55048/3670016  ( 1.5%) 
+leaves                 215/65536        6880/2097152  ( 0.3%) 
+leaffaces             1335/65536        2670/131072   ( 2.0%) 
+leafbrushes            623/65536        1246/131072   ( 1.0%) 
+areas                    2/1024           16/8192     ( 0.2%) 
+surfedges             8988/512000      35952/2048000  ( 1.8%) 
+edges                 5651/256000      22604/1024000  ( 2.2%) 
+LDR worldlights          0/8192            0/720896   ( 0.0%) 
+HDR worldlights          0/8192            0/720896   ( 0.0%) 
+leafwaterdata            0/32768           0/393216   ( 0.0%) 
+waterstrips            129/32768        1290/327680   ( 0.4%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices          1947/65536        3894/131072   ( 3.0%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                 0/512             0/180224   ( 0.0%) 
+LDR lightdata         [variable]      138960/0        ( 0.0%) 
+HDR lightdata         [variable]           0/0        ( 0.0%) 
+visdata               [variable]        4240/16777216 ( 0.0%) 
+entdata               [variable]        1876/393216   ( 0.5%) 
+LDR ambient table      215/65536         860/262144   ( 0.3%) 
+HDR ambient table      215/65536         860/262144   ( 0.3%) 
+LDR leaf ambient       119/65536        3332/1835008  ( 0.2%) 
+HDR leaf ambient       215/65536        6020/1835008  ( 0.3%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+detail props          [variable]           1/12       ( 8.3%) 
+static props          [variable]           1/206      ( 0.5%) 
+pakfile               [variable]      211629/0        ( 0.0%) 
+physics               [variable]      162656/4194304  ( 3.9%) 
+physics terrain       [variable]           2/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 2813
+Writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+materialPath: K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.vmf
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 190 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.prt...Building visibility clusters...
+done (0)
+Creating default LDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Creating default HDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (0) (162656 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 686 texinfos to 496
+Reduced 25 texdatas to 24 (843 bytes to 793)
+Writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+12 threads
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.prt
+ 119 portalclusters
+ 369 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 25 visible clusters (0.44%)
+Total clusters visible: 5647
+Average clusters visible: 47
+Building PAS...
+Average clusters audible: 102
+visdatasize:4240  compressed from 3808
+writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+[Reading texlights from 'lights.rad']
+[45 texlights parsed from 'lights.rad']
+
+Loading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+PREP OK
+1064 faces
+1 degenerate faces
+34517 square feet [4970587.50 square inches]
+0 Displacements
+0 Square Feet [0.00 Square Inches]
+1063 patches before subdivision
+5129 patches after subdivision
+0 direct lights
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10transfers 569550, max 501
+transfer lists:   4.3 megs
+0...1...2...3...4...5...6...7...8...9...10	Bounce #1 added RGB(0, 0, 0)
+Build Patch/Sample Hash Table(s).....Done<0.0008 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0 of 0 (0% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                   1/4096           48/196608   ( 0.0%) 
+brushes                416/16384        4992/196608   ( 2.5%) 
+brushsides            3929/65536       31432/524288   ( 6.0%) 
+planes                3712/65536       74240/1310720  ( 5.7%) 
+vertexes              1971/65536       23652/786432   ( 3.0%) 
+nodes                  213/65536        6816/2097152  ( 0.3%) 
+texinfos               496/12288       35712/884736   ( 4.0%) 
+texdata                 24/2048          768/65536    ( 1.2%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                 1064/65536       59584/3670016  ( 1.6%) 
+hdr faces                0/65536           0/3670016  ( 0.0%) 
+origfaces              983/65536       55048/3670016  ( 1.5%) 
+leaves                 215/65536        6880/2097152  ( 0.3%) 
+leaffaces             1335/65536        2670/131072   ( 2.0%) 
+leafbrushes            623/65536        1246/131072   ( 1.0%) 
+areas                    2/1024           16/8192     ( 0.2%) 
+surfedges             8988/512000      35952/2048000  ( 1.8%) 
+edges                 5651/256000      22604/1024000  ( 2.2%) 
+LDR worldlights          0/8192            0/720896   ( 0.0%) 
+HDR worldlights          0/8192            0/720896   ( 0.0%) 
+leafwaterdata            0/32768           0/393216   ( 0.0%) 
+waterstrips            129/32768        1290/327680   ( 0.4%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices          1947/65536        3894/131072   ( 3.0%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                 0/512             0/180224   ( 0.0%) 
+LDR lightdata         [variable]      151224/0        ( 0.0%) 
+HDR lightdata         [variable]           0/0        ( 0.0%) 
+visdata               [variable]        4240/16777216 ( 0.0%) 
+entdata               [variable]        1876/393216   ( 0.5%) 
+LDR ambient table      215/65536         860/262144   ( 0.3%) 
+HDR ambient table      215/65536         860/262144   ( 0.3%) 
+LDR leaf ambient       119/65536        3332/1835008  ( 0.2%) 
+HDR leaf ambient       215/65536        6020/1835008  ( 0.3%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+detail props          [variable]           1/12       ( 8.3%) 
+static props          [variable]           1/206      ( 0.5%) 
+pakfile               [variable]      211629/0        ( 0.0%) 
+physics               [variable]      162656/4194304  ( 3.9%) 
+physics terrain       [variable]           2/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 2813
+Writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+materialPath: K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.vmf
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 190 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.prt...Building visibility clusters...
+done (0)
+Creating default LDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Creating default HDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (0) (162656 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 686 texinfos to 496
+Reduced 25 texdatas to 24 (843 bytes to 793)
+Writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+12 threads
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.prt
+ 119 portalclusters
+ 369 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 25 visible clusters (0.44%)
+Total clusters visible: 5647
+Average clusters visible: 47
+Building PAS...
+Average clusters audible: 102
+visdatasize:4240  compressed from 3808
+writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+[Reading texlights from 'lights.rad']
+[45 texlights parsed from 'lights.rad']
+
+Loading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+PREP OK
+1064 faces
+1 degenerate faces
+34517 square feet [4970587.50 square inches]
+0 Displacements
+0 Square Feet [0.00 Square Inches]
+1063 patches before subdivision
+5129 patches after subdivision
+0 direct lights
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10transfers 569550, max 501
+transfer lists:   4.3 megs
+0...1...2...3...4...5...6...7...8...9...10	Bounce #1 added RGB(0, 0, 0)
+Build Patch/Sample Hash Table(s).....Done<0.0008 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0 of 0 (0% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                   1/4096           48/196608   ( 0.0%) 
+brushes                416/16384        4992/196608   ( 2.5%) 
+brushsides            3929/65536       31432/524288   ( 6.0%) 
+planes                3712/65536       74240/1310720  ( 5.7%) 
+vertexes              1971/65536       23652/786432   ( 3.0%) 
+nodes                  213/65536        6816/2097152  ( 0.3%) 
+texinfos               496/12288       35712/884736   ( 4.0%) 
+texdata                 24/2048          768/65536    ( 1.2%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                 1064/65536       59584/3670016  ( 1.6%) 
+hdr faces                0/65536           0/3670016  ( 0.0%) 
+origfaces              983/65536       55048/3670016  ( 1.5%) 
+leaves                 215/65536        6880/2097152  ( 0.3%) 
+leaffaces             1335/65536        2670/131072   ( 2.0%) 
+leafbrushes            623/65536        1246/131072   ( 1.0%) 
+areas                    2/1024           16/8192     ( 0.2%) 
+surfedges             8988/512000      35952/2048000  ( 1.8%) 
+edges                 5651/256000      22604/1024000  ( 2.2%) 
+LDR worldlights          0/8192            0/720896   ( 0.0%) 
+HDR worldlights          0/8192            0/720896   ( 0.0%) 
+leafwaterdata            0/32768           0/393216   ( 0.0%) 
+waterstrips            129/32768        1290/327680   ( 0.4%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices          1947/65536        3894/131072   ( 3.0%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                 0/512             0/180224   ( 0.0%) 
+LDR lightdata         [variable]      157704/0        ( 0.0%) 
+HDR lightdata         [variable]           0/0        ( 0.0%) 
+visdata               [variable]        4240/16777216 ( 0.0%) 
+entdata               [variable]        1876/393216   ( 0.5%) 
+LDR ambient table      215/65536         860/262144   ( 0.3%) 
+HDR ambient table      215/65536         860/262144   ( 0.3%) 
+LDR leaf ambient       119/65536        3332/1835008  ( 0.2%) 
+HDR leaf ambient       215/65536        6020/1835008  ( 0.3%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+detail props          [variable]           1/12       ( 8.3%) 
+static props          [variable]           1/206      ( 0.5%) 
+pakfile               [variable]      211629/0        ( 0.0%) 
+physics               [variable]      162656/4194304  ( 3.9%) 
+physics terrain       [variable]           2/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 2813
+Writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+materialPath: K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.vmf
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 190 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.prt...Building visibility clusters...
+done (0)
+Creating default LDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Creating default HDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (0) (179624 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 711 texinfos to 517
+Reduced 25 texdatas to 24 (843 bytes to 793)
+Writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+12 threads
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.prt
+ 147 portalclusters
+ 448 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 22 visible clusters (0.32%)
+Total clusters visible: 6940
+Average clusters visible: 47
+Building PAS...
+Average clusters audible: 109
+visdatasize:6149  compressed from 7056
+writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+[Reading texlights from 'lights.rad']
+[45 texlights parsed from 'lights.rad']
+
+Loading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+PREP OK
+1179 faces
+1 degenerate faces
+40402 square feet [5818020.50 square inches]
+0 Displacements
+0 Square Feet [0.00 Square Inches]
+1178 patches before subdivision
+5980 patches after subdivision
+0 direct lights
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10transfers 643488, max 506
+transfer lists:   4.9 megs
+0...1...2...3...4...5...6...7...8...9...10	Bounce #1 added RGB(0, 0, 0)
+Build Patch/Sample Hash Table(s).....Done<0.0010 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0 of 0 (0% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                   1/4096           48/196608   ( 0.0%) 
+brushes                465/16384        5580/196608   ( 2.8%) 
+brushsides            4236/65536       33888/524288   ( 6.5%) 
+planes                3832/65536       76640/1310720  ( 5.8%) 
+vertexes              2188/65536       26256/786432   ( 3.3%) 
+nodes                  269/65536        8608/2097152  ( 0.4%) 
+texinfos               517/12288       37224/884736   ( 4.2%) 
+texdata                 24/2048          768/65536    ( 1.2%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                 1179/65536       66024/3670016  ( 1.8%) 
+hdr faces                0/65536           0/3670016  ( 0.0%) 
+origfaces             1070/65536       59920/3670016  ( 1.6%) 
+leaves                 271/65536        8672/2097152  ( 0.4%) 
+leaffaces             1480/65536        2960/131072   ( 2.3%) 
+leafbrushes            686/65536        1372/131072   ( 1.0%) 
+areas                    2/1024           16/8192     ( 0.2%) 
+surfedges             9906/512000      39624/2048000  ( 1.9%) 
+edges                 6232/256000      24928/1024000  ( 2.4%) 
+LDR worldlights          0/8192            0/720896   ( 0.0%) 
+HDR worldlights          0/8192            0/720896   ( 0.0%) 
+leafwaterdata            0/32768           0/393216   ( 0.0%) 
+waterstrips            137/32768        1370/327680   ( 0.4%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices          2082/65536        4164/131072   ( 3.2%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                 0/512             0/180224   ( 0.0%) 
+LDR lightdata         [variable]      180184/0        ( 0.0%) 
+HDR lightdata         [variable]           0/0        ( 0.0%) 
+visdata               [variable]        6149/16777216 ( 0.0%) 
+entdata               [variable]        2069/393216   ( 0.5%) 
+LDR ambient table      271/65536        1084/262144   ( 0.4%) 
+HDR ambient table      271/65536        1084/262144   ( 0.4%) 
+LDR leaf ambient       147/65536        4116/1835008  ( 0.2%) 
+HDR leaf ambient       271/65536        7588/1835008  ( 0.4%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+detail props          [variable]           1/12       ( 8.3%) 
+static props          [variable]           1/206      ( 0.5%) 
+pakfile               [variable]      211629/0        ( 0.0%) 
+physics               [variable]      179624/4194304  ( 4.3%) 
+physics terrain       [variable]           2/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 3153
+Writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+materialPath: K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.vmf
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 190 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.prt...Building visibility clusters...
+done (0)
+Creating default LDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Creating default HDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (0) (179656 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 717 texinfos to 522
+Reduced 25 texdatas to 24 (843 bytes to 793)
+Writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+12 threads
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.prt
+ 149 portalclusters
+ 450 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 22 visible clusters (0.31%)
+Total clusters visible: 7030
+Average clusters visible: 47
+Building PAS...
+Average clusters audible: 108
+visdatasize:6203  compressed from 7152
+writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+[Reading texlights from 'lights.rad']
+[45 texlights parsed from 'lights.rad']
+
+Loading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+PREP OK
+1184 faces
+1 degenerate faces
+40667 square feet [5856071.00 square inches]
+0 Displacements
+0 Square Feet [0.00 Square Inches]
+1183 patches before subdivision
+6035 patches after subdivision
+0 direct lights
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10transfers 649530, max 506
+transfer lists:   5.0 megs
+0...1...2...3...4...5...6...7...8...9...10	Bounce #1 added RGB(0, 0, 0)
+Build Patch/Sample Hash Table(s).....Done<0.0010 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0 of 0 (0% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                   1/4096           48/196608   ( 0.0%) 
+brushes                465/16384        5580/196608   ( 2.8%) 
+brushsides            4236/65536       33888/524288   ( 6.5%) 
+planes                3840/65536       76800/1310720  ( 5.9%) 
+vertexes              2195/65536       26340/786432   ( 3.3%) 
+nodes                  273/65536        8736/2097152  ( 0.4%) 
+texinfos               522/12288       37584/884736   ( 4.2%) 
+texdata                 24/2048          768/65536    ( 1.2%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                 1184/65536       66304/3670016  ( 1.8%) 
+hdr faces                0/65536           0/3670016  ( 0.0%) 
+origfaces             1070/65536       59920/3670016  ( 1.6%) 
+leaves                 275/65536        8800/2097152  ( 0.4%) 
+leaffaces             1486/65536        2972/131072   ( 2.3%) 
+leafbrushes            689/65536        1378/131072   ( 1.1%) 
+areas                    2/1024           16/8192     ( 0.2%) 
+surfedges             9930/512000      39720/2048000  ( 1.9%) 
+edges                 6244/256000      24976/1024000  ( 2.4%) 
+LDR worldlights          0/8192            0/720896   ( 0.0%) 
+HDR worldlights          0/8192            0/720896   ( 0.0%) 
+leafwaterdata            0/32768           0/393216   ( 0.0%) 
+waterstrips            137/32768        1370/327680   ( 0.4%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices          2085/65536        4170/131072   ( 3.2%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                 0/512             0/180224   ( 0.0%) 
+LDR lightdata         [variable]      181248/0        ( 0.0%) 
+HDR lightdata         [variable]           0/0        ( 0.0%) 
+visdata               [variable]        6203/16777216 ( 0.0%) 
+entdata               [variable]        2177/393216   ( 0.6%) 
+LDR ambient table      275/65536        1100/262144   ( 0.4%) 
+HDR ambient table      275/65536        1100/262144   ( 0.4%) 
+LDR leaf ambient       149/65536        4172/1835008  ( 0.2%) 
+HDR leaf ambient       275/65536        7700/1835008  ( 0.4%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+detail props          [variable]           1/12       ( 8.3%) 
+static props          [variable]           1/206      ( 0.5%) 
+pakfile               [variable]      211629/0        ( 0.0%) 
+physics               [variable]      179656/4194304  ( 4.3%) 
+physics terrain       [variable]           2/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 3167
+Writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+materialPath: K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.vmf
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 190 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.prt...Building visibility clusters...
+done (0)
+Creating default LDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Creating default HDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (0) (180640 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 720 texinfos to 525
+Reduced 25 texdatas to 24 (843 bytes to 793)
+Writing K:\Programmes\Steam\steamapps\common\GarrysMod\garrysmod\addons\AmongUs\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+12 threads
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+reading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.prt
+ 149 portalclusters
+ 450 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 22 visible clusters (0.31%)
+Total clusters visible: 7030
+Average clusters visible: 47
+Building PAS...
+Average clusters audible: 108
+visdatasize:6203  compressed from 7152
+writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed
+
+
+
+[Reading texlights from 'lights.rad']
+[45 texlights parsed from 'lights.rad']
+
+Loading k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+PREP OK
+1189 faces
+1 degenerate faces
+40667 square feet [5856071.00 square inches]
+0 Displacements
+0 Square Feet [0.00 Square Inches]
+1188 patches before subdivision
+6030 patches after subdivision
+0 direct lights
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10transfers 650850, max 507
+transfer lists:   5.0 megs
+0...1...2...3...4...5...6...7...8...9...10	Bounce #1 added RGB(0, 0, 0)
+Build Patch/Sample Hash Table(s).....Done<0.0010 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0 of 0 (0% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                   1/4096           48/196608   ( 0.0%) 
+brushes                468/16384        5616/196608   ( 2.9%) 
+brushsides            4254/65536       34032/524288   ( 6.5%) 
+planes                3840/65536       76800/1310720  ( 5.9%) 
+vertexes              2203/65536       26436/786432   ( 3.4%) 
+nodes                  273/65536        8736/2097152  ( 0.4%) 
+texinfos               525/12288       37800/884736   ( 4.3%) 
+texdata                 24/2048          768/65536    ( 1.2%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                 1189/65536       66584/3670016  ( 1.8%) 
+hdr faces                0/65536           0/3670016  ( 0.0%) 
+origfaces             1073/65536       60088/3670016  ( 1.6%) 
+leaves                 275/65536        8800/2097152  ( 0.4%) 
+leaffaces             1492/65536        2984/131072   ( 2.3%) 
+leafbrushes            694/65536        1388/131072   ( 1.1%) 
+areas                    2/1024           16/8192     ( 0.2%) 
+surfedges             9968/512000      39872/2048000  ( 1.9%) 
+edges                 6268/256000      25072/1024000  ( 2.4%) 
+LDR worldlights          0/8192            0/720896   ( 0.0%) 
+HDR worldlights          0/8192            0/720896   ( 0.0%) 
+leafwaterdata            0/32768           0/393216   ( 0.0%) 
+waterstrips            138/32768        1380/327680   ( 0.4%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices          2103/65536        4206/131072   ( 3.2%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                 0/512             0/180224   ( 0.0%) 
+LDR lightdata         [variable]      181500/0        ( 0.0%) 
+HDR lightdata         [variable]           0/0        ( 0.0%) 
+visdata               [variable]        6203/16777216 ( 0.0%) 
+entdata               [variable]        2177/393216   ( 0.6%) 
+LDR ambient table      275/65536        1100/262144   ( 0.4%) 
+HDR ambient table      275/65536        1100/262144   ( 0.4%) 
+LDR leaf ambient       149/65536        4172/1835008  ( 0.2%) 
+HDR leaf ambient       275/65536        7700/1835008  ( 0.4%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+detail props          [variable]           1/12       ( 8.3%) 
+static props          [variable]           1/206      ( 0.5%) 
+pakfile               [variable]      211629/0        ( 0.0%) 
+physics               [variable]      180640/4194304  ( 4.3%) 
+physics terrain       [variable]           2/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 3183
+Writing k:\programmes\steam\steamapps\common\garrysmod\garrysmod\addons\amongus\gamemodes\amongus\content\maps\au_skeld_remade.bsp
+0 seconds elapsed

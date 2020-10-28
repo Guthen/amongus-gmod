@@ -34,7 +34,7 @@ end
 function AmongUs.RespawnAlivePlayers()
     local players = AmongUs.GetAlivePlayers()
     local ang = 0
-    local radius = math.max( 50, #players * 16 )
+    local radius = math.max( 150, #players * 16 )
     local origin = Vector( 0, 0, 0 )
 
     for i, v in ipairs( players ) do
@@ -56,9 +56,6 @@ function AmongUs.LaunchGame( force_impostors )
     AmongUs.GameOver = false
     AmongUs.Votes = nil
     AmongUs.PlayersTasks = {}
-
-    --  > Clean
-    game.CleanUpMap()
 
     --  > Give roles with a maximum capacity first
     local players, roles = player.GetAll(), table.Copy( AmongUs.Roles )
@@ -136,6 +133,9 @@ function AmongUs.LaunchGame( force_impostors )
 
     --  > Set position
     AmongUs.RespawnAlivePlayers()
+
+    --  > Clean
+    game.CleanUpMap()
 
     --  > Open Start menu
     timer.Simple( .25, function()
